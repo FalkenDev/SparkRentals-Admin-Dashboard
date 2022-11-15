@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { links } from "../data/links";
+import { ReactComponent as LogoSpark } from "../assets/LogoSpark.svg";
 
 const activeLink = "bg-sidebarActive rounded-xl text-blue-300";
 const normalLink = "text-white";
@@ -35,6 +36,9 @@ const Sidebar = () => {
           h-screen overflow-auto flex flex-col
           w-72 bg-sidebarBlue p-3"
       >
+        <div className="pt-2 pb-5">
+          <LogoSpark />
+        </div>
         {SidebarItems()}
       </nav>
     </>
