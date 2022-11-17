@@ -1,8 +1,13 @@
+import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Dashboard, Map, Cities, Customers, Scooters } from "./pages";
+import { Dashboard, Map, Cities, Customers, Scooters, Login } from "./pages";
 import { Sidebar } from "./components";
 
 function App() {
+  const [token, setToken] = useState(false);
+  if (!token) {
+    return <Login setToken={setToken} />;
+  }
   return (
     <>
       <BrowserRouter>

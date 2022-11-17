@@ -1,6 +1,7 @@
 import { AiFillPieChart } from "react-icons/ai";
 import { BsFillPinMapFill } from "react-icons/bs";
 import { FaCity, FaUserFriends } from "react-icons/fa";
+import { FiSettings } from "react-icons/fi";
 export const links = [
   {
     title: "dashboard",
@@ -17,5 +18,9 @@ export const links = [
   {
     title: "customers",
     icon: <FaUserFriends />,
+  },
+  {
+    title: "Settings",
+    icon: <FiSettings />,
   },
 ];
