@@ -2,12 +2,15 @@ import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Dashboard, Map, Cities, Customers, Scooters, Login } from "./pages";
 import { Sidebar } from "./components";
+import { useStateContext } from "./contexts/ContextProvider";
 
 function App() {
-  const [token, setToken] = useState(false);
+  const { token } = useStateContext();
+
   if (!token) {
-    return <Login setToken={setToken} />;
+    return <Login />;
   }
+
   return (
     <>
       <BrowserRouter>
