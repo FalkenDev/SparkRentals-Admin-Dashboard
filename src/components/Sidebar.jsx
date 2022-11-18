@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { links } from "../data/links";
+import { links } from "../data/data";
 import { ReactComponent as LogoSpark } from "../assets/LogoSpark.svg";
 
 const activeLink = "bg-sidebarActive rounded-xl text-blue-300";
