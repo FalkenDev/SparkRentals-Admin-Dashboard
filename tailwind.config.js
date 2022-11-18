@@ -8,6 +8,9 @@ module.exports = {
         sidebarHover: "#220181",
         sidebarActive: "#0b002b",
       },
+      height: {
+        128: "36rem",
+      },
     },
   },
   plugins: [],
