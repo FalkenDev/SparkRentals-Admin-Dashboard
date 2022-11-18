@@ -1,11 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import BlackLogoSpark from "../../assets/LogoBlack.svg";
+import { useStateContext } from "../../contexts/ContextProvider";
 
-const LoginForm = ({ setToken }) => {
+const LoginForm = () => {
+  const { setToken } = useStateContext();
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const validPass = () => {
+
+  const validPass = (event) => {
+    event.preventDefault();
     if (password === "admin" && username === "admin") {
       setToken(true);
     }
@@ -20,7 +24,7 @@ const LoginForm = ({ setToken }) => {
       </div>
       <h1 className="font-semibold text-2xl mb-3">Admin Dashboard</h1>
       <form
-        onSubmit={validPass()}
+        onSubmit={validPass}
         className="flex flex-col center items-center w-3/4 justify-between h-full"
       >
         <div className="w-full">
