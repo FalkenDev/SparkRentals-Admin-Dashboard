@@ -16,8 +16,8 @@ const LoginForm = () => {
   };
   return (
     <div
-      className="flex flex-col items-center w-3/12 rounded-2xl
-     shadow-lg bg-white py-4"
+      className="flex flex-col items-center w-96 rounded-2xl
+     shadow-lg bg-white py-4 h-128"
     >
       <div className="py-4">
         <img src={BlackLogoSpark} alt="React Logo" className="w-48" />
