@@ -11,3 +11,4 @@ export { default as Map } from "./Map/Map";
 export { default as ScooterList } from "./Scooters/ScooterList";
 export { default as RegisterScooterForm } from "./Scooters/RegisterScooterForm";
 export { default as LoginForm } from "./Login/LoginForm";
+export { default as DataLists } from "./Dashboard/DataLists";
