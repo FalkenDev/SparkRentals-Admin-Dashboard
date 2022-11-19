@@ -44,7 +44,7 @@ export const dashboard = [
         icon: "",
       },
       {
-        title: "Total Scooters Scharging",
+        title: "Total Scooters Charging",
         icon: "",
       },
       {
