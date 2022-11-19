@@ -4,7 +4,7 @@ const StatContainer = ({ icon, title, color }) => {
     <div
       className="flex flex-row w-80 justify-between
      bg-white p-4 rounded-xl h-32 align-middle
-       items-center"
+       items-center shadow-md"
     >
       <div
         style={{ backgroundColor: color }}
@@ -14,7 +14,7 @@ const StatContainer = ({ icon, title, color }) => {
         {icon}
       </div>
       <div className="flex justify-between flex-col">
-        <h1 className="text-2xl font-semibold">9999</h1>
+        <h1 className="text-2xl font-semibold text-right">9999</h1>
         <p className="text-gray-600 font-semibold">{title}</p>
       </div>
     </div>
