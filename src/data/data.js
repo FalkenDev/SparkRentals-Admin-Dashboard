@@ -2,6 +2,7 @@ import { AiFillPieChart, AiOutlineUser } from "react-icons/ai";
 import { BsFillPinMapFill } from "react-icons/bs";
 import { FaCity, FaUserFriends } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
+import { TbScooter } from "react-icons/tb";
 import { ReactComponent as Scooter } from "../assets/icons/Scooter.svg";
 import { ReactComponent as Users } from "../assets/icons/Users.svg";
 import { ReactComponent as Areas } from "../assets/icons/Areas.svg";
@@ -18,6 +19,10 @@ export const links = [
   {
     title: "cities",
     icon: <FaCity />,
+  },
+  {
+    title: "scooters",
+    icon: <TbScooter />,
   },
   {
     title: "customers",
