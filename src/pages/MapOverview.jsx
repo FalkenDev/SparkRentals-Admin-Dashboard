@@ -3,17 +3,20 @@ import Map from "../components/Map/Map";
 import { useState } from "react";
 import { AiOutlineZoomIn, AiOutlineZoomOut } from "react-icons/ai";
 import { Layers, TileLayer, VectorLayer } from "../components/Map/Layers";
-import { Fill, Stroke, Style } from "ol/style";
+import Point from "ol/geom/Point";
+import { Fill, Stroke, Style, Icon } from "ol/style";
 import { osm, vector } from "../components/Map/Source";
 import { fromLonLat, get } from "ol/proj";
 import GeoJSON from "ol/format/GeoJSON";
 //import { Controls, FullScreenControl } from "./Controls";
-
+import Feature from "ol/Feature";
 import { Searchbar } from "./../components";
 import mapConfig from "../config/config.json";
+import { areas, markers } from "../data/mock/mockdata";
 import getCoordinates from "../models/nominatim";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
-const geojsonObject = mapConfig.geojsonObject;
+//const geojsonObject = mapConfig.geojsonObject;
 //const markersLonLat = [mapConfig.kansasCityLonLat, mapConfig.blueSpringsLonLat];
 const startpoint = mapConfig.center;
 
@@ -22,12 +25,35 @@ let styles = {
     stroke: new Stroke({ color: "blue", width: 1 }),
     fill: new Fill({ color: "rgba(0, 0, 255, 0.1)" }),
   }),
+  MultiPolygon2: new Style({
+    stroke: new Stroke({ color: "red", width: 1 }),
+    fill: new Fill({ color: "rgba(255,160,122, 0.1)" }),
+  }),
 };
+
+function addMarkers(lonLatArray) {
+  const iconStyle = new Style({
+    image: new Icon({
+      anchorXUnits: "fraction",
+      anchorYUnits: "pixels",
+      src: mapConfig.markerImage32,
+    }),
+  });
+  const features = lonLatArray.map((item) => {
+    let feature = new Feature({
+      geometry: new Point(fromLonLat(item)),
+    });
+    feature.setStyle(iconStyle);
+    return feature;
+  });
+  return features;
+}
 
 const MapOverview = () => {
   const [center, setCenter] = useState(startpoint);
   const [zoom, setZoom] = useState(14);
   const [searchPhrase, setSearchPhrase] = useState("");
+  const [features, setFeatures] = useState(addMarkers(markers.markerPoints));
 
   const handleSearch = async (event) => {
     event.preventDefault();
@@ -44,6 +70,21 @@ const MapOverview = () => {
 
   const zoomInFunc = () => {
     setZoom(zoom + 1);
+  };
+
+  const areasZones = () => {
+    return areas.geoObjects.map((item) => {
+      return (
+        <VectorLayer
+          source={vector({
+            features: new GeoJSON().readFeatures(item, {
+              featureProjection: get("EPSG:3857"),
+            }),
+          })}
+          style={styles.MultiPolygon}
+        />
+      );
+    });
   };
 
   return (
@@ -71,34 +112,16 @@ const MapOverview = () => {
           </button>
         </div>
         <Map center={fromLonLat(center)} zoom={zoom}>
-          {" "}
           <Layers>
-            {" "}
-            <TileLayer source={osm()} zIndex={0} />{" "}
-            <VectorLayer
-              source={vector({
-                features: new GeoJSON().readFeatures(geojsonObject, {
-                  featureProjection: get("EPSG:3857"),
-                }),
-              })}
-              style={styles.MultiPolygon}
-            />{" "}
-            {/* {showLayer2 && (
-            <VectorLayer
-              source={vector({
-                features: new GeoJSON().readFeatures(geojsonObject2, {
-                  featureProjection: get("EPSG:3857"),
-                }),
-              })}
-              style={styles.MultiPolygon}
-            />
-          )}{" "} */}
-          </Layers>{" "}
+            <TileLayer source={osm()} zIndex={0} />
+            {areasZones()}
+            <VectorLayer source={vector({ features })} />
+          </Layers>
           {/* <Controls>
           {" "}
           <FullScreenControl />{" "}
         </Controls>{" "} */}
-        </Map>{" "}
+        </Map>
       </div>
     </div>
   );
