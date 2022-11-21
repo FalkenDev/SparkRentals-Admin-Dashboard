@@ -1,3 +1,40 @@
 {
-    "api_key": ""
+    "center": [15.5869, 56.1612],
+    "geojsonObject": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {
+              "kind": "Municipality",
+              "name": "Karlskrona",
+              "state": "KS"
+            },
+            "geometry": {
+              "type": "MultiPolygon",
+              "coordinates": [
+                [
+                  [
+                    [15.558929, 56.155583],
+                    [15.572597, 56.18663],
+                    [15.591939, 56.198839],
+                    [15.605424, 56.192853],
+                    [15.617583, 56.188028],
+                    [15.607509, 56.172125],
+                    [15.602819, 56.169909],
+                    [15.597434, 56.165952],
+                    [15.601777, 56.161801],
+                    [15.59535, 56.156683]
+                  ]
+                ]
+              ]
+            }
+          }
+        ]
+      },
+    "kansasCityLonLat": [-94.579228, 39.135386],
+    "blueSpringsLonLat": [-94.279851, 39.03412],
+    "markerImage24" : "https://cdn2.iconfinder.com/data/icons/social-media-and-payment/64/-47-24.png",
+    "markerImage32" : "https://cdn2.iconfinder.com/data/icons/social-media-and-payment/64/-47-32.png",
+    "markerImage64" : "https://cdn2.iconfinder.com/data/icons/social-media-and-payment/64/-47-64.png"
 }
