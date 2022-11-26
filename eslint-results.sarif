@@ -1,0 +1,1041 @@
+{
+  "version": "2.1.0",
+  "$schema": "http://json.schemastore.org/sarif-2.1.0-rtm.5",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "ESLint",
+          "informationUri": "https://eslint.org",
+          "rules": [],
+          "version": "8.10.0"
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/postcss.config.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/App.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Cities/CityList.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Cities/RegisterCityForm.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Customers/CustomerList.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Dashboard/DataLists.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Dashboard/Databox.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Dashboard/StatContainer.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Login/LoginForm.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Layers/Layers.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Layers/TileLayer.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Layers/VectorLayer.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Layers/index.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Map.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Source/index.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Source/osm.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Source/vector.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Source/xyz.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Scooters/RegisterScooterForm.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Scooters/ScooterList.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Searchbar.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Sidebar.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/index.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/contexts/ContextProvider.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/contexts/MapContext.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/data/data.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/data/mock/mockdata.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/index.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/models/auth.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/models/cities.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/models/nominatim.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/models/scooters.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/models/storage.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/models/users.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/pages/Cities.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/pages/Customers.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/pages/Dashboard.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/pages/Login.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/pages/MapOverview.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/pages/Scooters.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/pages/index.jsx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/tailwind.config.js"
+          }
+        }
+      ],
+      "results": [],
+      "invocations": [
+        {
+          "toolConfigurationNotifications": [
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/App.js",
+                      "index": 1
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Cities/CityList.jsx",
+                      "index": 2
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Cities/RegisterCityForm.jsx",
+                      "index": 3
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Customers/CustomerList.jsx",
+                      "index": 4
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Dashboard/DataLists.jsx",
+                      "index": 5
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Dashboard/Databox.jsx",
+                      "index": 6
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Dashboard/StatContainer.jsx",
+                      "index": 7
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Login/LoginForm.jsx",
+                      "index": 8
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Layers/Layers.js",
+                      "index": 9
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Layers/TileLayer.js",
+                      "index": 10
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Layers/VectorLayer.js",
+                      "index": 11
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Layers/index.js",
+                      "index": 12
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Map.jsx",
+                      "index": 13
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Source/index.js",
+                      "index": 14
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Source/osm.js",
+                      "index": 15
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Source/vector.js",
+                      "index": 16
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Map/Source/xyz.js",
+                      "index": 17
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Scooters/RegisterScooterForm.jsx",
+                      "index": 18
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Scooters/ScooterList.jsx",
+                      "index": 19
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Searchbar.jsx",
+                      "index": 20
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/Sidebar.jsx",
+                      "index": 21
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/components/index.jsx",
+                      "index": 22
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/contexts/ContextProvider.js",
+                      "index": 23
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/contexts/MapContext.js",
+                      "index": 24
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/data/data.js",
+                      "index": 25
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/data/mock/mockdata.js",
+                      "index": 26
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/index.js",
+                      "index": 27
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/models/nominatim.js",
+                      "index": 30
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/pages/Cities.jsx",
+                      "index": 34
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/pages/Customers.jsx",
+                      "index": 35
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/pages/Dashboard.jsx",
+                      "index": 36
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/pages/Login.jsx",
+                      "index": 37
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/pages/MapOverview.jsx",
+                      "index": 38
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/pages/Scooters.jsx",
+                      "index": 39
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            },
+            {
+              "level": "error",
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              },
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "uri": "file:///mnt/c/Users/kaspe/dbwebb-kurser/vteam/sparkrentals-admin-dashboard/src/pages/index.jsx",
+                      "index": 40
+                    },
+                    "region": {
+                      "startLine": 1,
+                      "startColumn": 1
+                    }
+                  }
+                }
+              ],
+              "descriptor": {
+                "id": "ESL0999"
+              }
+            }
+          ],
+          "executionSuccessful": false
+        }
+      ]
+    }
+  ]
+}
