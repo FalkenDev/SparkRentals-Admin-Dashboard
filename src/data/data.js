@@ -43,18 +43,22 @@ export const dashboard = [
       {
         title: "Total Scooters",
         icon: "",
+        dataName: "totalScooters",
       },
       {
         title: "Total Live Scooters",
         icon: "",
+        dataName: "liveScooters",
       },
       {
         title: "Total Scooters Charging",
         icon: "",
+        dataName: "chargingScooters",
       },
       {
         title: "Total Scooters Maintence",
         icon: "",
+        dataName: "maintenceScooters",
       },
     ],
   },
