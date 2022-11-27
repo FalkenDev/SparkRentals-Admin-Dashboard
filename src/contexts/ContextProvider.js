@@ -6,13 +6,13 @@ const StateContext = createContext();
 // };
 
 export const ContextProvider = ({ children }) => {
-  const [token, setToken] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <StateContext.Provider
       value={{
-        setToken,
-        token,
+        setIsLoggedIn,
+        isLoggedIn,
       }}
     >
       {children}
