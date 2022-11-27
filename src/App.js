@@ -11,9 +11,9 @@ import { Sidebar } from "./components";
 import { useStateContext } from "./contexts/ContextProvider";
 
 function App() {
-  const { token } = useStateContext();
+  const { isLoggedIn } = useStateContext();
 
-  if (!token) {
+  if (!isLoggedIn) {
     return <Login />;
   }
 
