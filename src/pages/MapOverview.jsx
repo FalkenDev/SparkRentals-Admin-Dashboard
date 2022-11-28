@@ -55,11 +55,10 @@ const MapOverview = () => {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [features, setFeatures] = useState(addMarkers(markers.markerPoints));
 
-  const handleSearch = async (event) => {
-    event.preventDefault();
+  const handleSearch = async () => {
+    //event.preventDefault();
     const result = await getCoordinates(searchPhrase);
     const coordArr = [result.longitude, result.latitude];
-    console.log(result);
     setZoom(10);
     setCenter(coordArr);
   };
