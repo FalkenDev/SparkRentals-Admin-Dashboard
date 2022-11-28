@@ -6,6 +6,7 @@ import {
   Customers,
   Scooters,
   Login,
+  Settings,
 } from "./pages";
 import { Sidebar } from "./components";
 import { useStateContext } from "./contexts/ContextProvider";
@@ -33,6 +34,7 @@ function App() {
             <Route path="/cities" element={<Cities />} />
             <Route path="/scooters" element={<Scooters />} />
             <Route path="/customers" element={<Customers />} />
+            <Route path="/settings" element={<Settings />} />
           </Routes>
         </div>
       </BrowserRouter>
