@@ -34,6 +34,29 @@ export const links = [
   },
 ];
 
+export const scooterform = [
+  {
+    title: "City",
+    placeholder: "Enter owner city",
+  },
+  {
+    title: "Latitude",
+    placeholder: "Enter current Latitude",
+  },
+  {
+    title: "Longitude",
+    placeholder: "Enter current Longitude",
+  },
+  {
+    title: "Status",
+    placeholder: "Enter Current Status",
+  },
+  {
+    title: "Battery",
+    placeholder: "Enter Current battery",
+  },
+];
+
 export const dashboard = [
   {
     title: "Scooters",

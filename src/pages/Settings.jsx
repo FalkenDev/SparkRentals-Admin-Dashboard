@@ -8,7 +8,7 @@ const Settings = () => {
   const handleLogout = (event) => {
     event.preventDefault();
     setIsLoggedIn(false);
-    console.log("help");
+    //console.log("help");
     auth.logout();
   };
 

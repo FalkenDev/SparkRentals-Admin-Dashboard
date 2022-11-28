@@ -5,6 +5,92 @@ export const scooterOverview = {
   maintenceScooters: 2,
 };
 
+export const scooterData = {
+  scooters: [
+    {
+      status: "Available",
+      battery: 100,
+      owner: "Stockholm",
+      position: {
+        longitude: "5.0",
+        latitude: "1.0",
+      },
+    },
+    {
+      status: "Not available",
+      battery: 54,
+      owner: "Karlskrona",
+      position: {
+        longitude: "2.0",
+        latitude: "15.0",
+      },
+    },
+    {
+      status: "In use",
+      battery: 42,
+      owner: "Halmstad",
+      position: {
+        longitude: "22.0",
+        latitude: "145.0",
+      },
+    },
+    {
+      status: "Available",
+      battery: 100,
+      owner: "Stockholm",
+      position: {
+        longitude: "5.0",
+        latitude: "1.0",
+      },
+    },
+    {
+      status: "Not available",
+      battery: 54,
+      owner: "Karlskrona",
+      position: {
+        longitude: "2.0",
+        latitude: "15.0",
+      },
+    },
+    {
+      status: "In use",
+      battery: 42,
+      owner: "Halmstad",
+      position: {
+        longitude: "22.0",
+        latitude: "145.0",
+      },
+    },
+    {
+      status: "Available",
+      battery: 100,
+      owner: "Stockholm",
+      position: {
+        longitude: "5.0",
+        latitude: "1.0",
+      },
+    },
+    {
+      status: "Not available",
+      battery: 54,
+      owner: "Karlskrona",
+      position: {
+        longitude: "2.0",
+        latitude: "15.0",
+      },
+    },
+    {
+      status: "In use",
+      battery: 42,
+      owner: "Halmstad",
+      position: {
+        longitude: "22.0",
+        latitude: "145.0",
+      },
+    },
+  ],
+};
+
 export const markers = {
   markerPoints: [
     [15.558929, 56.155583],

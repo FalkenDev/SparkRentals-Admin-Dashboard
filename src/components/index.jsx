@@ -2,6 +2,7 @@ import { fromJSON } from "postcss";
 
 export { default as Sidebar } from "./Sidebar";
 export { default as Searchbar } from "./Searchbar";
+export { default as Filterbar } from "./filterbar";
 export { default as CityList } from "./Cities/CityList";
 export { default as RegisterCityForm } from "./Cities/RegisterCityForm";
 export { default as CustomerList } from "./Customers/CustomerList";
