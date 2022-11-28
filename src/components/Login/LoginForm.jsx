@@ -1,19 +1,23 @@
 import React from "react";
 import { useState } from "react";
 import BlackLogoSpark from "../../assets/LogoBlack.svg";
+import { auth } from "../../models/auth.js";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 const LoginForm = () => {
-  const { setToken } = useStateContext();
+  const { setIsLoggedIn } = useStateContext();
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
 
-  const validPass = (event) => {
+  const validPass = async (event) => {
     event.preventDefault();
-    if (password === "admin" && username === "admin") {
-      setToken(true);
+
+    const result = await auth.login(email, password);
+    if (result.type === "success") {
+      setIsLoggedIn(true);
     }
   };
+
   return (
     <div
       className="flex flex-col items-center w-96 rounded-2xl
@@ -31,8 +35,8 @@ const LoginForm = () => {
           <div className="border-b-2 my-8 w-full text-xl">
             <input
               type="text"
-              onChange={(e) => setUsername(e.target.value)}
-              value={username}
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
               placeholder="Username"
               className="w-full"
             />
