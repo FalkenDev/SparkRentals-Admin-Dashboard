@@ -1,3 +1,10 @@
+export const scooterOverview = {
+  totalScooters: 233,
+  liveScooters: 89,
+  chargingScooters: 22,
+  maintenceScooters: 2,
+};
+
 export const markers = {
   markerPoints: [
     [15.558929, 56.155583],

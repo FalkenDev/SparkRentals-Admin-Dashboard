@@ -1,5 +1,6 @@
 import React from "react";
-const StatContainer = ({ icon, title, color }) => {
+import { scooterOverview } from "../../data/mock/mockdata";
+const StatContainer = ({ icon, title, color, data }) => {
   return (
     <div
       className="flex flex-row w-80 justify-between
@@ -14,7 +15,9 @@ const StatContainer = ({ icon, title, color }) => {
         {icon}
       </div>
       <div className="flex justify-between flex-col">
-        <h1 className="text-2xl font-semibold text-right">9999</h1>
+        <h1 className="text-2xl font-semibold text-right">
+          {scooterOverview[data]}
+        </h1>
         <p className="text-gray-600 font-semibold">{title}</p>
       </div>
     </div>

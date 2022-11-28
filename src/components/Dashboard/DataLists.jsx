@@ -17,6 +17,7 @@ const DataLists = () => {
                     icon={item.icon}
                     title={item.title}
                     color={list.color}
+                    data={item.dataName}
                   />
                 </div>
               );
