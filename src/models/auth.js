@@ -2,13 +2,15 @@ import config from "../config/config.json";
 
 const storage = {
   //WRONG
-  storeToken: async function storeToken(token) {
+  storeToken: function storeToken(token) {
     localStorage.setItem("token", token);
   },
   readToken: function readToken() {
     localStorage.getItem("token");
   },
-  deleteToken: function readToken() {},
+  deleteToken: function readToken() {
+    localStorage.removeItem("token");
+  },
 };
 
 const auth = {
@@ -35,13 +37,16 @@ const auth = {
       };
     }
 
-    await storage.storeToken(result.data.token);
+    storage.storeToken(result.data.token);
 
     return {
       message: "Success",
       description: result.data.message,
       type: "success",
     };
+  },
+  logout: async function logout() {
+    storage.deleteToken();
   },
 };
 
