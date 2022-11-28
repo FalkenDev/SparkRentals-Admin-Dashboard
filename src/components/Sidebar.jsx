@@ -28,7 +28,6 @@ const SidebarItems = () => {
 };
 
 const Sidebar = () => {
-  console.log(links);
   return (
     <>
       <nav
