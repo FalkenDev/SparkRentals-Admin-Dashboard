@@ -7,6 +7,7 @@ import {
   Scooters,
   Login,
   Settings,
+  ScooterSelect,
 } from "./pages";
 import { Sidebar } from "./components";
 import { useStateContext } from "./contexts/ContextProvider";
@@ -35,6 +36,8 @@ function App() {
             <Route path="/scooters" element={<Scooters />} />
             <Route path="/customers" element={<Customers />} />
             <Route path="/settings" element={<Settings />} />
+
+            <Route path="/scooters/select" element={<ScooterSelect />} />
           </Routes>
         </div>
       </BrowserRouter>
