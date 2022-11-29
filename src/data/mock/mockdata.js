@@ -5,6 +5,49 @@ export const scooterOverview = {
   maintenceScooters: 2,
 };
 
+export const scooters = {
+  scooters: [
+    {
+      _id: "637d4ec0fe898c05f558fcb4",
+      status: "Available",
+      battery: 100,
+      speed: 0,
+      owner: "Stockholm",
+      position: {
+        longitude: "5.0",
+        latitude: "1.0",
+      },
+      currentTrip: {
+        startPosition: {
+          longitude: "5.0",
+          latitude: "1.0",
+        },
+        startTime: 0,
+        endTime: 0,
+      },
+    },
+    {
+      _id: "637d4ec0fe898c05f558fcb5",
+      status: "Not available",
+      battery: 54,
+      speed: 0,
+      owner: "Karlskrona",
+      position: {
+        longitude: "2.0",
+        latitude: "15.0",
+      },
+      currentTrip: {
+        startPosition: {
+          longitude: "2.0",
+          latitude: "15.0",
+        },
+        startTime: 0,
+        endTime: 0,
+      },
+    },
+  ],
+};
+
 export const scooterData = {
   scooters: [
     {
