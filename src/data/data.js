@@ -34,6 +34,37 @@ export const links = [
   },
 ];
 
+export const scooterOverview = [
+  {
+    label: "Status",
+    data: "status",
+  },
+  {
+    label: "City",
+    data: "owner",
+  },
+  {
+    label: "Battery",
+    data: "battery",
+  },
+  {
+    label: "Speed",
+    data: "speed",
+  },
+  {
+    label: "Latitude",
+    data: ["position", "latitude"],
+  },
+  {
+    label: "Longitude",
+    data: ["position", "longitude"],
+  },
+  {
+    label: "StartTime",
+    data: ["currentTrip", "startTime"],
+  },
+];
+
 export const scooterform = [
   {
     title: "City",
