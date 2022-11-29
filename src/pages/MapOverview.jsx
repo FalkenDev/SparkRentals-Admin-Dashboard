@@ -87,15 +87,15 @@ const MapOverview = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div className="w-full">
+      <div className="flex flex-row justify-center">
         <Searchbar
           searchPhrase={searchPhrase}
           setSearchPhrase={setSearchPhrase}
           handleSearch={handleSearch}
         />
-      </div>{" "}
-      <div className="flex flex-col justify-center">
+      </div>
+      <div className=" w-full flex flex-col justify-center">
         <div className="flex flex-row-reverse">
           <button
             onClick={zoomOutFunc}
