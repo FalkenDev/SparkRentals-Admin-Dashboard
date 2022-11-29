@@ -1,18 +1,5 @@
 import config from "../config/config.json";
-
-const storage = {
-  //WRONG
-  storeToken: function storeToken(token) {
-    localStorage.setItem("token", token);
-  },
-  readToken: function readToken() {
-    localStorage.getItem("token");
-  },
-  deleteToken: function readToken() {
-    localStorage.removeItem("token");
-  },
-};
-
+import storage from "./storage";
 const auth = {
   login: async function login(email, password) {
     const data = {
