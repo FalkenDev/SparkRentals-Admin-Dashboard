@@ -62,7 +62,7 @@ const Scooters = () => {
             </button>
           </div>
         </div>
-        <div>
+        <div className="mt-6">
           <ScooterList filterPhrase={filterPhrase} />
         </div>
       </div>
