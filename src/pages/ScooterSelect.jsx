@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { scooters } from "../data/mock/mockdata";
 import { ScooterRadioBtn, Map } from "../components";
 import { Layers, TileLayer, VectorLayer } from "../components/Map/Layers";
@@ -8,6 +9,8 @@ import { areas, markers } from "../data/mock/mockdata";
 import { get } from "ol/proj";
 import { fromLonLat } from "ol/proj";
 import { scooterOverview } from "../data/data";
+import scooterutils from "../utils/scooterutils";
+import scooter from "../models/scooters";
 import GeoJSON from "ol/format/GeoJSON";
 import mapConfig from "../config/config.json";
 const startpoint = mapConfig.center;
@@ -25,6 +28,18 @@ let styles = {
 };
 
 const ScooterSelect = () => {
+  const [selected, setSelected] = useState({});
+  const location = useLocation();
+  const { id } = location.state;
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await scooter.getScooterById(id);
+      setSelected(res);
+    }
+    fetchData();
+  }, []);
+
   const areasZones = () => {
     return areas.geoObjects.map((item) => {
       return (
@@ -41,8 +56,6 @@ const ScooterSelect = () => {
   };
 
   const GetScooterDetails = () => {
-    const scooter = scooters.scooters[0];
-
     const getValueByKey = (key, obj) => {
       return [].concat(key).reduce((o, k) => o[k], obj);
     };
@@ -51,16 +64,28 @@ const ScooterSelect = () => {
       return (
         <div className="flex flex-row w-80 justify-between border-b">
           <p>{item.label}</p>
-          <p>{getValueByKey(item.data, scooter)}</p>
+          <p>{getValueByKey(item.data, selected.scooter)}</p>
         </div>
       );
     });
   };
 
+  if (!selected.scooter) {
+    return <div>loading...</div>;
+  }
+
   return (
     <div className="w-full p-4 flex flex-col">
-      <div className="bg-white justify-start flex flex-col p-7 align-middle rounded-xl shadow-md">
-        <h1 className="text-3xl ">Selected Scooter #233</h1>
+      <div className="bg-white flex flex-row p-7 align-middle rounded-xl shadow-md">
+        <h1 className="text-3xl mr-2">Selected Scooter #233</h1>
+        <h2
+          style={{
+            backgroundColor: scooterutils.sateColor(selected.scooter.status),
+          }}
+          className="p-2 rounded-xl text-white"
+        >
+          {selected.scooter.status}
+        </h2>
       </div>
 
       <div className="flex flex-row justify-between mt-4 h-full overflow-scroll">
@@ -86,7 +111,7 @@ const ScooterSelect = () => {
             <h1 className="text-center font-semibold text-2xl">Settings</h1>
             <div>
               <p className="font-semibold text-xl">Set mode</p>
-              <ScooterRadioBtn />
+              <ScooterRadioBtn status={selected.scooter.status} />
             </div>
             <div>
               <p className="font-semibold text-xl">Set position</p>
@@ -94,11 +119,13 @@ const ScooterSelect = () => {
                 <input
                   type="text"
                   placeholder="Set Latitude"
+                  value={selected.scooter.coordinates.latitude}
                   className="border-b border-gray-800 mr-2"
                 />
                 <input
                   type="text"
                   placeholder="Set longitude"
+                  value={selected.scooter.coordinates.longitude}
                   className="border-b border-gray-800 ml-2"
                 />
               </div>
