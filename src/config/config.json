@@ -4,6 +4,6 @@
     "markerImage32" : "https://cdn2.iconfinder.com/data/icons/social-media-and-payment/64/-47-32.png",
     "markerImage64" : "https://cdn2.iconfinder.com/data/icons/social-media-and-payment/64/-47-64.png",
 
-    "login_url": "http://localhost:8393/v1"
+    "url": "http://localhost:8393/v1"
 
 }
