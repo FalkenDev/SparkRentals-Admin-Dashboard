@@ -53,15 +53,11 @@ export const scooterOverview = [
   },
   {
     label: "Latitude",
-    data: ["position", "latitude"],
+    data: ["coordinates", "latitude"],
   },
   {
     label: "Longitude",
-    data: ["position", "longitude"],
-  },
-  {
-    label: "StartTime",
-    data: ["currentTrip", "startTime"],
+    data: ["coordinates", "longitude"],
   },
 ];
 
