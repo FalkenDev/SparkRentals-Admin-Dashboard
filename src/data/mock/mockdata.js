@@ -13,7 +13,7 @@ export const scooters = {
       battery: 100,
       speed: 0,
       owner: "Stockholm",
-      position: {
+      coordinates: {
         longitude: "5.0",
         latitude: "1.0",
       },

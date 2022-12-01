@@ -32,8 +32,8 @@ const Sidebar = () => {
     <>
       <nav
         className="
-          h-full overflow-auto flex flex-col
-          w-72 bg-sidebarBlue p-3"
+          h-screen overflow-auto flex flex-col
+          w-72 bg-sidebarBlue p-3 fixed"
       >
         <div className="pt-2 pb-5">
           <LogoSpark />

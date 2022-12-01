@@ -1,17 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const ScooterRadioBtn = () => {
+const ScooterRadioBtn = ({ status }) => {
+  useEffect(() => {
+    const radios = document.getElementsByName("scootermode");
+    let value = status;
+    for (let i = 0, length = radios.length; i < length; i++) {
+      if (radios[i].id == value) {
+        radios[i].checked = true;
+        break;
+      }
+    }
+  }, []);
+
   return (
-    <form className="flex flex-row justify-evenly my-4" id="scootermode">
+    <form
+      className="flex flex-row justify-evenly my-4 flex-wrap"
+      id="scootermode"
+    >
       <div className="py-3">
         <input
-          id="rb1"
+          id="Available"
           type="radio"
           name="scootermode"
           className="peer hidden"
         />
         <label
-          for="rb1"
+          for="Available"
           className="peer-checked:bg-violet-700 px-4 py-3 rounded-xl
                 text-white bg-blue-900 transition-colors"
         >
@@ -20,13 +34,13 @@ const ScooterRadioBtn = () => {
       </div>
       <div className="py-3">
         <input
-          id="rb2"
+          id="Maintenance"
           type="radio"
           name="scootermode"
           className="peer hidden"
         />
         <label
-          for="rb2"
+          for="Maintenance"
           className="peer-checked:bg-violet-700 px-4 py-3 rounded-xl
                   text-white bg-blue-900 transition-colors"
         >
@@ -35,13 +49,13 @@ const ScooterRadioBtn = () => {
       </div>
       <div className="py-3">
         <input
-          id="rb3"
+          id="Off"
           type="radio"
           name="scootermode"
           className="peer hidden"
         />
         <label
-          for="rb3"
+          for="Off"
           className="peer-checked:bg-violet-700 px-4 py-3 rounded-xl
                   text-white bg-blue-900 transition-colors"
         >
@@ -50,13 +64,13 @@ const ScooterRadioBtn = () => {
       </div>
       <div className="py-3">
         <input
-          id="rb4"
+          id="Unavailable"
           type="radio"
           name="scootermode"
           className="peer hidden"
         />
         <label
-          for="rb4"
+          for="Unavailable"
           className="peer-checked:bg-violet-700 px-4 py-3 rounded-xl
                   text-white bg-blue-900 transition-colors"
         >

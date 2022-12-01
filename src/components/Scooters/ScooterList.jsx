@@ -1,9 +1,21 @@
 import React from "react";
-import { scooterData } from "../../data/mock/mockdata";
+import { useState, useEffect } from "react";
+import scooter from "../../models/scooters";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineRight } from "react-icons/ai";
 
 const ScooterList = ({ filterPhrase }) => {
+  const [scooterData, setScooterData] = useState({});
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await scooter.getScooters();
+      console.log(res);
+      setScooterData(res);
+    }
+    fetchData();
+  }, []);
+
   const scooters = () => {
     return scooterData.scooters
       .sort((a, b) => {
@@ -31,16 +43,21 @@ const ScooterList = ({ filterPhrase }) => {
             <td className="py-3 px-6">{item.status}</td>
             <td className="py-3 px-6">{item.battery}%</td>
             <td className="py-3 px-6 w-2">
-              <NavLink to={"/scooters/select"}>
+              <Link to={"/scooters/select"} state={{ id: item._id }}>
                 <span>
                   <AiOutlineRight />
                 </span>
-              </NavLink>
+              </Link>
             </td>
           </tr>
         );
       });
   };
+
+  if (!scooterData.scooters) {
+    return <div>Loading</div>;
+  }
+
   return (
     <>
       <table className="w-full text-lg text-left content-between">

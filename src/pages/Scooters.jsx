@@ -41,7 +41,7 @@ const Scooters = () => {
           pointerEvents: overlay().click,
           filter: overlay().backdrop,
         }}
-        className="flex flex-col w-full px-11"
+        className="flex flex-col w-full px-11 min-h-screen"
       >
         <div className="text-4xl font-semibold p-3">
           <h1>Scooters</h1>
