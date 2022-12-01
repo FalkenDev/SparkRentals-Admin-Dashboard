@@ -1,49 +1,38 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+
 import "../../Map.css";
-import MapContext from "../../contexts/MapContext";
-import * as ol from "ol";
+import { Icon } from "leaflet";
 
-const Map = ({ children, zoom, center }) => {
-  const mapRef = useRef();
-  const [map, setMap] = useState(null);
+//import * as parkData from "./data/skateboard-parks.json";
 
-  // on component mount
-  useEffect(() => {
-    let options = {
-      view: new ol.View({ zoom, center }),
-      layers: [],
-      controls: [],
-      overlays: [],
-      //interactions: ol.interaction.defaults({ mouseWheelZoom: false }),
-    };
+const Map = ({ center, zoom, features, markers }) => {
+  function Search() {
+    const map = useMap();
+    if (features) {
+      map.flyTo(features, map.getZoom());
+    }
 
-    let mapObject = new ol.Map(options);
-    mapObject.setTarget(mapRef.current);
-    setMap(mapObject);
+    return null;
+  }
 
-    return () => mapObject.setTarget(undefined);
-  }, []);
-
-  // zoom change handler
-  useEffect(() => {
-    if (!map) return;
-
-    map.getView().setZoom(zoom);
-  }, [zoom]);
-
-  // center change handler
-  useEffect(() => {
-    if (!map) return;
-
-    map.getView().setCenter(center);
-  }, [center]);
+  function MarkersDisplay() {
+    if (markers) {
+      return markers.map((item) => {
+        return <Marker position={item} />;
+      });
+    }
+  }
 
   return (
-    <MapContext.Provider value={{ map }}>
-      <div ref={mapRef} className="ol-map border-2 border-slate-400">
-        {children}
-      </div>
-    </MapContext.Provider>
+    <MapContainer center={center} zoom={zoom} scrollWheelZoom={false}>
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      />
+      <Search />
+      <MarkersDisplay />
+    </MapContainer>
   );
 };
 
