@@ -7,7 +7,7 @@ const auth = {
       password: password,
       api_key: process.env.REACT_APP_REST_API_KEY,
     };
-    const response = await fetch(`${config.login_url}/admins/login`, {
+    const response = await fetch(`${config.url}/admins/login`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
