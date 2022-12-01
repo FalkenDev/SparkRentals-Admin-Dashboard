@@ -1,6 +1,6 @@
 import React from "react";
 import Map from "../components/Map/Map";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AiOutlineZoomIn, AiOutlineZoomOut } from "react-icons/ai";
 import { Layers, TileLayer, VectorLayer } from "../components/Map/Layers";
 import Point from "ol/geom/Point";
@@ -9,13 +9,12 @@ import { osm, vector } from "../components/Map/Source";
 import { fromLonLat, get } from "ol/proj";
 import GeoJSON from "ol/format/GeoJSON";
 //import { Controls, FullScreenControl } from "./Controls";
-import Feature from "ol/Feature";
+import scooter from "../models/scooters";
 import { Searchbar } from "./../components";
 import mapConfig from "../config/config.json";
 import { areas, markers } from "../data/mock/mockdata";
 import getCoordinates from "../models/nominatim";
-import { FaMapMarkerAlt } from "react-icons/fa";
-
+import maputils from "../utils/maputils";
 //const geojsonObject = mapConfig.geojsonObject;
 //const markersLonLat = [mapConfig.kansasCityLonLat, mapConfig.blueSpringsLonLat];
 const startpoint = mapConfig.center;
@@ -31,32 +30,43 @@ let styles = {
   }),
 };
 
-function addMarkers(lonLatArray) {
-  const iconStyle = new Style({
-    image: new Icon({
-      anchorXUnits: "fraction",
-      anchorYUnits: "pixels",
-      src: mapConfig.markerImage32,
-    }),
-  });
-  const features = lonLatArray.map((item) => {
-    let feature = new Feature({
-      geometry: new Point(fromLonLat(item)),
-    });
-    feature.setStyle(iconStyle);
-    return feature;
-  });
-  return features;
-}
+// function addMarkers(lonLatArray) {
+//   const iconStyle = new Style({
+//     image: new Icon({
+//       anchorXUnits: "fraction",
+//       anchorYUnits: "pixels",
+//       src: mapConfig.markerImage32,
+//     }),
+//   });
+//   const features = lonLatArray.map((item) => {
+//     let feature = new Feature({
+//       geometry: new Point(fromLonLat(item)),
+//     });
+//     feature.setStyle(iconStyle);
+//     return feature;
+//   });
+//   return features;
+// }
 
 const MapOverview = () => {
   const [center, setCenter] = useState(startpoint);
   const [zoom, setZoom] = useState(14);
   const [searchPhrase, setSearchPhrase] = useState("");
-  const [features, setFeatures] = useState(addMarkers(markers.markerPoints));
+  const [features, setFeatures] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await scooter.getScooters();
+      const data = res.scooters;
+      const Markers = maputils.createMarkerArray(data);
+      console.log(Markers);
+      console.log(features);
+      setFeatures(maputils.addMarkers(Markers));
+    }
+    fetchData();
+  }, []);
 
   const handleSearch = async () => {
-    //event.preventDefault();
     const result = await getCoordinates(searchPhrase);
     const coordArr = [result.longitude, result.latitude];
     setZoom(10);
@@ -114,7 +124,7 @@ const MapOverview = () => {
           <Layers>
             <TileLayer source={osm()} zIndex={0} />
             {areasZones()}
-            <VectorLayer source={vector({ features })} />
+            {showMarker && <VectorLayer source={vector({ features })} />}
           </Layers>
           {/* <Controls>
           {" "}
