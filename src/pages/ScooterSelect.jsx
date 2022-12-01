@@ -4,6 +4,7 @@ import { ScooterRadioBtn, Map } from "../components";
 import { scooterOverview } from "../data/data";
 import scooterutils from "../utils/scooterutils";
 import scooter from "../models/scooters";
+import maputils from "../utils/maputils";
 import mapConfig from "../config/config.json";
 import "../Map.css";
 const startpoint = mapConfig.center;
@@ -11,6 +12,7 @@ const zoom = 14;
 
 const ScooterSelect = () => {
   const [selected, setSelected] = useState({});
+  const [markers, setMarkers] = useState([]);
   const location = useLocation();
   const { id } = location.state;
 
@@ -21,6 +23,18 @@ const ScooterSelect = () => {
     }
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (selected.scooter) {
+      const markers = [
+        [
+          selected.scooter.coordinates.latitude,
+          selected.scooter.coordinates.longitude,
+        ],
+      ];
+      setMarkers(markers);
+    }
+  }, [selected]);
 
   const GetScooterDetails = () => {
     const getValueByKey = (key, obj) => {
@@ -59,7 +73,7 @@ const ScooterSelect = () => {
         <div className="p-4 mr-4 w-2/3 rounded-xl shadow-md bg-white">
           <h1 className="text-2xl font-semibold pb-2">Scooter Position</h1>
           <div>
-            <Map center={startpoint} zoom={zoom} />
+            <Map center={startpoint} zoom={zoom} markers={markers} />
           </div>
           <div>
             <h1 className="text-xl py-2">Overview</h1>
