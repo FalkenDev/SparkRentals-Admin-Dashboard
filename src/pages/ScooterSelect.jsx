@@ -26,13 +26,13 @@ const ScooterSelect = () => {
 
   useEffect(() => {
     if (selected.scooter) {
-      const markers = [
+      const marker = [
         [
           selected.scooter.coordinates.latitude,
           selected.scooter.coordinates.longitude,
         ],
       ];
-      setMarkers(markers);
+      setMarkers(marker);
     }
   }, [selected]);
 
@@ -72,9 +72,23 @@ const ScooterSelect = () => {
       <div className="flex flex-row justify-between mt-4 h-full overflow-scroll">
         <div className="p-4 mr-4 w-2/3 rounded-xl shadow-md bg-white">
           <h1 className="text-2xl font-semibold pb-2">Scooter Position</h1>
-          <div>
-            <Map center={startpoint} zoom={zoom} markers={markers} />
-          </div>
+          {selected.scooter ? (
+            <div>
+              <Map
+                center={[
+                  selected.scooter.coordinates.latitude,
+                  selected.scooter.coordinates.longitude,
+                ]}
+                zoom={zoom}
+                markers={markers}
+              />
+            </div>
+          ) : (
+            <div>
+              <Map center={startpoint} zoom={zoom} markers={markers} />
+            </div>
+          )}
+
           <div>
             <h1 className="text-xl py-2">Overview</h1>
             {GetScooterDetails()}
