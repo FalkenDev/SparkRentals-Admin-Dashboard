@@ -1,13 +1,24 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import scooter from "../models/scooters";
 import { ScooterList, Filterbar, RegisterScooterForm } from "../components";
 
 const Scooters = () => {
   const [filterPhrase, setFilterPhrase] = useState("");
   const [displayForm, setDisplayForm] = useState(false);
+  const [scooterData, setScooterData] = useState();
 
-  const handleForm = (event) => {
-    event.preventDefault();
+  useEffect(() => {
+    async function fetchData() {
+      const res = await scooter.getScooters();
+      const data = res.scooters;
+      setScooterData(data);
+    }
+    fetchData();
+  }, []);
+
+  const handleForm = () => {
+    //event.preventDefault();
     if (displayForm) {
       setDisplayForm(false);
     } else {
@@ -27,10 +38,14 @@ const Scooters = () => {
     <>
       {displayForm ? (
         <div
-          className="absolute top-1/2 left-1/2 z-10
+          className="absolute h-screen top-1/2 left-1/2 z-10
           transform -translate-x-1/2 -translate-y-1/2"
         >
-          <RegisterScooterForm handleForm={handleForm} />
+          <RegisterScooterForm
+            handleForm={handleForm}
+            scooterData={scooterData}
+            setScooterData={setScooterData}
+          />
         </div>
       ) : (
         <div></div>
@@ -51,6 +66,7 @@ const Scooters = () => {
             <Filterbar
               filterPhrase={filterPhrase}
               setFilterPhrase={setFilterPhrase}
+              placeholder={"Filter Scooters"}
             />
           </div>
           <div>
@@ -62,8 +78,8 @@ const Scooters = () => {
             </button>
           </div>
         </div>
-        <div className="mt-6">
-          <ScooterList filterPhrase={filterPhrase} />
+        <div className="my-6">
+          <ScooterList filterPhrase={filterPhrase} scooterData={scooterData} />
         </div>
       </div>
     </>
