@@ -1,6 +1,6 @@
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-const filterbar = ({ filterPhrase, setFilterPhrase }) => {
+const filterbar = ({ filterPhrase, setFilterPhrase, placeholder }) => {
   return (
     <div className="flex row content-center">
       <div className="flex bg-slate-300 w-72 transition-colors">
@@ -9,7 +9,7 @@ const filterbar = ({ filterPhrase, setFilterPhrase }) => {
         </div>
         <input
           type="search"
-          placeholder="Filter Scooters"
+          placeholder={placeholder}
           value={filterPhrase}
           onChange={(e) => {
             setFilterPhrase(e.target.value);
