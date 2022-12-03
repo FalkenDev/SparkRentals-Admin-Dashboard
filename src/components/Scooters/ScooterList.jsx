@@ -1,23 +1,10 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import scooter from "../../models/scooters";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineRight } from "react-icons/ai";
 
-const ScooterList = ({ filterPhrase }) => {
-  const [scooterData, setScooterData] = useState({});
-
-  useEffect(() => {
-    async function fetchData() {
-      const res = await scooter.getScooters();
-      console.log(res);
-      setScooterData(res);
-    }
-    fetchData();
-  }, []);
-
+const ScooterList = ({ filterPhrase, scooterData }) => {
   const scooters = () => {
-    return scooterData.scooters
+    return scooterData
       .sort((a, b) => {
         return a.owner.localeCompare(b.owner);
       })
@@ -54,14 +41,14 @@ const ScooterList = ({ filterPhrase }) => {
       });
   };
 
-  if (!scooterData.scooters) {
+  if (!scooterData) {
     return <div>Loading</div>;
   }
 
   return (
     <>
       <table className="w-full text-lg text-left content-between">
-        <thead className="uppercase bg-sidebarBlue text-gray-200">
+        <thead className=" bg-sidebarBlue text-gray-200">
           <tr>
             <th className="font-normal px-6">ID</th>
             <th className="font-normal px-6">City</th>
