@@ -8,6 +8,7 @@ import {
   Login,
   Settings,
   ScooterSelect,
+  CitySelect,
 } from "./pages";
 import { Sidebar } from "./components";
 import { useStateContext } from "./contexts/ContextProvider";
@@ -38,6 +39,7 @@ function App() {
             <Route path="/settings" element={<Settings />} />
 
             <Route path="/scooters/select" element={<ScooterSelect />} />
+            <Route path="/cities/select" element={<CitySelect />} />
           </Routes>
         </div>
       </BrowserRouter>
