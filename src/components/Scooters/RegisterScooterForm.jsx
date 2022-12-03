@@ -3,15 +3,19 @@ import { useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { scooterform } from "../../data/data";
 import scooter from "../../models/scooters";
-const RegisterScooterForm = ({ handleForm, scooterData, setScooterData }) => {
+const RegisterScooterForm = ({
+  handleForm,
+  scooterData,
+  setScooterData,
+  cityNames,
+}) => {
   const [newScooter, setNewScooter] = useState({
-    owner: "",
+    owner: cityNames[0],
     longitude: "",
     latitude: "",
     battery: "",
     status: "Available",
   });
-
   const handleRegister = () => {
     //e.preventDefault();
     scooter.addScooter(newScooter);
@@ -25,6 +29,16 @@ const RegisterScooterForm = ({ handleForm, scooterData, setScooterData }) => {
     setNewScooter(data);
   };
 
+  const customOptions = () => {
+    return cityNames.map((item) => {
+      return (
+        <option key={item} value={item}>
+          {item}
+        </option>
+      );
+    });
+  };
+
   const allFields = () => {
     return scooterform.map((item, index) => {
       if (item.type === "option") {
@@ -32,8 +46,8 @@ const RegisterScooterForm = ({ handleForm, scooterData, setScooterData }) => {
           <div key={index}>
             <label className="p-1">{item.title}</label>
             <select
-              id="status"
-              name="status"
+              type={item.type}
+              name={item.name}
               className=" bg-gray-50 border border-gray-300 text-gray-900
               text-sm rounded-lg block p-2.5 w-72"
               onChange={(e) => handleFormData(e)}
@@ -43,6 +57,22 @@ const RegisterScooterForm = ({ handleForm, scooterData, setScooterData }) => {
               <option value="Off">Off</option>
               <option value="In use">In use</option>
               <option value="Maintenance">Maintenance</option>
+            </select>
+          </div>
+        );
+      }
+      if (item.type === "custom") {
+        return (
+          <div key={index}>
+            <label className="p-1">{item.title}</label>
+            <select
+              type={item.type}
+              name={item.name}
+              className=" bg-gray-50 border border-gray-300 text-gray-900
+            text-sm rounded-lg block p-2.5 w-72"
+              onChange={(e) => handleFormData(e)}
+            >
+              {customOptions()}
             </select>
           </div>
         );
