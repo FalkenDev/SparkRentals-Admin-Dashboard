@@ -61,26 +61,113 @@ export const scooterOverview = [
   },
 ];
 
+export const cityScooterOverview = [
+  {
+    label: "Total Scooters",
+    data: "",
+  },
+  {
+    label: "Total In Use",
+    data: "",
+  },
+  {
+    label: "Total Charging",
+    data: "",
+  },
+  {
+    label: "Total Maintence",
+    data: "",
+  },
+];
+
+export const cityZoneOverview = [
+  {
+    label: "Total Zones",
+    data: "",
+  },
+  {
+    label: "Total Parking Zones",
+    data: "",
+  },
+  {
+    label: "Total Red Zones",
+    data: "",
+  },
+  {
+    label: "Total Green Zones",
+    data: "",
+  },
+];
+
 export const scooterform = [
   {
     title: "City",
+    name: "owner",
+    type: "text",
     placeholder: "Enter owner city",
   },
   {
+    title: "Status",
+    name: "status",
+    type: "option",
+    placeholder: "Enter Current Status",
+  },
+  {
     title: "Latitude",
+    name: "latitude",
+    type: "number",
     placeholder: "Enter current Latitude",
   },
   {
     title: "Longitude",
+    name: "longitude",
+    type: "number",
     placeholder: "Enter current Longitude",
   },
   {
-    title: "Status",
-    placeholder: "Enter Current Status",
+    title: "battery",
+    name: "battery",
+    type: "number",
+    placeholder: "Enter current battery",
+  },
+];
+
+export const cityform = [
+  {
+    title: "City",
+    name: "name",
+    type: "text",
+    placeholder: "Enter city name",
   },
   {
-    title: "Battery",
-    placeholder: "Enter Current battery",
+    title: "Fixed Rate",
+    name: "fixedRate",
+    type: "number",
+    placeholder: "Enter Fixed Rate",
+  },
+  {
+    title: "Time Rate",
+    name: "timeRate",
+    type: "number",
+    placeholder: "Enter Fixed Rate",
+  },
+  {
+    title: "Bonus Zone Rate",
+    name: "bonusParkingZoneRate",
+    type: "number",
+    placeholder: "Enter Bonus Zone Rate",
+  },
+  {
+    title: "Parking Zone Rate",
+    name: "parkingZoneRate",
+    type: "number",
+    placeholder: "Enter Parking Zone Rate",
+  },
+  {
+    title: "No Parking Zone Rate",
+    name: "noParkingZoneRate",
+    type: "number",
+    placeholder: "Enter No Parking Zone Rate",
   },
 ];
 
