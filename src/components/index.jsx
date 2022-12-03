@@ -14,3 +14,4 @@ export { default as RegisterScooterForm } from "./Scooters/RegisterScooterForm";
 export { default as ScooterRadioBtn } from "./Scooters/ScooterRadioBtn";
 export { default as LoginForm } from "./Login/LoginForm";
 export { default as DataLists } from "./Dashboard/DataLists";
+export { default as ScooterSelectList } from "./Scooters/ScooterSelectList";
