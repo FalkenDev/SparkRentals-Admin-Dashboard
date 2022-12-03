@@ -90,11 +90,11 @@ export const cityZoneOverview = [
     data: "",
   },
   {
-    label: "Total Red Zones",
+    label: "Total No Parking Zones",
     data: "",
   },
   {
-    label: "Total Green Zones",
+    label: "Total Bonus Parking Zones",
     data: "",
   },
 ];
@@ -103,7 +103,7 @@ export const scooterform = [
   {
     title: "City",
     name: "owner",
-    type: "text",
+    type: "custom",
     placeholder: "Enter owner city",
   },
   {
@@ -228,11 +228,11 @@ export const dashboard = [
         icon: "",
       },
       {
-        title: "Total Green Zones",
+        title: "Total Bonus Parking Zones",
         icon: "",
       },
       {
-        title: "Total Red Zones",
+        title: "Total No Parking Zones",
         icon: "",
       },
     ],
