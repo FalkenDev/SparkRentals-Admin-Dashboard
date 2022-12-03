@@ -2,18 +2,21 @@ import React from "react";
 import { useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { scooterform } from "../../data/data";
-const RegisterScooterForm = ({ handleForm }) => {
+import scooter from "../../models/scooters";
+const RegisterScooterForm = ({ handleForm, scooterData, setScooterData }) => {
   const [newScooter, setNewScooter] = useState({
-    City: "",
-    Latitude: "",
-    Longitude: "",
-    Status: "",
-    Battery: "",
+    owner: "",
+    longitude: "",
+    latitude: "",
+    battery: "",
+    status: "Available",
   });
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    //console.log(newScooter);
+  const handleRegister = () => {
+    //e.preventDefault();
+    scooter.addScooter(newScooter);
+    const data = [...scooterData, newScooter];
+    setScooterData(data);
   };
 
   const handleFormData = (e) => {
@@ -24,12 +27,32 @@ const RegisterScooterForm = ({ handleForm }) => {
 
   const allFields = () => {
     return scooterform.map((item, index) => {
+      if (item.type === "option") {
+        return (
+          <div key={index}>
+            <label className="p-1">{item.title}</label>
+            <select
+              id="status"
+              name="status"
+              className=" bg-gray-50 border border-gray-300 text-gray-900
+              text-sm rounded-lg block p-2.5 w-72"
+              onChange={(e) => handleFormData(e)}
+            >
+              <option value="Available">Available</option>
+              <option value="Unavailable">Unavailable</option>
+              <option value="Off">Off</option>
+              <option value="In use">In use</option>
+              <option value="Maintenance">Maintenance</option>
+            </select>
+          </div>
+        );
+      }
       return (
         <div key={index} className="my-3">
           <label className="p-1">{item.title}</label>
           <input
-            type="text"
-            name={item.title}
+            type={item.type}
+            name={item.name}
             maxLength="30"
             onChange={(e) => handleFormData(e)}
             placeholder={item.placeholder}
@@ -57,7 +80,10 @@ const RegisterScooterForm = ({ handleForm }) => {
       </form>
       <div className="text-center w-full">
         <button
-          onClick={handleRegister}
+          onClick={() => {
+            handleRegister();
+            handleForm();
+          }}
           className="
           py-2 px-4 transition-colors bg-sidebarHover
         hover:bg-sidebarBlue text-white rounded-full"
