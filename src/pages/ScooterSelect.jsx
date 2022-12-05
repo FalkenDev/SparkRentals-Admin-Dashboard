@@ -4,14 +4,13 @@ import { ScooterRadioBtn, Map } from "../components";
 import { scooterOverview } from "../data/data";
 import scooterutils from "../utils/scooterutils";
 import scooter from "../models/scooters";
-import maputils from "../utils/maputils";
 import mapConfig from "../config/config.json";
 import "../Map.css";
 const startpoint = mapConfig.center;
 const zoom = 14;
 
 const ScooterSelect = () => {
-  const [selected, setSelected] = useState({});
+  const [selected, setSelected] = useState();
   const [markers, setMarkers] = useState([]);
   const location = useLocation();
   const { id } = location.state;
@@ -19,22 +18,10 @@ const ScooterSelect = () => {
   useEffect(() => {
     async function fetchData() {
       const res = await scooter.getScooterById(id);
-      setSelected(res);
+      setSelected(res.scooter);
     }
     fetchData();
   }, []);
-
-  useEffect(() => {
-    if (selected.scooter) {
-      const marker = [
-        [
-          selected.scooter.coordinates.latitude,
-          selected.scooter.coordinates.longitude,
-        ],
-      ];
-      setMarkers(marker);
-    }
-  }, [selected]);
 
   const GetScooterDetails = () => {
     const getValueByKey = (key, obj) => {
@@ -45,48 +32,46 @@ const ScooterSelect = () => {
       return (
         <div className="flex flex-row w-80 justify-between border-b">
           <p>{item.label}</p>
-          <p>{getValueByKey(item.data, selected.scooter)}</p>
+          <p>{getValueByKey(item.data, selected)}</p>
         </div>
       );
     });
   };
 
-  if (!selected.scooter) {
+  if (!selected) {
     return <div>loading...</div>;
   }
 
   return (
     <div className="w-full p-4 flex flex-col">
       <div className="bg-white flex flex-row p-7 align-middle rounded-xl shadow-md">
-        <h1 className="text-3xl mr-2">Selected Scooter #233</h1>
+        <h1 className="text-3xl mr-2">{selected.name}</h1>
         <h2
           style={{
-            backgroundColor: scooterutils.sateColor(selected.scooter.status),
+            backgroundColor: scooterutils.sateColor(selected.status),
           }}
           className="p-2 rounded-xl text-white"
         >
-          {selected.scooter.status}
+          {selected.status}
         </h2>
       </div>
 
       <div className="flex flex-row justify-between mt-4 h-full overflow-scroll">
         <div className="p-4 mr-4 w-2/3 rounded-xl shadow-md bg-white">
           <h1 className="text-2xl font-semibold pb-2">Scooter Position</h1>
-          {selected.scooter ? (
-            <div>
+          {selected ? (
+            <div className="h-125 overflow-hidden">
               <Map
                 center={[
-                  selected.scooter.coordinates.latitude,
-                  selected.scooter.coordinates.longitude,
+                  selected.coordinates.latitude,
+                  selected.coordinates.longitude,
                 ]}
                 zoom={zoom}
-                markers={markers}
+                scooters={[selected]}
               />
             </div>
           ) : (
-            <div>
-              <Map center={startpoint} zoom={zoom} markers={markers} />
-            </div>
+            <div>Loading ...</div>
           )}
 
           <div>
@@ -100,7 +85,7 @@ const ScooterSelect = () => {
             <h1 className="text-center font-semibold text-2xl">Settings</h1>
             <div>
               <p className="font-semibold text-xl">Set mode</p>
-              <ScooterRadioBtn status={selected.scooter.status} />
+              <ScooterRadioBtn status={selected.status} />
             </div>
             <div>
               <p className="font-semibold text-xl">Set position</p>
@@ -108,13 +93,13 @@ const ScooterSelect = () => {
                 <input
                   type="text"
                   placeholder="Set Latitude"
-                  value={selected.scooter.coordinates.latitude}
+                  value={selected.coordinates.latitude}
                   className="border-b border-gray-800 mr-2"
                 />
                 <input
                   type="text"
                   placeholder="Set longitude"
-                  value={selected.scooter.coordinates.longitude}
+                  value={selected.coordinates.longitude}
                   className="border-b border-gray-800 ml-2"
                 />
               </div>
