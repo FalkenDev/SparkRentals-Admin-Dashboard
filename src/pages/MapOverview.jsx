@@ -1,15 +1,11 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import { Searchbar, Map } from "./../components";
+import { Searchbar, Map, MapSidebar } from "./../components";
 import mapConfig from "../config/config.json";
 import getCoordinates from "../models/nominatim";
 import scooter from "../models/scooters";
-import maputils from "../utils/maputils";
+import cities from "../models/cities";
 import "../Map.css";
-import { Icon } from "leaflet";
-//import { Marker } from "react-leaflet";
-//const geojsonObject = mapConfig.geojsonObject;
-//const markersLonLat = [mapConfig.kansasCityLonLat, mapConfig.blueSpringsLonLat];
 const startpoint = mapConfig.center;
 
 const MapOverview = () => {
@@ -17,14 +13,23 @@ const MapOverview = () => {
   const [zoom, setZoom] = useState(14);
   const [searchPhrase, setSearchPhrase] = useState("");
   const [features, setFeatures] = useState();
-  const [markers, setMarkers] = useState([]);
+  const [scooters, setScooters] = useState([]);
+  const [cityData, setCityData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       const res = await scooter.getScooters();
       const data = res.scooters;
-      const Markers = maputils.createMarkerArray(data);
-      setMarkers(Markers);
+      setScooters(data);
+    }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await cities.getCities();
+      const data = res.cities;
+      setCityData(data);
     }
     fetchData();
   }, []);
@@ -32,25 +37,49 @@ const MapOverview = () => {
   const handleSearch = async () => {
     const result = await getCoordinates(searchPhrase);
     const coordArr = [result.latitude, result.longitude];
+    setZoom(12);
     setFeatures(coordArr);
   };
 
+  const handleFlyToArea = async (place) => {
+    const result = await getCoordinates(place);
+    const coordArr = [result.latitude, result.longitude];
+    setZoom(12);
+    setFeatures(coordArr);
+  };
+
+  const handleFlyTo = (coords) => {
+    setZoom(16);
+    setFeatures(coords);
+  };
+
   return (
-    <div className="w-full">
-      <div className="flex flex-row justify-center">
-        <Searchbar
-          searchPhrase={searchPhrase}
-          setSearchPhrase={setSearchPhrase}
-          handleSearch={handleSearch}
-        />
-      </div>
-      <div className="">
+    <div className="flex flex-row w-full">
+      <div className="w-3/4">
         <Map
           center={center}
           zoom={zoom}
           features={features}
-          markers={markers}
+          scooters={scooters}
+          cities={cityData}
         />
+      </div>
+      <div className="w-1/4 flex flex-col max-h-screen bg-slate-700">
+        <div className="p-4">
+          <Searchbar
+            searchPhrase={searchPhrase}
+            setSearchPhrase={setSearchPhrase}
+            handleSearch={handleSearch}
+          />
+        </div>
+        <div className="w-full overflow-scroll">
+          <MapSidebar
+            scooters={scooters}
+            cities={cityData}
+            handleFlyTo={handleFlyTo}
+            handleFlyToArea={handleFlyToArea}
+          />
+        </div>
       </div>
     </div>
   );
