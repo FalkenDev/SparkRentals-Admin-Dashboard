@@ -19,7 +19,7 @@ const Search = ({ handleSearch, searchPhrase, setSearchPhrase }) => {
   }, []);
 
   return (
-    <div className="flex row content-center p-4">
+    <div className="flex row content-center">
       <div className="flex rounded-xl bg-blue-500 hover:bg-blue-600 w-96 transition-colors">
         <button onClick={handleSearch} className="flex items-center">
           <AiOutlineSearch className="w-5 h-5 mx-2 text-white" />
