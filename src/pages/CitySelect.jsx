@@ -4,11 +4,8 @@ import { Map, ScooterSelectList } from "../components";
 import { cityScooterOverview, cityZoneOverview } from "../data/data";
 import cities from "../models/cities";
 import scooter from "../models/scooters";
-import maputils from "../utils/maputils";
-import mapConfig from "../config/config.json";
 import "../Map.css";
 import getCoordinates from "../models/nominatim";
-const startpoint = mapConfig.center;
 const zoom = 14;
 
 const CitySelect = () => {
@@ -16,6 +13,7 @@ const CitySelect = () => {
   const [cityCoords, setCityCoords] = useState();
   const [scooters, setScooters] = useState();
   const [markers, setMarkers] = useState([]);
+  const [zones, setZones] = useState();
   const location = useLocation();
   const { id } = location.state;
 
@@ -23,6 +21,8 @@ const CitySelect = () => {
     async function fetchData() {
       const res = await cities.getCityById(id);
       setSelected(res);
+      const zonesData = res.city.zones;
+      setZones(zonesData);
     }
     fetchData();
   }, []);
@@ -31,8 +31,6 @@ const CitySelect = () => {
     async function fetchData() {
       const res = await scooter.getScootersByCity(selected.city.name);
       setScooters(res.cityScooters);
-      const mark = maputils.createMarkerArray(res.cityScooters);
-      setMarkers(mark);
     }
     fetchData();
   }, [selected]);
@@ -49,10 +47,6 @@ const CitySelect = () => {
   }, [selected]);
 
   const GetCityScooterDetails = () => {
-    // const getValueByKey = (key, obj) => {
-    //   return [].concat(key).reduce((o, k) => o[k], obj);
-    // };
-
     return cityScooterOverview.map((item) => {
       return (
         <div className="flex flex-row w-80 justify-between border-b">
@@ -64,10 +58,6 @@ const CitySelect = () => {
   };
 
   const GetCityZoneDetails = () => {
-    // const getValueByKey = (key, obj) => {
-    //   return [].concat(key).reduce((o, k) => o[k], obj);
-    // };
-
     return cityZoneOverview.map((item) => {
       return (
         <div className="flex flex-row w-80 justify-between border-b">
@@ -91,8 +81,13 @@ const CitySelect = () => {
       <div className="flex flex-row">
         <div className="p-4 mr-4 w-2/3 rounded-xl shadow-md bg-white">
           {cityCoords ? (
-            <div>
-              <Map center={cityCoords} zoom={zoom} markers={markers} />
+            <div className="h-125 overflow-hidden">
+              <Map
+                center={cityCoords}
+                zoom={zoom}
+                scooters={scooters}
+                zones={[zones]}
+              />
             </div>
           ) : (
             <div>Loading map data</div>

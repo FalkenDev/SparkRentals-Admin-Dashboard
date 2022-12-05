@@ -8,7 +8,6 @@ const CityList = ({ filterPhrase }) => {
   useEffect(() => {
     async function fetchData() {
       const res = await cities.getCitiesOverview();
-      console.log(res);
       setCityData(res);
     }
     fetchData();

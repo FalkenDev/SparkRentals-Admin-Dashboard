@@ -15,7 +15,6 @@ const RegisterCityForm = ({ handleForm }) => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    //console.log(newScooter);
   };
 
   const handleFormData = (e) => {
