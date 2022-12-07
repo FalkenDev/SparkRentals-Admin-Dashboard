@@ -5,6 +5,7 @@ import { TbScooter } from "react-icons/tb";
 
 const MapSidebar = ({ cities, scooters, handleFlyToArea, handleFlyTo }) => {
   const [isOpen, setIsOpen] = useState({});
+
   const handleClick = (id) => {
     setIsOpen((prevState) => ({ ...prevState, [id]: !prevState[id] }));
   };
@@ -34,7 +35,7 @@ const MapSidebar = ({ cities, scooters, handleFlyToArea, handleFlyTo }) => {
                 item.coordinates.longitude,
               ]);
             }}
-            className="pl-3 hover:text-slate-500 flex flex-row"
+            className="pl-3 hover:text-blue-700 flex flex-row"
           >
             {item.name}
           </button>
@@ -46,28 +47,27 @@ const MapSidebar = ({ cities, scooters, handleFlyToArea, handleFlyTo }) => {
     return cities.map((item) => {
       return (
         <div className="w-full relative">
-          <div className="text-xl flex flex-row justify-between absolute px-2">
-            <span className=" m-2">
+          <div className="text-xl flex flex-row justify-between absolute px-2 text-white font-light">
+            <span className=" m-2 text-gray-300">
               <FaCity />
             </span>
             <button
               onClick={() => {
                 handleFlyToArea(item.name);
               }}
-              className="hover:text-slate-700"
+              className="hover:text-blue-300"
             >
               {item.name}
             </button>
           </div>
           <button
             onClick={() => handleClick(item._id)}
-            className="p-2 bg-slate-300 w-full
-           text-right border-b border-slate-400
-           hover:bg-slate-400 transition-colors"
+            className="p-2 bg-slate-600 w-full
+           text-right hover:bg-slate-700 transition-color"
           >
             <div className="text-xl px-4">
               <button
-                className="transition-transform"
+                className="transition-transform text-gray-300"
                 style={{ transform: rotate(isOpen[item._id]) }}
               >
                 <AiOutlineRight />
