@@ -24,7 +24,7 @@ function App() {
     <>
       <BrowserRouter>
         <div className="flex relative">
-          <div className="w-80 mr-5">
+          <div className="relative min-w-80 w-80 mr-4 z-10">
             <Sidebar />
           </div>
           <Routes>
