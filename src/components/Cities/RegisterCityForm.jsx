@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { cityform } from "../../data/data";
+import cities from "../../models/cities";
 
 const RegisterCityForm = ({ handleForm }) => {
   const [newCity, setNewCity] = useState({
@@ -13,8 +14,9 @@ const RegisterCityForm = ({ handleForm }) => {
     noParkingZoneRate: "",
   });
 
-  const handleRegister = (e) => {
-    e.preventDefault();
+  const handleRegister = () => {
+    console.log(newCity);
+    cities.addCity(newCity);
   };
 
   const handleFormData = (e) => {
