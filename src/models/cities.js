@@ -1,4 +1,5 @@
 import config from "../config/config.json";
+import storage from "./storage";
 const cities = {
   getCities: async function getCities() {
     const response = await fetch(
@@ -18,6 +19,27 @@ const cities = {
       `${config.url}/cities/${id}?api_key=${process.env.REACT_APP_REST_API_KEY}`
     );
     return response.json();
+  },
+  addCity: async function addCity(city) {
+    const data = {
+      name: city.name,
+      fixedRate: city.fixedRate,
+      timeRate: city.timeRate,
+      bonusParkingZoneRate: city.bonusParkingZoneRate,
+      parkingZoneRate: city.parkingZoneRate,
+      noParkingZoneRate: city.noParkingZoneRate,
+      api_key: process.env.REACT_APP_REST_API_KEY,
+    };
+    const tokenObj = storage.readToken();
+    const response = await fetch(`${config.url}/cities`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "content-type": "application/json",
+        "x-access-token": tokenObj.token,
+      },
+    });
+    await response.json();
   },
 };
 export default cities;
