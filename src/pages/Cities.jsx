@@ -1,6 +1,7 @@
 import React from "react";
 import { CityList, RegisterCityForm, Filterbar } from "../components";
 import { useState } from "react";
+
 const Cities = () => {
   const [filterPhrase, setFilterPhrase] = useState("");
   const [displayForm, setDisplayForm] = useState(false);
