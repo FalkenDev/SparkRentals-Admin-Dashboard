@@ -19,6 +19,7 @@ const CitySelect = () => {
   useEffect(() => {
     async function fetchData() {
       const res = await cities.getCityById(id);
+      console.log(res);
       setSelected(res.city);
     }
     fetchData();
@@ -179,6 +180,19 @@ const CitySelect = () => {
                   type="text"
                   placeholder="Invalid to valid parking"
                   value={selected.taxRates.noParkingToValidParking}
+                  className="border-b border-gray-800 mr-2"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-row justify-center py-3">
+            <div>
+              <div>
+                <label>Charging Zone</label>
+                <input
+                  type="text"
+                  placeholder="Invalid to valid parking"
+                  value={selected.taxRates.chargingZoneRate}
                   className="border-b border-gray-800 mr-2"
                 />
               </div>
