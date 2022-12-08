@@ -1,6 +1,14 @@
 import config from "../config/config.json";
 import storage from "./storage";
 const auth = {
+  loggedIn: function loggedIn() {
+    const token = storage.readToken();
+    const twentyFourHours = 1000 * 60 * 60 * 24;
+    const notExpired = new Date().getTime() - token.date < twentyFourHours;
+    console.log(token);
+    return token && notExpired;
+  },
+
   login: async function login(email, password) {
     const data = {
       email: email,
