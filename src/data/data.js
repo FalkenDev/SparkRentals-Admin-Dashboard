@@ -169,6 +169,18 @@ export const cityform = [
     type: "number",
     placeholder: "Enter No Parking Zone Rate",
   },
+  {
+    title: "Charging Zone Rate",
+    name: "chargingZoneRate",
+    type: "number",
+    placeholder: "Enter Charging Zone Rate",
+  },
+  {
+    title: "Move to valid parking discount",
+    name: "NoParkingToValidParking",
+    type: "number",
+    placeholder: "Enter Discount",
+  },
 ];
 
 export const dashboard = [
