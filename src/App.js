@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   Dashboard,
@@ -12,9 +13,14 @@ import {
 } from "./pages";
 import { Sidebar } from "./components";
 import { useStateContext } from "./contexts/ContextProvider";
+import { auth } from "./models/auth";
 
 function App() {
-  const { isLoggedIn } = useStateContext();
+  const { isLoggedIn, setIsLoggedIn } = useStateContext();
+
+  useEffect(() => {
+    setIsLoggedIn(auth.loggedIn());
+  }, []);
 
   if (!isLoggedIn) {
     return <Login />;
