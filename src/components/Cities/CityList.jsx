@@ -1,18 +1,8 @@
 import React, { useEffect, useState } from "react";
-import cities from "../../models/cities";
+//import cities from "../../models/cities";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineRight } from "react-icons/ai";
-const CityList = ({ filterPhrase }) => {
-  const [cityData, setCityData] = useState({});
-
-  useEffect(() => {
-    async function fetchData() {
-      const res = await cities.getCitiesOverview();
-      setCityData(res);
-    }
-    fetchData();
-  }, []);
-
+const CityList = ({ filterPhrase, cityData }) => {
   const citiesList = () => {
     return cityData.arrayOverview
       .filter((item) => {
