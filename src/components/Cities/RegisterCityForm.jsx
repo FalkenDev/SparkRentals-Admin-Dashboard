@@ -2,19 +2,23 @@ import React from "react";
 import { useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { cityform } from "../../data/data";
+import cities from "../../models/cities";
 
-const RegisterCityForm = ({ handleForm }) => {
+const RegisterCityForm = ({ handleForm, cityData }) => {
   const [newCity, setNewCity] = useState({
     name: "",
-    fixedRate: "",
-    timeRate: "",
-    bonusParkingZoneRate: "",
-    parkingZoneRate: "",
-    noParkingZoneRate: "",
+    fixedRate: 0,
+    timeRate: 0,
+    bonusParkingZoneRate: 0,
+    parkingZoneRate: 0,
+    noParkingZoneRate: 0,
+    cityChargingZoneRate: 0,
+    cityNoParkingToValidParking: 0,
   });
 
-  const handleRegister = (e) => {
-    e.preventDefault();
+  const handleRegister = () => {
+    console.log(cityData);
+    cities.addCity(newCity);
   };
 
   const handleFormData = (e) => {
@@ -56,7 +60,10 @@ const RegisterCityForm = ({ handleForm }) => {
       </form>
       <div className="text-center w-full">
         <button
-          onClick={handleRegister}
+          onClick={() => {
+            handleRegister();
+            handleForm();
+          }}
           className="
       py-2 px-4 transition-colors bg-sidebarHover
     hover:bg-sidebarBlue text-white rounded-full"

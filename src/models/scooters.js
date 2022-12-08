@@ -49,6 +49,23 @@ const scooter = {
     });
     await response.json();
   },
+
+  deleteScooter: async function deleteScooter(id) {
+    const data = {
+      scooter_id: id,
+      api_key: process.env.REACT_APP_REST_API_KEY,
+    };
+    const tokenObj = storage.readToken();
+    const response = await fetch(`${config.url}/scooters`, {
+      method: "DELETE",
+      body: JSON.stringify(data),
+      headers: {
+        "content-type": "application/json",
+        "x-access-token": tokenObj.token,
+      },
+    });
+    await response.json();
+  },
 };
 
 export default scooter;

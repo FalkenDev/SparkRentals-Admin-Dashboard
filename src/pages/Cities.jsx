@@ -1,12 +1,23 @@
 import React from "react";
+import cities from "../models/cities";
 import { CityList, RegisterCityForm, Filterbar } from "../components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 const Cities = () => {
   const [filterPhrase, setFilterPhrase] = useState("");
   const [displayForm, setDisplayForm] = useState(false);
+  const [cityData, setCityData] = useState({});
 
-  const handleForm = (event) => {
-    event.preventDefault();
+  useEffect(() => {
+    async function fetchData() {
+      const res = await cities.getCitiesOverview();
+      console.log(res);
+      setCityData(res);
+    }
+    fetchData();
+  }, []);
+
+  const handleForm = () => {
     if (displayForm) {
       setDisplayForm(false);
     } else {
@@ -29,7 +40,11 @@ const Cities = () => {
           className="absolute top-1/2 left-1/2 z-10
         transform -translate-x-1/2 -translate-y-1/2"
         >
-          <RegisterCityForm handleForm={handleForm} />
+          <RegisterCityForm
+            handleForm={handleForm}
+            cityData={cityData}
+            setCityData={setCityData}
+          />
         </div>
       ) : (
         <div></div>
@@ -62,7 +77,7 @@ const Cities = () => {
           </div>
         </div>
         <div className="mt-6">
-          <CityList filterPhrase={filterPhrase} />
+          <CityList filterPhrase={filterPhrase} cityData={cityData} />
         </div>
       </div>
     </>

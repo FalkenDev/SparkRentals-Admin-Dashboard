@@ -64,7 +64,7 @@ const MapOverview = () => {
           cities={cityData}
         />
       </div>
-      <div className="w-1/4 flex flex-col max-h-screen bg-slate-700">
+      <div className="w-1/4 flex flex-col max-h-screen bg-gray-800">
         <div className="p-4">
           <Searchbar
             searchPhrase={searchPhrase}

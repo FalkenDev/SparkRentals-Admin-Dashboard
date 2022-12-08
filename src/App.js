@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   Dashboard,
@@ -12,9 +13,14 @@ import {
 } from "./pages";
 import { Sidebar } from "./components";
 import { useStateContext } from "./contexts/ContextProvider";
+import { auth } from "./models/auth";
 
 function App() {
-  const { isLoggedIn } = useStateContext();
+  const { isLoggedIn, setIsLoggedIn } = useStateContext();
+
+  useEffect(() => {
+    setIsLoggedIn(auth.loggedIn());
+  }, []);
 
   if (!isLoggedIn) {
     return <Login />;
@@ -24,7 +30,7 @@ function App() {
     <>
       <BrowserRouter>
         <div className="flex relative">
-          <div className="w-80 mr-5">
+          <div className="relative min-w-80 w-80 mr-4 z-10">
             <Sidebar />
           </div>
           <Routes>

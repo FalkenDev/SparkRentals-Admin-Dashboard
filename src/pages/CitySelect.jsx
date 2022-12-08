@@ -12,24 +12,22 @@ const CitySelect = () => {
   const [selected, setSelected] = useState();
   const [cityCoords, setCityCoords] = useState();
   const [scooters, setScooters] = useState();
-  const [markers, setMarkers] = useState([]);
-  const [zones, setZones] = useState();
+  const [isSelected, setIsSelected] = useState([]);
   const location = useLocation();
   const { id } = location.state;
 
   useEffect(() => {
     async function fetchData() {
       const res = await cities.getCityById(id);
-      setSelected(res);
-      const zonesData = res.city.zones;
-      setZones(zonesData);
+      console.log(res);
+      setSelected(res.city);
     }
     fetchData();
   }, []);
 
   useEffect(() => {
     async function fetchData() {
-      const res = await scooter.getScootersByCity(selected.city.name);
+      const res = await scooter.getScootersByCity(selected.name);
       setScooters(res.cityScooters);
     }
     fetchData();
@@ -37,7 +35,7 @@ const CitySelect = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const result = await getCoordinates(selected.city.name);
+      const result = await getCoordinates(selected.name);
       const coordArr = [result.latitude, result.longitude];
       setCityCoords(coordArr);
     }
@@ -68,6 +66,21 @@ const CitySelect = () => {
     });
   };
 
+  //For deleting scooter
+  const handleDelete = () => {
+    let updatedScooterList = scooters;
+
+    for (const scooterId of isSelected) {
+      console.log(scooterId);
+      scooter.deleteScooter(scooterId);
+      updatedScooterList = updatedScooterList.filter((sctr) => {
+        return scooterId !== sctr._id;
+      });
+    }
+
+    setScooters(updatedScooterList);
+  };
+
   if (!selected) {
     return <div>loading...</div>;
   }
@@ -75,7 +88,7 @@ const CitySelect = () => {
   return (
     <div className="w-full p-4 flex flex-col">
       <div className="bg-white p-7 w-full shadow-md mb-4 rounded-xl">
-        <h1 className="text-3xl mr-2">{selected.city.name}</h1>
+        <h1 className="text-3xl mr-2">{selected.name}</h1>
       </div>
 
       <div className="flex flex-row">
@@ -86,7 +99,7 @@ const CitySelect = () => {
                 center={cityCoords}
                 zoom={zoom}
                 scooters={scooters}
-                zones={[zones]}
+                cities={[selected]}
               />
             </div>
           ) : (
@@ -110,47 +123,79 @@ const CitySelect = () => {
             <h1 className="text-xl font-semibold">Rates</h1>
           </div>
           <div className="flex flex-row justify-between py-3">
-            <input
-              type="text"
-              placeholder="Fixed rate"
-              //value={selected.scooter.coordinates.latitude}
-              className="border-b border-gray-800 mr-2"
-            />
-            <input
-              type="text"
-              placeholder="Rate per minute"
-              //value={selected.scooter.coordinates.latitude}
-              className="border-b border-gray-800 mr-2"
-            />
-          </div>
-          <div className="flex flex-row justify-between py-3">
-            <input
-              type="text"
-              placeholder="Parking Rate"
-              //value={selected.scooter.coordinates.latitude}
-              className="border-b border-gray-800 mr-2"
-            />
-            <input
-              type="text"
-              placeholder="Discount Parking Rate"
-              //value={selected.scooter.coordinates.latitude}
-              className="border-b border-gray-800 mr-2"
-            />
-          </div>
-          <div className="flex flex-row justify-between py-3">
-            <input
-              type="text"
-              placeholder="Invalid parking fee"
-              //value={selected.scooter.coordinates.latitude}
-              className="border-b border-gray-800 mr-2"
-            />
             <div>
+              <label>Fixed Rate</label>
               <input
                 type="text"
-                placeholder="Invalid to valid parking"
-                //value={selected.scooter.coordinates.latitude}
+                placeholder="Fixed rate"
+                value={selected.taxRates.fixedRate}
                 className="border-b border-gray-800 mr-2"
               />
+            </div>
+            <div>
+              <label>Rate per minute</label>
+              <input
+                type="text"
+                placeholder="Rate per minute"
+                value={selected.taxRates.timeRate}
+                className="border-b border-gray-800 mr-2"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-row justify-between py-3">
+            <div>
+              <label>Parking Rate</label>
+              <input
+                type="text"
+                placeholder="Parking Rate"
+                value={selected.taxRates.parkingZoneRate}
+                className="border-b border-gray-800 mr-2"
+              />
+            </div>
+            <div>
+              <label>Discount Rate</label>
+              <input
+                type="text"
+                placeholder="Discount Parking Rate"
+                value={selected.taxRates.bonusParkingZoneRate}
+                className="border-b border-gray-800 mr-2"
+              />
+            </div>
+          </div>
+          <div className="flex flex-row justify-between py-3">
+            <div>
+              <label>Invalid parking fee</label>
+              <input
+                type="text"
+                placeholder="Invalid parking fee"
+                value={selected.taxRates.noParkingZoneRate}
+                className="border-b border-gray-800 mr-2"
+              />
+            </div>
+            <div>
+              <div>
+                <label>Invalid to valid parking</label>
+                <input
+                  type="text"
+                  placeholder="Invalid to valid parking"
+                  value={selected.taxRates.noParkingToValidParking}
+                  className="border-b border-gray-800 mr-2"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-row justify-center py-3">
+            <div>
+              <div>
+                <label>Charging Zone</label>
+                <input
+                  type="text"
+                  placeholder="Invalid to valid parking"
+                  value={selected.taxRates.chargingZoneRate}
+                  className="border-b border-gray-800 mr-2"
+                />
+              </div>
             </div>
           </div>
           <div className="mb-12 text-center">
@@ -168,7 +213,7 @@ const CitySelect = () => {
                 className="py-2 transition-colors mt-6 mr-3 w-48
              bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
               >
-                Edit Zone
+                Manage Zones
               </button>
               <button
                 className="py-2 transition-colors mt-6 ml-3 w-48
@@ -198,18 +243,26 @@ const CitySelect = () => {
       >
         <div className="flex flex-row justify-between">
           <h1 className="font-semibold text-2xl">
-            Scooters in {selected.city.name}
+            Scooters in {selected.name}
           </h1>
-          <button className="py-2 px-3 transition-colors bg-sidebarHover hover:bg-sidebarBlue text-white rounded-full">
+          <button
+            onClick={handleDelete}
+            className="py-2 px-3 transition-colors bg-sidebarHover
+           hover:bg-sidebarBlue text-white rounded-full"
+          >
             Remove Selected
           </button>
         </div>
         {scooters ? (
           <div className="mt-7">
-            <ScooterSelectList scooters={scooters} />
+            <ScooterSelectList
+              scooters={scooters}
+              isSelected={isSelected}
+              setIsSelected={setIsSelected}
+            />
           </div>
         ) : (
-          <div>loading...</div>
+          <div className="text-xl">No Scooters</div>
         )}
       </div>
     </div>
