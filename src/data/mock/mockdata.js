@@ -5,6 +5,63 @@ export const scooterOverview = {
   maintenceScooters: 2,
 };
 
+export const users = {
+  users: [
+    {
+      _id: {
+        $oid: "639273562a039b548f4ad57f",
+      },
+      githubID: "919b2c70acf349ab92af7add7a2d2174",
+      firstName: "Benjamin",
+      lastName: "Sven",
+      phoneNumber: "0701234567",
+      email: "benjamin.sven@gmail.com",
+      password: "$2b$10$u7.ovqMJhYVbGxdKOtmthuEB/kkOjQ/FjMrpueBZAjbB6yeoELeK6",
+      balance: 225.5,
+      history: [
+        {
+          _id: {
+            $oid: "639273562a039b548f4ad57c",
+          },
+          scooterName: "Spark-Rentals#1",
+          scooterID: "639273552a039b548f4ad568",
+          date: "4/09/2021",
+          startPosition: [50, 62],
+          endPosition: [30, 12],
+          totalMin: 5,
+          totalPrice: 20,
+        },
+      ],
+    },
+    {
+      _id: {
+        $oid: "639273562a039b548f4ad580",
+      },
+      githubID: "bf86dc02d29d43237a6b351bb47e2844",
+      firstName: "Kalle",
+      lastName: "Bertan",
+      phoneNumber: "0702345678",
+      email: "kalle.bertan@hotmail.se",
+      password: "$2b$10$kEdj0u5Qt9WJPAE0lTOIC.mkufonKxk5pRC3tgSVRuhcoeNVzKi3m",
+      balance: 145,
+      history: [
+        {
+          _id: {
+            $oid: "639273562a039b548f4ad57d",
+          },
+          scooterName: "Spark-Rentals#4",
+          scooterID: "639273552a039b548f4ad56b",
+          date: "01/02/2022",
+          startPosition: [780, 32],
+          endPosition: [60, 32],
+          totalMin: 25,
+          totalPrice: 145,
+        },
+      ],
+    },
+  ],
+};
+
 export const scooters = {
   scooters: [
     {
