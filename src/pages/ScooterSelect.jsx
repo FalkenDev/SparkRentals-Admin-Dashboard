@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ScooterRadioBtn, Map } from "../components";
 import { scooterOverview } from "../data/data";
 import scooterutils from "../utils/scooterutils";
@@ -11,8 +11,13 @@ const zoom = 14;
 
 const ScooterSelect = () => {
   const [selected, setSelected] = useState();
-  const [markers, setMarkers] = useState([]);
+  const [lat, setLat] = useState(0);
+  const [lon, setLon] = useState(0);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [isSaved, setIsSaved] = useState(true);
+  const [status, setStatus] = useState("");
   const location = useLocation();
+  const navigate = useNavigate();
   const { id } = location.state;
 
   useEffect(() => {
@@ -22,6 +27,39 @@ const ScooterSelect = () => {
     }
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (selected) {
+      setLat(selected.coordinates.latitude);
+      setLon(selected.coordinates.longitude);
+      setStatus(selected.status);
+    }
+  }, [selected]);
+
+  const handleEdit = () => {
+    setIsSaved(true);
+    const editedScooter = {
+      _id: selected._id,
+      owner: selected.owner,
+      coordinates: {
+        longitude: lon,
+        latitude: lat,
+      },
+      log: selected.log,
+      name: selected.name,
+      battery: selected.battery,
+      speed: selected.speed,
+      status: status,
+      trip: selected.trip,
+    };
+    scooter.editScooter(editedScooter);
+    setSelected(editedScooter);
+  };
+
+  const handleDelete = async () => {
+    await scooter.deleteScooter(selected._id);
+    navigate("/scooters");
+  };
 
   const GetScooterDetails = () => {
     const getValueByKey = (key, obj) => {
@@ -38,7 +76,7 @@ const ScooterSelect = () => {
     });
   };
 
-  if (!selected) {
+  if (!status) {
     return <div>loading...</div>;
   }
 
@@ -48,11 +86,11 @@ const ScooterSelect = () => {
         <h1 className="text-3xl mr-2">{selected.name}</h1>
         <h2
           style={{
-            backgroundColor: scooterutils.sateColor(selected.status),
+            backgroundColor: scooterutils.sateColor(status),
           }}
           className="p-2 rounded-xl text-white"
         >
-          {selected.status}
+          {status}
         </h2>
       </div>
 
@@ -62,12 +100,10 @@ const ScooterSelect = () => {
           {selected ? (
             <div className="h-125 overflow-hidden">
               <Map
-                center={[
-                  selected.coordinates.latitude,
-                  selected.coordinates.longitude,
-                ]}
+                center={[lat, lon]}
                 zoom={zoom}
                 scooters={[selected]}
+                features={[lat, lon]}
               />
             </div>
           ) : (
@@ -85,26 +121,50 @@ const ScooterSelect = () => {
             <h1 className="text-center font-semibold text-2xl">Settings</h1>
             <div>
               <p className="font-semibold text-xl">Set mode</p>
-              <ScooterRadioBtn status={selected.status} />
+              <ScooterRadioBtn
+                status={status}
+                setStatus={setStatus}
+                setIsSaved={setIsSaved}
+              />
             </div>
             <div>
               <p className="font-semibold text-xl">Set position</p>
               <div className="flex flex-row justify-between py-3">
                 <input
-                  type="text"
+                  type="number"
                   placeholder="Set Latitude"
-                  value={selected.coordinates.latitude}
+                  onChange={(e) => {
+                    setIsSaved(false);
+                    setLat(e.target.value);
+                  }}
+                  value={lat}
                   className="border-b border-gray-800 mr-2"
                 />
                 <input
-                  type="text"
+                  type="number"
                   placeholder="Set longitude"
-                  value={selected.coordinates.longitude}
+                  onChange={(e) => {
+                    setIsSaved(false);
+                    setLon(e.target.value);
+                  }}
+                  value={lon}
                   className="border-b border-gray-800 ml-2"
                 />
               </div>
+              {isSaved ? (
+                <div></div>
+              ) : (
+                <div>
+                  <p className="text-red-600 text-center">
+                    You have unsaved changes
+                  </p>
+                </div>
+              )}
               <div className="text-center my-5">
                 <button
+                  onClick={() => {
+                    handleEdit();
+                  }}
                   className="p-3 bg-blue-900 hover:bg-violet-700
                text-white rounded-xl font-semibold transition-colors"
                 >
@@ -114,12 +174,38 @@ const ScooterSelect = () => {
             </div>
           </div>
           <div className="text-center my-5">
-            <button
-              className="p-3 bg-red-400 hover:bg-red-700
-               text-white rounded-xl font-semibold transition-colors"
-            >
-              Delete Scooter
-            </button>
+            {confirmDelete ? (
+              <div className="flex flex-row justify-evenly">
+                <button
+                  onClick={() => {
+                    handleDelete();
+                  }}
+                  className="p-3 bg-red-400 hover:bg-red-700 w-44
+                         text-white rounded-xl font-semibold transition-colors"
+                >
+                  Confirm
+                </button>
+                <button
+                  onClick={() => {
+                    setConfirmDelete(false);
+                  }}
+                  className="p-3 bg-gray-400 hover:bg-gray-700 w-44
+                         text-white rounded-xl font-semibold transition-colors"
+                >
+                  Cancel
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => {
+                  setConfirmDelete(true);
+                }}
+                className="p-3 bg-red-400 hover:bg-red-700
+                         text-white rounded-xl font-semibold transition-colors"
+              >
+                Delete Scooter
+              </button>
+            )}
           </div>
         </div>
       </div>

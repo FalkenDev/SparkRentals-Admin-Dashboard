@@ -19,7 +19,6 @@ const CitySelect = () => {
   useEffect(() => {
     async function fetchData() {
       const res = await cities.getCityById(id);
-      console.log(res);
       setSelected(res.city);
     }
     fetchData();
@@ -71,7 +70,6 @@ const CitySelect = () => {
     let updatedScooterList = scooters;
 
     for (const scooterId of isSelected) {
-      console.log(scooterId);
       scooter.deleteScooter(scooterId);
       updatedScooterList = updatedScooterList.filter((sctr) => {
         return scooterId !== sctr._id;
@@ -185,9 +183,9 @@ const CitySelect = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-row justify-center py-3">
+          <div className="flex flex-row justify-start py-3">
             <div>
-              <div>
+              <div className="flex flex-col">
                 <label>Charging Zone</label>
                 <input
                   type="text"
@@ -197,6 +195,7 @@ const CitySelect = () => {
                 />
               </div>
             </div>
+            <div></div>
           </div>
           <div className="mb-12 text-center">
             <button
