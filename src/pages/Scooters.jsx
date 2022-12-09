@@ -78,7 +78,7 @@ const Scooters = () => {
           <h1>Scooters</h1>
         </div>
         <div className="flex flex-row justify-between">
-          <div className="py-3">
+          <div className="py-5">
             <Filterbar
               filterPhrase={filterPhrase}
               setFilterPhrase={setFilterPhrase}
@@ -89,7 +89,9 @@ const Scooters = () => {
             {cityNames ? (
               <button
                 onClick={handleForm}
-                className="py-2 px-3 transition-colors bg-sidebarHover hover:bg-sidebarBlue text-white rounded-full"
+                className="
+                py-2 px-3 transition-colors bg-sidebarHover
+                 hover:bg-sidebarBlue text-white rounded-full"
               >
                 Register Scooter
               </button>
