@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-const ScooterRadioBtn = ({ status }) => {
+const ScooterRadioBtn = ({ status, setStatus, setIsSaved }) => {
   useEffect(() => {
     const radios = document.getElementsByName("scootermode");
     let value = status;
@@ -16,12 +16,17 @@ const ScooterRadioBtn = ({ status }) => {
     <form
       className="flex flex-row justify-evenly my-4 flex-wrap"
       id="scootermode"
+      onChange={(e) => {
+        setIsSaved(false);
+        setStatus(e.target.value);
+      }}
     >
       <div className="py-3">
         <input
           id="Available"
           type="radio"
           name="scootermode"
+          value="Available"
           className="peer hidden"
         />
         <label
@@ -37,6 +42,7 @@ const ScooterRadioBtn = ({ status }) => {
           id="Maintenance"
           type="radio"
           name="scootermode"
+          value="Maintenance"
           className="peer hidden"
         />
         <label
@@ -52,6 +58,7 @@ const ScooterRadioBtn = ({ status }) => {
           id="Off"
           type="radio"
           name="scootermode"
+          value="Off"
           className="peer hidden"
         />
         <label
@@ -67,6 +74,7 @@ const ScooterRadioBtn = ({ status }) => {
           id="Unavailable"
           type="radio"
           name="scootermode"
+          value="Unavailable"
           className="peer hidden"
         />
         <label
