@@ -66,6 +66,28 @@ const scooter = {
     });
     await response.json();
   },
+
+  editScooter: async function editScooter(scooter) {
+    const data = {
+      scooter_id: scooter._id,
+      owner: scooter.owner,
+      longitude: scooter.coordinates.longitude,
+      latitude: scooter.coordinates.latitude,
+      battery: scooter.battery,
+      status: scooter.status,
+      api_key: process.env.REACT_APP_REST_API_KEY,
+    };
+    const tokenObj = storage.readToken();
+    const response = await fetch(`${config.url}/scooters`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+        "content-type": "application/json",
+        "x-access-token": tokenObj.token,
+      },
+    });
+    await response.json();
+  },
 };
 
 export default scooter;
