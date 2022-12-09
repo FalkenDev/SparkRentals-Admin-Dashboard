@@ -17,7 +17,6 @@ const RegisterCityForm = ({ handleForm, cityData }) => {
   });
 
   const handleRegister = () => {
-    console.log(cityData);
     cities.addCity(newCity);
   };
 
