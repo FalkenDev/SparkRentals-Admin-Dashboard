@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { Map, ScooterSelectList } from "../components";
 import { cityScooterOverview, cityZoneOverview } from "../data/data";
 import cities from "../models/cities";
 import scooter from "../models/scooters";
 import "../Map.css";
 import getCoordinates from "../models/nominatim";
+
 const zoom = 14;
 
 const CitySelect = () => {
@@ -15,7 +16,7 @@ const CitySelect = () => {
   const [isSelected, setIsSelected] = useState([]);
   const location = useLocation();
   const { id } = location.state;
-
+  //const navigate = useNavigate();
   useEffect(() => {
     async function fetchData() {
       const res = await cities.getCityById(id);
@@ -208,12 +209,23 @@ const CitySelect = () => {
           <div>
             <h1 className="text-xl font-semibold">Tools</h1>
             <div className="flex flex-row justify-center mb-20">
-              <button
-                className="py-2 transition-colors mt-6 mr-3 w-48
+              {cityCoords ? (
+                <Link
+                  to={"/cities/select/zones"}
+                  state={{ id: selected._id, coords: cityCoords }}
+                  className="py-2 transition-colors mt-6 mr-3 w-48 text-center
              bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
-              >
-                Manage Zones
-              </button>
+                >
+                  Manage Zones
+                </Link>
+              ) : (
+                <button
+                  className="py-2 transition-colors mt-6 mr-3 w-48 text-center
+              bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
+                >
+                  Manage Zones
+                </button>
+              )}
               <button
                 className="py-2 transition-colors mt-6 ml-3 w-48
              bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"

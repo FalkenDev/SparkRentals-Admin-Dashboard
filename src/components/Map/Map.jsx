@@ -6,15 +6,31 @@ import {
   Popup,
   useMap,
   GeoJSON,
+  Polyline,
+  useMapEvents,
 } from "react-leaflet";
+import utils from "../../utils/utils";
 import * as L from "leaflet";
 import ScooterIcon from "../../assets/icons/ScooterMarker.svg";
 import "../../Map.css";
-import scooterutils from "../../utils/scooterutils";
+import scooterutils from "../../utils/utils";
 
-//import * as parkData from "./data/skateboard-parks.json";
+const Map = ({
+  center,
+  zoom,
+  features,
+  scooters,
+  cities,
+  zoneId,
+  add,
+  noPopup,
+  zoneMarkers,
+  setZoneMarkers,
+  reverse,
+  setReverse,
+}) => {
+  let zoneRefs = {};
 
-const Map = ({ center, zoom, features, scooters, cities }) => {
   const LeafIcon = L.Icon.extend({
     options: {},
   });
@@ -43,6 +59,12 @@ const Map = ({ center, zoom, features, scooters, cities }) => {
         return {
           fillColor: "green",
           fillOpacity: 0.4,
+          weight: 1,
+        };
+      case "chargingZone":
+        return {
+          fillColor: "blue",
+          fillOpacity: 0.6,
           weight: 1,
         };
     }
@@ -110,15 +132,47 @@ const Map = ({ center, zoom, features, scooters, cities }) => {
               key={index}
               data={geoObject}
               style={areaStyle(data.zoneType)}
+              ref={(ref) => {
+                zoneRefs[data._id] = ref;
+              }}
             >
-              <Popup>
-                <h1 className="text-xl">{item.name}</h1>
-              </Popup>
+              {noPopup ? null : (
+                <Popup>
+                  <h1 className="text-xl">{item.name}</h1>
+                  <h1 className="text-lf">
+                    {utils.zoneNameTranslate(data.zoneType)}
+                  </h1>
+                </Popup>
+              )}
             </GeoJSON>
           );
         });
       });
     }
+  }
+
+  // function HandleOpenAction() {
+  //   if (zoneId) {
+  //     console.log(zoneId);
+  //     console.log(zoneRefs);
+  //     //console.log(JSON.stringy(zoneRefs));
+  //     const item = zoneRefs[zoneId];
+  //     console.log(item);
+  //     //zoneRefs[1].leafletElement.openPopup();
+  //   }
+  // }
+
+  function AddPoints() {
+    useMapEvents({
+      click(e) {
+        setZoneMarkers([...zoneMarkers, [e.latlng.lng, e.latlng.lat]]);
+        setReverse([...reverse, [e.latlng.lat, e.latlng.lng]]);
+      },
+    });
+
+    return zoneMarkers.map((item, index) => {
+      return <Marker key={index} position={[item[1], item[0]]} />;
+    });
   }
 
   return (
@@ -129,7 +183,15 @@ const Map = ({ center, zoom, features, scooters, cities }) => {
       />
       <Search />
       <MarkersDisplay />
+      {add ? (
+        <Polyline pathOptions={{ color: "blue" }} positions={reverse} />
+      ) : (
+        <></>
+      )}
       <AreasDisplay />
+      {add ? <AddPoints /> : <></>}
+
+      {/* <HandleOpenAction /> */}
     </MapContainer>
   );
 };

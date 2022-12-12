@@ -43,5 +43,43 @@ const cities = {
     });
     await response.json();
   },
+
+  registerZone: async function registerZone(cityId, zone) {
+    const data = {
+      city_id: cityId,
+      zoneType: zone.zoneType,
+      type: zone.type,
+      coordinates: zone.coordinates,
+      api_key: process.env.REACT_APP_REST_API_KEY,
+    };
+
+    const tokenObj = storage.readToken();
+    await fetch(`${config.url}/cities/zones`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "content-type": "application/json",
+        "x-access-token": tokenObj.token,
+      },
+    });
+  },
+
+  deleteZone: async function deleteZone(zoneID, cityID) {
+    const data = {
+      city_id: cityID,
+      zone_id: zoneID,
+      api_key: process.env.REACT_APP_REST_API_KEY,
+    };
+
+    const tokenObj = storage.readToken();
+    await fetch(`${config.url}/cities/zones`, {
+      method: "DELETE",
+      body: JSON.stringify(data),
+      headers: {
+        "content-type": "application/json",
+        "x-access-token": tokenObj.token,
+      },
+    });
+  },
 };
 export default cities;
