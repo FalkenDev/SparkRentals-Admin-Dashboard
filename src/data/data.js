@@ -64,38 +64,50 @@ export const scooterOverview = [
 export const cityScooterOverview = [
   {
     label: "Total Scooters",
-    data: "",
+    data: "totalScooters",
+  },
+  {
+    label: "Total Available",
+    data: "totalAvailable",
   },
   {
     label: "Total In Use",
-    data: "",
+    data: "totalInUse",
   },
   {
     label: "Total Charging",
-    data: "",
+    data: "totalUnavailable",
   },
   {
     label: "Total Maintence",
-    data: "",
+    data: "totalMaintenance",
+  },
+  {
+    label: "Total Off",
+    data: "totalOff",
   },
 ];
 
 export const cityZoneOverview = [
   {
     label: "Total Zones",
-    data: "",
+    data: "total",
   },
   {
-    label: "Total Parking Zones",
-    data: "",
+    label: "Parking Zones",
+    data: "parkingZone",
   },
   {
-    label: "Total No Parking Zones",
-    data: "",
+    label: "No Parking Zones",
+    data: "noParkingZone",
   },
   {
-    label: "Total Bonus Parking Zones",
-    data: "",
+    label: "Bonus Parking Zones",
+    data: "bonusParkingZone",
+  },
+  {
+    label: "Charging Zones",
+    data: "chargingZone",
   },
 ];
 
