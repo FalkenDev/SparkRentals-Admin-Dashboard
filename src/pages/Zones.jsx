@@ -39,7 +39,6 @@ const Zones = () => {
   };
 
   const handleClickOnZone = (id) => {
-    //console.log(selected["zones"]);
     setZoneId(id);
   };
 
