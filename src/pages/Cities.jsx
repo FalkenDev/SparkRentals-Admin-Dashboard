@@ -7,14 +7,30 @@ const Cities = () => {
   const [filterPhrase, setFilterPhrase] = useState("");
   const [displayForm, setDisplayForm] = useState(false);
   const [cityData, setCityData] = useState({});
+  const [newCity, setNewCity] = useState({
+    name: "",
+    fixedRate: 0,
+    timeRate: 0,
+    bonusParkingZoneRate: 0,
+    parkingZoneRate: 0,
+    noParkingZoneRate: 0,
+    chargingZoneRate: 0,
+    noParkingToValidParking: 0,
+  });
 
   useEffect(() => {
-    async function fetchData() {
-      const res = await cities.getCitiesOverview();
-      setCityData(res);
-    }
     fetchData();
   }, []);
+
+  async function fetchData() {
+    const res = await cities.getCitiesOverview();
+    setCityData(res);
+  }
+
+  const handleRegister = async () => {
+    await cities.addCity(newCity);
+    await fetchData();
+  };
 
   const handleForm = () => {
     if (displayForm) {
@@ -41,8 +57,9 @@ const Cities = () => {
         >
           <RegisterCityForm
             handleForm={handleForm}
-            cityData={cityData}
-            setCityData={setCityData}
+            handleRegister={handleRegister}
+            setNewCity={setNewCity}
+            newCity={newCity}
           />
         </div>
       ) : (
