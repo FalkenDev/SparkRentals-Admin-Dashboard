@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ScooterRadioBtn, Map } from "../components";
 import { scooterOverview } from "../data/data";
-import scooterutils from "../utils/scooterutils";
+import scooterutils from "../utils/utils";
 import scooter from "../models/scooters";
 import mapConfig from "../config/config.json";
 import "../Map.css";
