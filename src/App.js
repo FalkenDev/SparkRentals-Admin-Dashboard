@@ -10,6 +10,7 @@ import {
   Settings,
   ScooterSelect,
   CitySelect,
+  Zones,
 } from "./pages";
 import { Sidebar } from "./components";
 import { useStateContext } from "./contexts/ContextProvider";
@@ -46,6 +47,7 @@ function App() {
 
             <Route path="/scooters/select" element={<ScooterSelect />} />
             <Route path="/cities/select" element={<CitySelect />} />
+            <Route path="/cities/select/zones" element={<Zones />} />
           </Routes>
         </div>
       </BrowserRouter>
