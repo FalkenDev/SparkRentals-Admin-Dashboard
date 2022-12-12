@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   MapContainer,
   TileLayer,
@@ -29,8 +29,6 @@ const Map = ({
   reverse,
   setReverse,
 }) => {
-  let zoneRefs = {};
-
   const LeafIcon = L.Icon.extend({
     options: {},
   });
@@ -132,15 +130,12 @@ const Map = ({
               key={index}
               data={geoObject}
               style={areaStyle(data.zoneType)}
-              ref={(ref) => {
-                zoneRefs[data._id] = ref;
-              }}
             >
               {noPopup ? null : (
                 <Popup>
                   <h1 className="text-xl">{item.name}</h1>
                   <h1 className="text-lf">
-                    {utils.zoneNameTranslate(data.zoneType)}
+                    {utils.zoneNameTranslate(data.zoneType)}: {index}
                   </h1>
                 </Popup>
               )}
@@ -150,17 +145,6 @@ const Map = ({
       });
     }
   }
-
-  // function HandleOpenAction() {
-  //   if (zoneId) {
-  //     console.log(zoneId);
-  //     console.log(zoneRefs);
-  //     //console.log(JSON.stringy(zoneRefs));
-  //     const item = zoneRefs[zoneId];
-  //     console.log(item);
-  //     //zoneRefs[1].leafletElement.openPopup();
-  //   }
-  // }
 
   function AddPoints() {
     useMapEvents({
@@ -190,8 +174,6 @@ const Map = ({
       )}
       <AreasDisplay />
       {add ? <AddPoints /> : <></>}
-
-      {/* <HandleOpenAction /> */}
     </MapContainer>
   );
 };
