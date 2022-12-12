@@ -7,3 +7,4 @@ export { default as Cities } from "./Cities";
 export { default as Login } from "./Login";
 export { default as Settings } from "./Settings";
 export { default as CitySelect } from "./CitySelect";
+export { default as Zones } from "./Zones";
