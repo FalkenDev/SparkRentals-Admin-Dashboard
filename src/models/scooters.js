@@ -39,7 +39,7 @@ const scooter = {
       api_key: process.env.REACT_APP_REST_API_KEY,
     };
     const tokenObj = storage.readToken();
-    const response = await fetch(`${config.url}/scooters`, {
+    await fetch(`${config.url}/scooters`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -47,7 +47,7 @@ const scooter = {
         "x-access-token": tokenObj.token,
       },
     });
-    await response.json();
+
   },
 
   deleteScooter: async function deleteScooter(id) {
