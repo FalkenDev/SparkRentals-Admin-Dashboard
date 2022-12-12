@@ -1,22 +1,21 @@
-import config from "../config/config.json";
 import storage from "./storage";
 const cities = {
   getCities: async function getCities() {
     const response = await fetch(
-      `${config.url}/cities?api_key=${process.env.REACT_APP_REST_API_KEY}`
+      `${process.env.REACT_APP_API_URL}/cities?api_key=${process.env.REACT_APP_REST_API_KEY}`
     );
     return response.json();
   },
 
   getCitiesOverview: async function getCitiesOverview() {
     const response = await fetch(
-      `${config.url}/cities/overview?api_key=${process.env.REACT_APP_REST_API_KEY}`
+      `${process.env.REACT_APP_API_URL}/cities/overview?api_key=${process.env.REACT_APP_REST_API_KEY}`
     );
     return response.json();
   },
   getCityById: async function getCityById(id) {
     const response = await fetch(
-      `${config.url}/cities/${id}?api_key=${process.env.REACT_APP_REST_API_KEY}`
+      `${process.env.REACT_APP_API_URL}/cities/${id}?api_key=${process.env.REACT_APP_REST_API_KEY}`
     );
     return response.json();
   },
@@ -33,7 +32,7 @@ const cities = {
       api_key: process.env.REACT_APP_REST_API_KEY,
     };
     const tokenObj = storage.readToken();
-    await fetch(`${config.url}/cities`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/cities`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -51,7 +50,7 @@ const cities = {
       api_key: process.env.REACT_APP_REST_API_KEY,
     };
     const tokenObj = storage.readToken();
-    await fetch(`${config.url}/cities`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/cities`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
@@ -67,7 +66,7 @@ const cities = {
       api_key: process.env.REACT_APP_REST_API_KEY,
     };
     const tokenObj = storage.readToken();
-    await fetch(`${config.url}/cities`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/cities`, {
       method: "DELETE",
       body: JSON.stringify(data),
       headers: {
@@ -87,7 +86,7 @@ const cities = {
     };
 
     const tokenObj = storage.readToken();
-    await fetch(`${config.url}/cities/zones`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/cities/zones`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -105,7 +104,7 @@ const cities = {
     };
 
     const tokenObj = storage.readToken();
-    await fetch(`${config.url}/cities/zones`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/cities/zones`, {
       method: "DELETE",
       body: JSON.stringify(data),
       headers: {

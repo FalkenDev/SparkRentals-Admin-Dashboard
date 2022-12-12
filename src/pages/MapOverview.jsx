@@ -23,6 +23,7 @@ const MapOverview = () => {
       setScooters(data);
     }
     fetchData();
+    setInterval(fetchData, 1000);
   }, []);
 
   useEffect(() => {
