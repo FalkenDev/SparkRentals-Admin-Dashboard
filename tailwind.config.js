@@ -9,6 +9,8 @@ module.exports = {
         sidebarActive: "#0b002b",
       },
       height: {
+        132: "46rem",
+        130: "40rem",
         128: "36rem",
         125: "32rem",
       },
