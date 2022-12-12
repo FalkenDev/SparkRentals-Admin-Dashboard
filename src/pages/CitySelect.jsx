@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { Map, ScooterSelectList } from "../components";
 import { cityScooterOverview, cityZoneOverview } from "../data/data";
 import cities from "../models/cities";
 import scooter from "../models/scooters";
 import "../Map.css";
+import utils from "../utils/utils";
 import getCoordinates from "../models/nominatim";
 
 const zoom = 14;
@@ -14,13 +15,36 @@ const CitySelect = () => {
   const [cityCoords, setCityCoords] = useState();
   const [scooters, setScooters] = useState();
   const [isSelected, setIsSelected] = useState([]);
+  const [selectedOverView, setSelectedOverView] = useState();
+  const [deleteProcess, setDeleteProcess] = useState(false);
+  const [deletePhrase, setDeletePhrase] = useState("");
+  const [taxes, setTaxes] = useState({});
+  const [zonesCount, setZonesCount] = useState({});
+  const [deleteStatus, setDeleteStatus] = useState(
+    "Enter city name to confirm delete"
+  );
   const location = useLocation();
+  const navigate = useNavigate();
   const { id } = location.state;
   //const navigate = useNavigate();
   useEffect(() => {
     async function fetchData() {
       const res = await cities.getCityById(id);
       setSelected(res.city);
+      setTaxes(res.city.taxRates);
+      setZonesCount(utils.zoneCount(res.city.zones));
+    }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await cities.getCitiesOverview();
+      const data = res.arrayOverview;
+      const select = data.find((x) => {
+        return x._id === id;
+      });
+      setSelectedOverView(select);
     }
     fetchData();
   }, []);
@@ -30,7 +54,9 @@ const CitySelect = () => {
       const res = await scooter.getScootersByCity(selected.name);
       setScooters(res.cityScooters);
     }
-    fetchData();
+    if (selected) {
+      fetchData();
+    }
   }, [selected]);
 
   useEffect(() => {
@@ -44,23 +70,43 @@ const CitySelect = () => {
     }
   }, [selected]);
 
+  const handleSaveEdit = () => {
+    const editedCity = {
+      _id: selected._id,
+      name: selected.name,
+      taxRates: taxes,
+    };
+    cities.editCity(editedCity);
+  };
+
+  const handleChange = (e) => {
+    let value = e.target.value;
+    setTaxes({ ...taxes, [e.target.name]: value });
+  };
+
   const GetCityScooterDetails = () => {
-    return cityScooterOverview.map((item) => {
+    return cityScooterOverview.map((item, index) => {
       return (
-        <div className="flex flex-row w-80 justify-between border-b">
+        <div
+          key={index}
+          className="flex flex-row w-80 justify-between border-b"
+        >
           <p>{item.label}</p>
-          <p>0</p>
+          <p>{selectedOverView[item.data]}</p>
         </div>
       );
     });
   };
 
   const GetCityZoneDetails = () => {
-    return cityZoneOverview.map((item) => {
+    return cityZoneOverview.map((item, index) => {
       return (
-        <div className="flex flex-row w-80 justify-between border-b">
+        <div
+          key={index}
+          className="flex flex-row w-80 justify-between border-b"
+        >
           <p>{item.label}</p>
-          <p>0</p>
+          <p>{zonesCount[item.data]}</p>
         </div>
       );
     });
@@ -78,6 +124,16 @@ const CitySelect = () => {
     }
 
     setScooters(updatedScooterList);
+  };
+
+  const handleCityDelete = async () => {
+    if (deletePhrase === selected.name) {
+      await cities.deleteCity(id);
+      setDeletePhrase("");
+      navigate("/cities");
+    } else {
+      setDeleteStatus("ERROR: Please type the correct city title to delete");
+    }
   };
 
   if (!selected) {
@@ -107,7 +163,12 @@ const CitySelect = () => {
           <div>
             <h1 className="font-semibold text-xl mt-3 mb-1">Overview</h1>
             <div className="flex flex-row">
-              <div className="mr-7">{GetCityScooterDetails()}</div>
+              {selectedOverView ? (
+                <div className="mr-7">{GetCityScooterDetails()}</div>
+              ) : (
+                <div>No Data...</div>
+              )}
+
               <div>{GetCityZoneDetails()}</div>
             </div>
           </div>
@@ -125,18 +186,26 @@ const CitySelect = () => {
             <div>
               <label>Fixed Rate</label>
               <input
-                type="text"
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="fixedRate"
+                type="number"
                 placeholder="Fixed rate"
-                value={selected.taxRates.fixedRate}
+                value={taxes.fixedRate}
                 className="border-b border-gray-800 mr-2"
               />
             </div>
             <div>
               <label>Rate per minute</label>
               <input
-                type="text"
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                type="number"
+                name="timeRate"
                 placeholder="Rate per minute"
-                value={selected.taxRates.timeRate}
+                value={taxes.timeRate}
                 className="border-b border-gray-800 mr-2"
               />
             </div>
@@ -146,18 +215,26 @@ const CitySelect = () => {
             <div>
               <label>Parking Rate</label>
               <input
-                type="text"
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                type="number"
+                name="parkingZoneRate"
                 placeholder="Parking Rate"
-                value={selected.taxRates.parkingZoneRate}
+                value={taxes.parkingZoneRate}
                 className="border-b border-gray-800 mr-2"
               />
             </div>
             <div>
               <label>Discount Rate</label>
               <input
-                type="text"
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                type="number"
+                name="bonusParkingZoneRate"
                 placeholder="Discount Parking Rate"
-                value={selected.taxRates.bonusParkingZoneRate}
+                value={taxes.bonusParkingZoneRate}
                 className="border-b border-gray-800 mr-2"
               />
             </div>
@@ -166,9 +243,13 @@ const CitySelect = () => {
             <div>
               <label>Invalid parking fee</label>
               <input
-                type="text"
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                type="number"
+                name="noParkingZoneRate"
                 placeholder="Invalid parking fee"
-                value={selected.taxRates.noParkingZoneRate}
+                value={taxes.noParkingZoneRate}
                 className="border-b border-gray-800 mr-2"
               />
             </div>
@@ -176,9 +257,13 @@ const CitySelect = () => {
               <div>
                 <label>Invalid to valid parking</label>
                 <input
-                  type="text"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                  type="number"
+                  name="noParkingToValidParking"
                   placeholder="Invalid to valid parking"
-                  value={selected.taxRates.noParkingToValidParking}
+                  value={taxes.noParkingToValidParking}
                   className="border-b border-gray-800 mr-2"
                 />
               </div>
@@ -189,9 +274,13 @@ const CitySelect = () => {
               <div className="flex flex-col">
                 <label>Charging Zone</label>
                 <input
-                  type="text"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                  type="number"
+                  name="chargingZoneRate"
                   placeholder="Invalid to valid parking"
-                  value={selected.taxRates.chargingZoneRate}
+                  value={taxes.chargingZoneRate}
                   className="border-b border-gray-800 mr-2"
                 />
               </div>
@@ -200,6 +289,9 @@ const CitySelect = () => {
           </div>
           <div className="mb-12 text-center">
             <button
+              onClick={() => {
+                handleSaveEdit();
+              }}
               className="py-2 px-7 transition-colors mt-6 w-48
              bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
             >
@@ -207,7 +299,7 @@ const CitySelect = () => {
             </button>
           </div>
           <div>
-            <h1 className="text-xl font-semibold">Tools</h1>
+            <h1 className="text-xl font-semibold text-center">Tools</h1>
             <div className="flex flex-row justify-center mb-20">
               {cityCoords ? (
                 <Link
@@ -233,16 +325,56 @@ const CitySelect = () => {
                 Register Scooter
               </button>
             </div>
-            <div className="mt-6">
-              <h1 className="text-xl font-semibold">Delete</h1>
-              <div className="flex flex-row justify-center">
-                <button
-                  className="py-2 transition-colors mt-6 ml-3 w-48
-                   bg-red-500 hover:bg-red-600 text-white rounded-xl"
+            <div className="mt-6 w-full">
+              {deleteProcess ? (
+                <div className="flex flex-col w-full">
+                  <label className="text-xl text-center py-3">
+                    {deleteStatus}
+                  </label>
+                  <input
+                    onChange={(e) => setDeletePhrase(e.target.value)}
+                    value={deletePhrase}
+                    className="bg-slate-100 p-4 reounded rounded-xl
+                     text-garay-400 border border-slate-400"
+                    placeholder={`Type: ${selected.name}`}
+                  />
+                  <div className="w-full text-center">
+                    <button
+                      onClick={() => {
+                        handleCityDelete();
+                      }}
+                      className="py-2 transition-colors mt-6 ml-3 w-36
+             bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
+                    >
+                      Confirm
+                    </button>
+                    <button
+                      onClick={() => {
+                        setDeleteProcess(false);
+                        setDeletePhrase("");
+                      }}
+                      className="py-2 transition-colors mt-6 ml-3 w-36
+             bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div
+                  onClick={() => {
+                    setDeleteProcess(true);
+                  }}
+                  className="flex flex-row justify-center"
                 >
-                  Delete City
-                </button>
-              </div>
+                  <button
+                    className="py-2 transition-colors mt-6 ml-3 w-48
+                   bg-red-500 hover:bg-red-600 text-white rounded-xl"
+                  >
+                    Delete City
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

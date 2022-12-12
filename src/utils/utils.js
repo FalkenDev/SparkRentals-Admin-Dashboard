@@ -1,4 +1,9 @@
 const utils = {
+  /**
+   * Returns color for each state
+   * @param {string} state
+   * @returns
+   */
   sateColor: function stateColor(state) {
     switch (state) {
       case "Available":
@@ -14,6 +19,12 @@ const utils = {
     }
   },
 
+  /**
+   * Translate zone reference name to a more readble state
+   *
+   * @param {string} name
+   * @returns
+   */
   zoneNameTranslate: function zoneNameTranslate(name) {
     switch (name) {
       case "noParkingZone":
@@ -25,6 +36,26 @@ const utils = {
       case "chargingZone":
         return "Charging Zone";
     }
+  },
+
+  /**
+   * Returns objects with amount of zones
+   * @param {object} selected
+   * @returns zones
+   */
+  zoneCount: function zoneCount(selected) {
+    let zones = {
+      noParkingZone: 0,
+      bonusParkingZone: 0,
+      parkingZone: 0,
+      chargingZone: 0,
+      total: 0,
+    };
+    selected.map((item) => {
+      zones[item.zoneType] += 1;
+      zones["total"] += 1;
+    });
+    return zones;
   },
 };
 
