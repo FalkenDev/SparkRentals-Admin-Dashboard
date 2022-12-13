@@ -16,3 +16,5 @@ export { default as LoginForm } from "./Login/LoginForm";
 export { default as DataLists } from "./Dashboard/DataLists";
 export { default as ScooterSelectList } from "./Scooters/ScooterSelectList";
 export { default as MapSidebar } from "./Map/MapSidebar";
+export { default as LogForm } from "./Customers/LogForm";
+export { default as EditForm } from "./Customers/EditForm";
