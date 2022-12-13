@@ -1,4 +1,3 @@
-import config from "../config/config.json";
 import storage from "./storage";
 const auth = {
   loggedIn: function loggedIn() {
@@ -14,13 +13,16 @@ const auth = {
       password: password,
       api_key: process.env.REACT_APP_REST_API_KEY,
     };
-    const response = await fetch(`${config.url}/admins/login`, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "content-type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}/admins/login`,
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    );
     const result = await response.json();
 
     if (Object.prototype.hasOwnProperty.call(result, "errors")) {

@@ -34,6 +34,7 @@ const Zones = () => {
     setIsCreate(false);
     setZoneMarkers([]);
     setReverse([]);
+    setZoneType("parkingZone");
     await cities.registerZone(id, newZone);
     await fetchData();
   };
