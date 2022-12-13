@@ -19,13 +19,17 @@ const ScooterList = ({ filterPhrase, scooterData }) => {
           item.status.toLowerCase().includes(filterPhrase.toLowerCase())
         ) {
           return item;
+        } else if (
+          item.name.toLowerCase().includes(filterPhrase.toLowerCase())
+        ) {
+          return item;
         }
         return;
       })
       .map((item, index) => {
         return (
           <tr key={index} className="border-b text-base border-gray-400">
-            <td className="py-3 px-6">{index}</td>
+            <td className="py-3 px-6">{item.name}</td>
             <td className="py-3 px-6">{item.owner}</td>
             <td className="py-3 px-6">{item.status}</td>
             <td className="py-3 px-6">{item.battery}%</td>
@@ -50,7 +54,7 @@ const ScooterList = ({ filterPhrase, scooterData }) => {
       <table className="w-full text-lg text-left content-between">
         <thead className=" bg-sidebarBlue text-gray-200">
           <tr>
-            <th className="font-normal px-6">ID</th>
+            <th className="font-normal px-6">Name</th>
             <th className="font-normal px-6">City</th>
             <th className="font-normal px-6"> Status</th>
             {/* <th className="font-normal ">Current Position</th> */}

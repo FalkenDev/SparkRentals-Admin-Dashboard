@@ -34,6 +34,34 @@ export const links = [
   },
 ];
 
+export const customerEdit = [
+  {
+    label: "First Name",
+    data: "firstName",
+    type: "text",
+  },
+  {
+    label: "Last Name",
+    data: "lastName",
+    type: "text",
+  },
+  {
+    label: "Phone Number",
+    data: "phoneNumber",
+    type: "text",
+  },
+  {
+    label: "Email",
+    data: "email",
+    type: "text",
+  },
+  {
+    label: "Balance (SEK)",
+    data: "balance",
+    type: "number",
+  },
+];
+
 export const scooterOverview = [
   {
     label: "Status",
