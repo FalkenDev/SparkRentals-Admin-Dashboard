@@ -1,9 +1,8 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { cityform } from "../../data/data";
 import { Map } from "../../components";
-import cities from "../../models/cities";
 import getCoordinates from "../../models/nominatim";
 const RegisterCityForm = ({
   handleForm,
