@@ -23,7 +23,9 @@ const MapOverview = () => {
       setScooters(data);
     }
     fetchData();
-    setInterval(fetchData, 1000);
+    if (process.env.REACT_APP_MAP_UPDATE_INTERVAL_BOOLEAN) {
+      setInterval(fetchData(), process.env.REACT_APP_MAP_UPDATE_INTERVAL);
+    }
   }, []);
 
   useEffect(() => {
