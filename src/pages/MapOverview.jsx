@@ -37,7 +37,6 @@ const MapOverview = () => {
   }, [isLive]);
 
   async function fetchScooterData() {
-    console.log("!");
     const res = await scooter.getScooters();
     const data = res.scooters;
     setScooters(data);
