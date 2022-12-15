@@ -13,13 +13,15 @@ const auth = {
       password: password,
       api_key: process.env.REACT_APP_REST_API_KEY,
     };
+    const tokenObj = storage.readToken();
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/admins/login`,
+      `${process.env.REACT_APP_API_URL}/auth/login/server/admin`,
       {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
           "content-type": "application/json",
+          "x-access-token": tokenObj.token,
         },
       }
     );
