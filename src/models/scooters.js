@@ -1,29 +1,53 @@
 import storage from "./storage";
 const scooter = {
   getScooters: async function getScooters() {
+    const tokenObj = storage.readToken();
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/scooters?api_key=${process.env.REACT_APP_REST_API_KEY}`
+      `${process.env.REACT_APP_API_URL}/scooters?api_key=${process.env.REACT_APP_REST_API_KEY}`,
+      {
+        headers: {
+          "x-access-token": tokenObj.token,
+        },
+      }
     );
     return response.json();
   },
 
   getScootersOverview: async function getScootersOverview() {
+    const tokenObj = storage.readToken();
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/scooters/overview?api_key=${process.env.REACT_APP_REST_API_KEY}`
+      `${process.env.REACT_APP_API_URL}/scooters/overview?api_key=${process.env.REACT_APP_REST_API_KEY}`,
+      {
+        headers: {
+          "x-access-token": tokenObj.token,
+        },
+      }
     );
     return response.json();
   },
 
   getScooterById: async function getScooterById(id) {
+    const tokenObj = storage.readToken();
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/scooters/${id}?api_key=${process.env.REACT_APP_REST_API_KEY}`
+      `${process.env.REACT_APP_API_URL}/scooters/${id}?api_key=${process.env.REACT_APP_REST_API_KEY}`,
+      {
+        headers: {
+          "x-access-token": tokenObj.token,
+        },
+      }
     );
     return response.json();
   },
 
   getScootersByCity: async function getScootersByCity(city) {
+    const tokenObj = storage.readToken();
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/scooters/owner/${city}?api_key=${process.env.REACT_APP_REST_API_KEY}`
+      `${process.env.REACT_APP_API_URL}/scooters/owner/${city}?api_key=${process.env.REACT_APP_REST_API_KEY}`,
+      {
+        headers: {
+          "x-access-token": tokenObj.token,
+        },
+      }
     );
     return response.json();
   },

@@ -1,5 +1,4 @@
 const storage = {
-  //WRONG
   storeToken: function storeToken(token) {
     localStorage.setItem("tokenDate", new Date().getTime());
     localStorage.setItem("token", token);

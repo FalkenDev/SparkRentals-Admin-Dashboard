@@ -16,6 +16,8 @@ const MapOverview = () => {
   const [features, setFeatures] = useState();
   const [scooters, setScooters] = useState([]);
   const [cityData, setCityData] = useState([]);
+  const timerRef = useRef(null);
+  timerRef.current = isLive;
 
   useEffect(() => {
     fetchScooterData();
@@ -31,22 +33,25 @@ const MapOverview = () => {
   }, []);
 
   useEffect(() => {
-    console.log(isLive);
     updateMap();
   }, [isLive]);
 
   async function fetchScooterData() {
+    console.log("!");
     const res = await scooter.getScooters();
     const data = res.scooters;
     setScooters(data);
   }
 
   function updateMap() {
-    fetchScooterData();
-    console.log(isLive);
-    if (isLive) {
-      setTimeout(updateMap, 1000);
-    }
+    const timer = setInterval(() => {
+      if (timerRef.current === false) {
+        // Read the boxed value
+        clearInterval(timer);
+      } else {
+        fetchScooterData();
+      }
+    }, 1000);
   }
 
   const handleToggle = () => {
@@ -84,7 +89,7 @@ const MapOverview = () => {
                     handleToggle();
                   }}
                   type="checkbox"
-                  value=""
+                  value={isLive}
                   class="sr-only peer"
                 />
                 <div

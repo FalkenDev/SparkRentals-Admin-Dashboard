@@ -1,21 +1,39 @@
 import storage from "./storage";
 const cities = {
   getCities: async function getCities() {
+    const tokenObj = storage.readToken();
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/cities?api_key=${process.env.REACT_APP_REST_API_KEY}`
+      `${process.env.REACT_APP_API_URL}/cities?api_key=${process.env.REACT_APP_REST_API_KEY}`,
+      {
+        headers: {
+          "x-access-token": tokenObj.token,
+        },
+      }
     );
     return response.json();
   },
 
   getCitiesOverview: async function getCitiesOverview() {
+    const tokenObj = storage.readToken();
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/cities/overview?api_key=${process.env.REACT_APP_REST_API_KEY}`
+      `${process.env.REACT_APP_API_URL}/cities/overview?api_key=${process.env.REACT_APP_REST_API_KEY}`,
+      {
+        headers: {
+          "x-access-token": tokenObj.token,
+        },
+      }
     );
     return response.json();
   },
   getCityById: async function getCityById(id) {
+    const tokenObj = storage.readToken();
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/cities/${id}?api_key=${process.env.REACT_APP_REST_API_KEY}`
+      `${process.env.REACT_APP_API_URL}/cities/${id}?api_key=${process.env.REACT_APP_REST_API_KEY}`,
+      {
+        headers: {
+          "x-access-token": tokenObj.token,
+        },
+      }
     );
     return response.json();
   },
