@@ -45,7 +45,6 @@ const MapOverview = () => {
   function updateMap() {
     const timer = setInterval(() => {
       if (timerRef.current === false) {
-        // Read the boxed value
         clearInterval(timer);
       } else {
         fetchScooterData();
@@ -88,7 +87,7 @@ const MapOverview = () => {
                     handleToggle();
                   }}
                   type="checkbox"
-                  value={isLive}
+                  checked={isLive}
                   class="sr-only peer"
                 />
                 <div
@@ -112,6 +111,7 @@ const MapOverview = () => {
               features={features}
               scooters={scooters}
               cities={cityData}
+              setIsLive={setIsLive}
             />
           </div>
           <div className="w-1/4 flex flex-col max-h-screen bg-gray-800">

@@ -28,6 +28,7 @@ const Map = ({
   setZoneMarkers,
   reverse,
   setReverse,
+  setIsLive,
 }) => {
   const LeafIcon = L.Icon.extend({
     options: {},
@@ -86,6 +87,11 @@ const Map = ({
             key={index}
             position={[item.coordinates.latitude, item.coordinates.longitude]}
             icon={scooterIcon}
+            eventHandlers={{
+              click: (e) => {
+                setIsLive(false);
+              },
+            }}
           >
             <Popup>
               <h1 className="text-xl">{item.name}</h1>
@@ -169,11 +175,9 @@ const Map = ({
       <MarkersDisplay />
       {add ? (
         <Polyline pathOptions={{ color: "blue" }} positions={reverse} />
-      ) : (
-        <></>
-      )}
+      ) : null}
       <AreasDisplay />
-      {add ? <AddPoints /> : <></>}
+      {add ? <AddPoints /> : null}
     </MapContainer>
   );
 };
