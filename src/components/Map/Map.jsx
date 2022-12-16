@@ -29,6 +29,10 @@ const Map = ({
   reverse,
   setReverse,
   setIsLive,
+  singleMode,
+  setSingleMarker,
+  singleMarker,
+  setLatLng,
 }) => {
   const LeafIcon = L.Icon.extend({
     options: {},
@@ -72,7 +76,7 @@ const Map = ({
   function Search() {
     const map = useMap();
     if (features) {
-      map.flyTo(features, zoom);
+      map.panTo(features, zoom);
       //map.setZoom(10);
     }
 
@@ -165,6 +169,19 @@ const Map = ({
     });
   }
 
+  function AddSinglePoint() {
+    useMapEvents({
+      click(e) {
+        setSingleMarker({ lon: e.latlng.lng, lat: e.latlng.lat });
+        if (setLatLng) {
+          setLatLng(e.latlng.lat, e.latlng.lng);
+        }
+      },
+    });
+
+    return <Marker position={[singleMarker.lat, singleMarker.lon]} />;
+  }
+
   return (
     <MapContainer center={center} zoom={zoom} scrollWheelZoom={false}>
       <TileLayer
@@ -178,6 +195,8 @@ const Map = ({
       ) : null}
       <AreasDisplay />
       {add ? <AddPoints /> : null}
+
+      {singleMode ? <AddSinglePoint /> : null}
     </MapContainer>
   );
 };
