@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BlackLogoSpark from "../../assets/LogoBlack.svg";
 import { auth } from "../../models/auth.js";
 import { useStateContext } from "../../contexts/ContextProvider";
@@ -8,13 +9,19 @@ const LoginForm = () => {
   const { setIsLoggedIn } = useStateContext();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [isIncorrect, setIsIncorrect] = useState(false);
+  const navigate = useNavigate();
 
   const validPass = async (event) => {
     event.preventDefault();
 
     const result = await auth.login(email, password);
+    console.log(result);
     if (result.type === "success") {
       setIsLoggedIn(true);
+      navigate("/dashboard");
+    } else if (result.type === "danger") {
+      setIsIncorrect(true);
     }
   };
 
@@ -37,7 +44,7 @@ const LoginForm = () => {
               type="text"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
-              placeholder="Username"
+              placeholder="Email"
               className="w-full"
             />
           </div>
@@ -51,6 +58,12 @@ const LoginForm = () => {
             />
           </div>
         </div>
+        {isIncorrect ? (
+          <div className="text-center text-xl text-red-700 font-semibold">
+            <p>Incorrect password or email please try again!</p>
+          </div>
+        ) : null}
+
         <div className="p-3">
           <button
             type="submit"
