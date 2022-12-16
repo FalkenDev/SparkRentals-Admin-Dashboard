@@ -99,7 +99,7 @@ const Customers = () => {
             />
           </div>
         </div>
-        <div>
+        <div className="mt-5">
           <CustomerList
             userData={userData}
             filterPhrase={filterPhrase}
