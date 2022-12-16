@@ -11,6 +11,7 @@ import {
   ScooterSelect,
   CitySelect,
   Zones,
+  Prepaid,
 } from "./pages";
 import { Sidebar } from "./components";
 import { useStateContext } from "./contexts/ContextProvider";
@@ -29,28 +30,27 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <div className="flex relative">
-          <div className="relative min-w-80 w-80 mr-4 z-10">
-            <Sidebar />
-          </div>
-          <Routes>
-            {/* Dashboard */}
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            {/* The rest */}
-            <Route path="/map" element={<MapOverview />} />
-            <Route path="/cities" element={<Cities />} />
-            <Route path="/scooters" element={<Scooters />} />
-            <Route path="/customers" element={<Customers />} />
-            <Route path="/settings" element={<Settings />} />
-
-            <Route path="/scooters/select" element={<ScooterSelect />} />
-            <Route path="/cities/select" element={<CitySelect />} />
-            <Route path="/cities/select/zones" element={<Zones />} />
-          </Routes>
+      <div className="flex relative">
+        <div className="relative min-w-80 w-80 mr-4 z-10">
+          <Sidebar />
         </div>
-      </BrowserRouter>
+        <Routes>
+          {/* Dashboard */}
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          {/* The rest */}
+          <Route path="/map" element={<MapOverview />} />
+          <Route path="/cities" element={<Cities />} />
+          <Route path="/scooters" element={<Scooters />} />
+          <Route path="/customers" element={<Customers />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/prepaid" element={<Prepaid />} />
+
+          <Route path="/scooters/select" element={<ScooterSelect />} />
+          <Route path="/cities/select" element={<CitySelect />} />
+          <Route path="/cities/select/zones" element={<Zones />} />
+        </Routes>
+      </div>
     </>
   );
 }
