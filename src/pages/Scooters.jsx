@@ -9,15 +9,15 @@ const Scooters = () => {
   const [displayForm, setDisplayForm] = useState(false);
   const [scooterData, setScooterData] = useState();
   const [cityNames, setCityNames] = useState();
-
   useEffect(() => {
-    async function fetchData() {
-      const res = await scooter.getScooters();
-      const data = res.scooters;
-      setScooterData(data);
-    }
-    fetchData();
+    fetchScooterData();
   }, []);
+
+  async function fetchScooterData() {
+    const res = await scooter.getScooters();
+    const data = res.scooters;
+    setScooterData(data);
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -31,6 +31,12 @@ const Scooters = () => {
     }
     fetchData();
   }, []);
+
+  const handleRegister = async (newScooter) => {
+    //e.preventDefault();
+    await scooter.addScooter(newScooter);
+    await fetchScooterData();
+  };
 
   const handleForm = () => {
     //event.preventDefault();
@@ -61,6 +67,7 @@ const Scooters = () => {
             scooterData={scooterData}
             setScooterData={setScooterData}
             cityNames={cityNames}
+            handleRegister={handleRegister}
           />
         </div>
       ) : (
