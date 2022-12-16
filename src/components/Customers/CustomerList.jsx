@@ -9,14 +9,9 @@ const CustomerList = ({
   handleEditForm,
   setSelectedUser,
   handleRemoveAccount,
-  selectedUser,
 }) => {
   const [isOpen, setIsOpen] = useState({});
   const [isDelete, setIsDelete] = useState({});
-
-  // useEffect(() => {
-  //   handleForm();
-  // }, [selectedUser]);
 
   const handleClick = (id) => {
     setIsOpen((prevState) => ({ ...prevState, [id]: !prevState[id] }));
@@ -200,7 +195,6 @@ const CustomerList = ({
             <th className="font-normal px-6">ID</th>
             <th className="font-normal px-6">First Name</th>
             <th className="font-normal px-6"> Last Name</th>
-            {/* <th className="font-normal ">Current Position</th> */}
             <th className="font-normal px-6">Email</th>
             <th className="font-normal px-6">View</th>
           </tr>
