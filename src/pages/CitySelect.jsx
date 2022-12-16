@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { Map, ScooterSelectList } from "../components";
 import { cityScooterOverview, cityZoneOverview } from "../data/data";
+import { TbZoomQuestion } from "react-icons/tb";
+
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+
 import cities from "../models/cities";
 import scooter from "../models/scooters";
 import "../Map.css";
@@ -184,7 +189,27 @@ const CitySelect = () => {
           </div>
           <div className="flex flex-row justify-between py-3">
             <div>
-              <label>Fixed Rate</label>
+              <label className="flex flex-row">
+                <span>Fixed Rate</span>
+                <Tippy
+                  placement="top"
+                  arrow={true}
+                  className="w-44"
+                  content={
+                    <span>
+                      <h1 className="text-xl">Fixed Rate</h1>
+                      <p>
+                        Fixed rates are is the initial fee for starting a ride.
+                      </p>
+                    </span>
+                  }
+                >
+                  <span className="text-lg text-slate-800">
+                    <TbZoomQuestion />
+                  </span>
+                </Tippy>
+              </label>
+
               <input
                 onChange={(e) => {
                   handleChange(e);
@@ -197,7 +222,27 @@ const CitySelect = () => {
               />
             </div>
             <div>
-              <label>Rate per minute</label>
+              <label className="flex flex-row">
+                <span>Rate per minute</span>
+                <Tippy
+                  placement="top"
+                  arrow={true}
+                  className="w-44"
+                  content={
+                    <span>
+                      <h1 className="text-xl">Rate per minute</h1>
+                      <p>
+                        Rate per minutes is what will be charged each minute the
+                        ride is active
+                      </p>
+                    </span>
+                  }
+                >
+                  <span className="text-lg text-slate-800">
+                    <TbZoomQuestion />
+                  </span>
+                </Tippy>
+              </label>
               <input
                 onChange={(e) => {
                   handleChange(e);
@@ -213,7 +258,27 @@ const CitySelect = () => {
 
           <div className="flex flex-row justify-between py-3">
             <div>
-              <label>Parking Rate</label>
+              <label className="flex flex-row">
+                <span>Parking Rate</span>
+                <Tippy
+                  placement="top"
+                  arrow={true}
+                  className="w-44"
+                  content={
+                    <span>
+                      <h1 className="text-xl">Parking Rate</h1>
+                      <p>
+                        Parking rate is the the fee for stopping your ride
+                        within a default parking zone
+                      </p>
+                    </span>
+                  }
+                >
+                  <span className="text-lg text-slate-800">
+                    <TbZoomQuestion />
+                  </span>
+                </Tippy>
+              </label>
               <input
                 onChange={(e) => {
                   handleChange(e);
@@ -226,7 +291,27 @@ const CitySelect = () => {
               />
             </div>
             <div>
-              <label>Discount Rate</label>
+              <label className="flex flex-row">
+                <span>Discount Rate</span>
+                <Tippy
+                  placement="top"
+                  arrow={true}
+                  className="w-44"
+                  content={
+                    <span>
+                      <h1 className="text-xl">Discount Rate</h1>
+                      <p>
+                        Discount rate is a discount granted to the user for
+                        stopping their ride within a "bonus zone"
+                      </p>
+                    </span>
+                  }
+                >
+                  <span className="text-lg text-slate-800">
+                    <TbZoomQuestion />
+                  </span>
+                </Tippy>
+              </label>
               <input
                 onChange={(e) => {
                   handleChange(e);
@@ -241,7 +326,27 @@ const CitySelect = () => {
           </div>
           <div className="flex flex-row justify-between py-3">
             <div>
-              <label>Invalid parking fee</label>
+              <label className="flex flex-row">
+                <span>Invalid Parking Fee</span>
+                <Tippy
+                  placement="top"
+                  arrow={true}
+                  className="w-44"
+                  content={
+                    <span>
+                      <h1 className="text-xl">Invalid Parking Fee</h1>
+                      <p>
+                        Invalid parking fee is a fee the user has to pay if they
+                        decide to stop their ride outiside of a parking zone
+                      </p>
+                    </span>
+                  }
+                >
+                  <span className="text-lg text-slate-800">
+                    <TbZoomQuestion />
+                  </span>
+                </Tippy>
+              </label>
               <input
                 onChange={(e) => {
                   handleChange(e);
@@ -255,7 +360,31 @@ const CitySelect = () => {
             </div>
             <div>
               <div>
-                <label>Invalid to valid parking</label>
+                <label className="flex flex-row">
+                  <span>Invalid To Valid Parking Fee</span>
+                  <Tippy
+                    placement="top"
+                    arrow={true}
+                    className="w-44"
+                    content={
+                      <span>
+                        <h1 className="text-xl">
+                          Invalid To Valid Parking Fee
+                        </h1>
+                        <p>
+                          Invalid to valid parking fee is a discount granted to
+                          the user if they start a ride with a scooter parked
+                          outside a parking zone and afterwards park it within a
+                          valid parking zone
+                        </p>
+                      </span>
+                    }
+                  >
+                    <span className="text-lg text-slate-800">
+                      <TbZoomQuestion />
+                    </span>
+                  </Tippy>
+                </label>
                 <input
                   onChange={(e) => {
                     handleChange(e);
@@ -272,7 +401,27 @@ const CitySelect = () => {
           <div className="flex flex-row justify-start py-3">
             <div>
               <div className="flex flex-col">
-                <label>Charging Zone</label>
+                <label className="flex flex-row">
+                  <span>Charging Zone</span>
+                  <Tippy
+                    placement="top"
+                    arrow={true}
+                    className="w-44"
+                    content={
+                      <span>
+                        <h1 className="text-xl">Charging Zone</h1>
+                        <p>
+                          Charging Zone is a discount granted to the user if the
+                          stop their ride within a charging zone
+                        </p>
+                      </span>
+                    }
+                  >
+                    <span className="text-lg text-slate-800">
+                      <TbZoomQuestion />
+                    </span>
+                  </Tippy>
+                </label>
                 <input
                   onChange={(e) => {
                     handleChange(e);
