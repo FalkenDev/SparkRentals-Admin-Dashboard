@@ -1,14 +1,15 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { GrClose } from "react-icons/gr";
 import { scooterform } from "../../data/data";
-import scooter from "../../models/scooters";
-const RegisterScooterForm = ({
-  handleForm,
-  scooterData,
-  setScooterData,
-  cityNames,
-}) => {
+import { Map } from "../../components";
+import getCoordinates from "../../models/nominatim";
+const RegisterScooterForm = ({ handleForm, cityNames, handleRegister }) => {
+  const [locationCoords, setLocationCoords] = useState([0, 0]);
+  const [singleMarker, setSingleMarker] = useState({
+    lat: 0,
+    lon: 0,
+  });
   const [newScooter, setNewScooter] = useState({
     owner: cityNames[0],
     longitude: "",
@@ -16,17 +17,20 @@ const RegisterScooterForm = ({
     battery: "",
     status: "Available",
   });
-  const handleRegister = () => {
-    //e.preventDefault();
-    scooter.addScooter(newScooter);
-    const data = [...scooterData, newScooter];
-    setScooterData(data);
-  };
+
+  useEffect(() => {
+    getCoords(cityNames[0]);
+  }, []);
 
   const handleFormData = (e) => {
     let data = newScooter;
     data[e.target.name] = e.target.value;
     setNewScooter(data);
+  };
+
+  const getCoords = async (city) => {
+    const res = await getCoordinates(city);
+    setLocationCoords([res.latitude, res.longitude]);
   };
 
   const customOptions = () => {
@@ -37,6 +41,10 @@ const RegisterScooterForm = ({
         </option>
       );
     });
+  };
+
+  const handleCustomCoords = (target, value) => {
+    setSingleMarker({ ...singleMarker, [target]: value });
   };
 
   const allFields = () => {
@@ -50,7 +58,9 @@ const RegisterScooterForm = ({
               name={item.name}
               className=" bg-gray-50 border border-gray-300 text-gray-900
               text-sm rounded-lg block p-2.5 w-72"
-              onChange={(e) => handleFormData(e)}
+              onChange={(e) => {
+                handleFormData(e);
+              }}
             >
               <option value="Available">Available</option>
               <option value="Unavailable">Unavailable</option>
@@ -69,11 +79,56 @@ const RegisterScooterForm = ({
               type={item.type}
               name={item.name}
               className=" bg-gray-50 border border-gray-300 text-gray-900
-            text-sm rounded-lg block p-2.5 w-72"
-              onChange={(e) => handleFormData(e)}
+                          text-sm rounded-lg block p-2.5 w-72"
+              onChange={(e) => {
+                handleFormData(e);
+                getCoords(e.target.value);
+              }}
             >
               {customOptions()}
             </select>
+          </div>
+        );
+      }
+      if (item.name === "longitude") {
+        return (
+          <div key={index} className="my-3">
+            <label className="p-1">{item.title}</label>
+            <input
+              type={item.type}
+              name={item.name}
+              value={singleMarker.lon}
+              maxLength="30"
+              onChange={(e) => {
+                handleFormData(e);
+                handleCustomCoords("lon", e.target.value);
+              }}
+              placeholder={item.placeholder}
+              className="bg-gray-50 border border-gray-300 text-gray-900
+                        text-sm rounded-lg block p-2.5 w-72"
+              required
+            />
+          </div>
+        );
+      }
+      if (item.name === "latitude") {
+        return (
+          <div key={index} className="my-3">
+            <label className="p-1">{item.title}</label>
+            <input
+              type={item.type}
+              name={item.name}
+              value={singleMarker.lat}
+              maxLength="30"
+              onChange={(e) => {
+                handleFormData(e);
+                handleCustomCoords("lat", e.target.value);
+              }}
+              placeholder={item.placeholder}
+              className="bg-gray-50 border border-gray-300 text-gray-900
+                        text-sm rounded-lg block p-2.5 w-72"
+              required
+            />
           </div>
         );
       }
@@ -95,7 +150,7 @@ const RegisterScooterForm = ({
     });
   };
   return (
-    <div className="bg-white p-4 reounded rounded-xl shadow-lg">
+    <div className="bg-white p-4 reounded rounded-xl shadow-lg w-128">
       <button
         onClick={handleForm}
         className="rounded-full transition-colors p-2 shadow-md hover:bg-red-400"
@@ -105,21 +160,33 @@ const RegisterScooterForm = ({
       <h1 className="text-xl font-semibold text-center pb-2">
         Register Scooter
       </h1>
-      <form id="newScooter" className="p-2 border-t border-gray-400 h-fit">
-        {allFields()}
-      </form>
-      <div className="text-center w-full">
-        <button
-          onClick={() => {
-            handleRegister();
-            handleForm();
-          }}
-          className="
+      <div className="flex flex-row justify-between border-t border-gray-400 p-4">
+        <form id="newScooter" className="p-2 h-fit">
+          {allFields()}
+          <div className="text-center w-full pt-3">
+            <button
+              onClick={() => {
+                handleRegister(newScooter);
+                handleForm();
+              }}
+              className="
           py-2 px-4 transition-colors bg-sidebarHover
         hover:bg-sidebarBlue text-white rounded-full"
-        >
-          Register
-        </button>
+            >
+              Register
+            </button>
+          </div>
+        </form>
+        <div className=" w-96 h-130 overflow-hidden">
+          <Map
+            center={[0, 0]}
+            zoom={12}
+            features={locationCoords}
+            setSingleMarker={setSingleMarker}
+            singleMarker={singleMarker}
+            singleMode={true}
+          />
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,8 @@
-import { AiFillPieChart, AiOutlineUser } from "react-icons/ai";
+import {
+  AiFillPieChart,
+  AiOutlineUser,
+  AiFillCreditCard,
+} from "react-icons/ai";
 import { BsFillPinMapFill } from "react-icons/bs";
 import { FaCity, FaUserFriends } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
@@ -27,6 +31,10 @@ export const links = [
   {
     title: "customers",
     icon: <FaUserFriends />,
+  },
+  {
+    title: "prepaid",
+    icon: <AiFillCreditCard />,
   },
   {
     title: "Settings",
@@ -58,6 +66,24 @@ export const customerEdit = [
   {
     label: "Balance (SEK)",
     data: "balance",
+    type: "number",
+  },
+];
+
+export const prepaidEdit = [
+  {
+    label: "Code",
+    data: "code",
+    type: "text",
+  },
+  {
+    label: "Uses",
+    data: "uses",
+    type: "number",
+  },
+  {
+    label: "Amount (SEK)",
+    data: "amount",
     type: "number",
   },
 ];

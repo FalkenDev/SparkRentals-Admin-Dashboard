@@ -1,26 +1,17 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AiOutlineRight, AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
-const CustomerList = ({
-  filterPhrase,
-  userData,
-  handleForm,
-  setLogData,
-  handleEditForm,
-  setSelectedUser,
-  handleRemoveAccount,
-}) => {
+
+const PrepaidList = ({ prepaidData, filterPhrase }) => {
   const [isOpen, setIsOpen] = useState({});
   const [isDelete, setIsDelete] = useState({});
-
-  const handleClick = (id) => {
-    setIsOpen((prevState) => ({ ...prevState, [id]: !prevState[id] }));
-  };
 
   const handleDeleteButton = (id) => {
     setIsDelete((prevState) => ({ ...prevState, [id]: !prevState[id] }));
   };
 
+  const handleClick = (id) => {
+    setIsOpen((prevState) => ({ ...prevState, [id]: !prevState[id] }));
+  };
   const rotate = (bool) => {
     if (bool) {
       return "rotate(90deg)";
@@ -28,39 +19,29 @@ const CustomerList = ({
     return "rotate(0deg)";
   };
 
-  if (!userData) {
-    return <div>Loading</div>;
-  }
-
-  const customerData = (user) => {
+  const prepaidInfo = (card) => {
     return (
       <div className="w-full flex justify-between">
         <div className="p-3">
           <div className="flex flex-row ">
             <div className="flex flex-col px-2">
-              <h2>First Name</h2>
-              <p className="border-b bg-gray-200 border-gray-800 mr-2 mb-3 w-52">
-                {user.firstName}
+              <h2>Code</h2>
+              <p className="border-b bg-gray-200 border-gray-800 mr-2 mb-3 w-80">
+                {card.code}
               </p>
-              <h2>Last Name</h2>
+              <h2>Amount</h2>
               <p className="border-b bg-gray-200 border-gray-800 mr-2 w-52">
-                {user.lastName}
+                {card.amount}
               </p>
             </div>
             <div className="flex flex-col px-2">
-              <h2>Email</h2>
+              <h2>Total uses</h2>
               <p className="border-b bg-gray-200 border-gray-800 mr-2 mb-3 w-52">
-                {user.email}
+                {card.uses}
               </p>
-              <h2>Phone Number</h2>
+              <h2>Uses left</h2>
               <p className="border-b bg-gray-200 border-gray-800 mr-2 w-52">
-                {user.phoneNumber}
-              </p>
-            </div>
-            <div className="flex flex-col px-2 ">
-              <h2>Balance</h2>
-              <p className="border-b bg-gray-200 border-gray-800 w-52 mr-2">
-                {user.balance + "kr"}
+                {card.uses}
               </p>
             </div>
           </div>
@@ -68,10 +49,10 @@ const CustomerList = ({
 
         <div className="flex flex-col p-4">
           <button
-            onClick={() => {
-              handleForm();
-              setLogData(user.history);
-            }}
+            // onClick={() => {
+            //   handleForm();
+            //   setLogData(card.history);
+            // }}
             className="
                 my-1 py-1 px-3 transition-colors bg-sidebarHover w-36
                hover:bg-sidebarBlue text-white rounded-full"
@@ -79,24 +60,24 @@ const CustomerList = ({
             Logs
           </button>
           <button
-            onClick={() => {
-              setSelectedUser(user);
-              handleEditForm();
-            }}
+            // onClick={() => {
+            //   setSelectedcard(card);
+            //   handleEditForm();
+            // }}
             className="
                 my-1 py-1 px-3 transition-colors bg-sidebarHover w-36
                hover:bg-sidebarBlue text-white rounded-full"
           >
             Edit
           </button>
-          {isDelete[user._id] ? (
+          {isDelete[card._id] ? (
             <div>
               <p>Confirm deletion?</p>
               <div className="flex justify-evenly">
                 <button
                   onClick={() => {
-                    handleDeleteButton(user._id);
-                    handleRemoveAccount(user._id);
+                    handleDeleteButton(card._id);
+                    // handleRemoveAccount(card._id);
                   }}
                   className="
                 my-1 p-1 text-2xl transition-colors bg-sidebarHover
@@ -106,7 +87,7 @@ const CustomerList = ({
                 </button>
                 <button
                   onClick={() => {
-                    handleDeleteButton(user._id);
+                    handleDeleteButton(card._id);
                   }}
                   className="
                 my-1 p-1 text-2xl transition-colors bg-sidebarHover 
@@ -119,7 +100,7 @@ const CustomerList = ({
           ) : (
             <button
               onClick={() => {
-                handleDeleteButton(user._id);
+                handleDeleteButton(card._id);
               }}
               className="
                 my-1 py-1 px-3 transition-colors bg-sidebarHover w-36
@@ -133,17 +114,13 @@ const CustomerList = ({
     );
   };
 
-  const users = () => {
-    return userData
+  const prepaids = () => {
+    return prepaidData
       .filter((item) => {
         if (filterPhrase === "") {
           return item;
         } else if (
-          item.firstName.toLowerCase().includes(filterPhrase.toLowerCase())
-        ) {
-          return item;
-        } else if (
-          item.lastName.toLowerCase().includes(filterPhrase.toLowerCase())
+          item.code.toLowerCase().includes(filterPhrase.toLowerCase())
         ) {
           return item;
         }
@@ -154,9 +131,10 @@ const CustomerList = ({
           <>
             <tr key={index} className="border-b text-base border-gray-400">
               <td className="py-3 px-6">{index}</td>
-              <td className="py-3 px-6">{item.firstName}</td>
-              <td className="py-3 px-6">{item.lastName}</td>
-              <td className="py-3 px-6">{item.email}</td>
+              <td className="py-3 px-6">{item.code}</td>
+              <td className="py-3 px-6">{item.uses}</td>
+              <td className="py-3 px-6">{item.uses}</td>
+              <td className="py-3 px-6">{item.amount}</td>
               <td className="py-3 px-6 w-2">
                 <button
                   className="transition-transform"
@@ -172,7 +150,7 @@ const CustomerList = ({
             {isOpen[item._id] ? (
               <td colspan="6">
                 <div className="bg-gray-200 w-full border-b border-gray-400">
-                  {customerData(item)}
+                  {prepaidInfo(item)}
                 </div>
               </td>
             ) : (
@@ -183,8 +161,8 @@ const CustomerList = ({
       });
   };
 
-  if (!userData) {
-    return <div>Loading</div>;
+  if (!prepaidData) {
+    return <div>No prepaid cards</div>;
   }
 
   return (
@@ -193,16 +171,17 @@ const CustomerList = ({
         <thead className=" bg-sidebarBlue text-gray-200">
           <tr>
             <th className="font-normal px-6">ID</th>
-            <th className="font-normal px-6">First Name</th>
-            <th className="font-normal px-6"> Last Name</th>
-            <th className="font-normal px-6">Email</th>
+            <th className="font-normal px-6">Code</th>
+            <th className="font-normal px-6"> Total uses</th>
+            <th className="font-normal px-6">Uses left</th>
+            <th className="font-normal px-6">Amount</th>
             <th className="font-normal px-6">View</th>
           </tr>
         </thead>
-        <tbody>{users()}</tbody>
+        <tbody>{prepaids()}</tbody>
       </table>
     </>
   );
 };
 
-export default CustomerList;
+export default PrepaidList;

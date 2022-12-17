@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ScooterRadioBtn, Map } from "../components";
 import { scooterOverview } from "../data/data";
+import { AiOutlineClose } from "react-icons/ai";
+import { BiMap } from "react-icons/bi";
 import scooterutils from "../utils/utils";
 import scooter from "../models/scooters";
 import mapConfig from "../config/config.json";
@@ -16,6 +18,11 @@ const ScooterSelect = () => {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [isSaved, setIsSaved] = useState(true);
   const [status, setStatus] = useState("");
+  const [singleMarker, setSingleMarker] = useState({
+    lat: lat,
+    lon: lon,
+  });
+  const [useMap, setUseMap] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { id } = location.state;
@@ -35,6 +42,11 @@ const ScooterSelect = () => {
       setStatus(selected.status);
     }
   }, [selected]);
+
+  const setLatLng = (latitude, longitude) => {
+    setLat(latitude);
+    setLon(longitude);
+  };
 
   const handleEdit = () => {
     setIsSaved(true);
@@ -128,7 +140,39 @@ const ScooterSelect = () => {
               />
             </div>
             <div>
-              <p className="font-semibold text-xl">Set position</p>
+              <p className="font-semibold text-xl py-2">Set position</p>
+              {useMap ? (
+                <div className="overflow-hidden h-60 w-full">
+                  <div className="w-full text-center m-1">
+                    <button
+                      className="bg-red-500 rounded-full text-white p-1"
+                      onClick={() => setUseMap(false)}
+                    >
+                      <AiOutlineClose />
+                    </button>
+                  </div>
+                  <Map
+                    center={[lat, lon]}
+                    zoom={zoom}
+                    singleMarker={singleMarker}
+                    setSingleMarker={setSingleMarker}
+                    setLatLng={setLatLng}
+                    singleMode={true}
+                  />
+                </div>
+              ) : (
+                <div className="w-full text-center m-3">
+                  <button
+                    className="px-2 py-1 bg-slate-500 text-sm text-white rounded-xl"
+                    onClick={() => setUseMap(true)}
+                  >
+                    <span className="flex flex-row">
+                      Show Map <BiMap />
+                    </span>
+                  </button>
+                </div>
+              )}
+
               <div className="flex flex-row justify-between py-3">
                 <input
                   type="number"
