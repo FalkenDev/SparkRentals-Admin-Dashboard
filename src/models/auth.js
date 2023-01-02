@@ -2,8 +2,8 @@ import storage from "./storage";
 const auth = {
   loggedIn: function loggedIn() {
     const token = storage.readToken();
-    const twentyFourHours = 1000 * 60 * 60 * 24;
-    const notExpired = new Date().getTime() - token.date < twentyFourHours;
+    const Hours = 1000 * 60 * 60;
+    const notExpired = new Date().getTime() - token.date < Hours;
     return token && notExpired;
   },
 
