@@ -21,7 +21,11 @@ function App() {
   const { isLoggedIn, setIsLoggedIn } = useStateContext();
 
   useEffect(() => {
-    setIsLoggedIn(auth.loggedIn());
+    function checkloggedIn() {
+      setIsLoggedIn(auth.loggedIn());
+    }
+    checkloggedIn();
+    setInterval(checkloggedIn(), 1000 * 60);
   }, []);
 
   if (!isLoggedIn) {
@@ -31,9 +35,8 @@ function App() {
   return (
     <>
       <div className="flex relative">
-        <div className="relative min-w-80 w-80 mr-4 z-10">
-          <Sidebar />
-        </div>
+        <Sidebar />
+
         <Routes>
           {/* Dashboard */}
           <Route path="/" element={<Dashboard />} />
