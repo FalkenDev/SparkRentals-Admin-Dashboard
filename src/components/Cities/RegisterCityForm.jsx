@@ -11,7 +11,6 @@ const RegisterCityForm = ({
   newCity,
 }) => {
   const [coords, setCoords] = useState([0, 0]);
-
   const getCoords = async () => {
     const res = await getCoordinates(newCity.name);
     setCoords([res.latitude, res.longitude]);
@@ -59,11 +58,10 @@ const RegisterCityForm = ({
               onClick={(e) => {
                 e.preventDefault();
                 handleRegister(newCity);
-                handleForm();
               }}
               className="
-      py-2 px-4 transition-colors bg-sidebarHover
-    hover:bg-sidebarBlue text-white rounded-full"
+               py-2 px-4 transition-colors bg-sidebarHover
+             hover:bg-sidebarBlue text-white rounded-full"
             >
               Register
             </button>
