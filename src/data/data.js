@@ -281,6 +281,7 @@ export const dashboard = [
     title: "Scooters",
     icon: <Scooter />,
     color: "#5f78ff",
+    dataName: "totalScooters",
     sub: [
       {
         title: "Total Scooters",
@@ -308,14 +309,17 @@ export const dashboard = [
     title: "Users",
     icon: <AiOutlineUser />,
     color: "#ff731d",
+    dataName: "totalUsers",
     sub: [
       {
         title: "Total Users",
         icon: "",
+        dataName: "totalUsers",
       },
       {
         title: "Active Users",
         icon: "",
+        dataName: "activeUsers",
       },
     ],
   },
@@ -323,22 +327,27 @@ export const dashboard = [
     title: "Cities",
     icon: <Areas />,
     color: "#de42bc",
+    dataName: "totalAreas",
     sub: [
       {
-        title: "Total Areas",
+        title: "Total Cities",
         icon: "",
+        dataName: "totalAreas",
       },
       {
         title: "Active Parking Zones",
         icon: "",
+        dataName: "totalParkingZones",
       },
       {
         title: "Total Bonus Parking Zones",
         icon: "",
+        dataName: "totalBonus",
       },
       {
         title: "Total No Parking Zones",
         icon: "",
+        dataName: "totalNoParking",
       },
     ],
   },

@@ -15,9 +15,7 @@ const StatContainer = ({ icon, title, color, data }) => {
         {icon}
       </div>
       <div className="flex justify-between flex-col">
-        <h1 className="text-2xl font-semibold text-right">
-          {scooterOverview[data]}
-        </h1>
+        <h1 className="text-2xl font-semibold text-right">{data}</h1>
         <p className="text-gray-600 font-semibold">{title}</p>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { StatContainer } from "../";
 import { dashboard } from "../../data/data";
-const Databox = () => {
+const Databox = ({ data }) => {
   const databoxes = () => {
     return dashboard.map((items) => {
       return (
@@ -10,6 +10,7 @@ const Databox = () => {
             icon={items.icon}
             title={items.title}
             color={items.color}
+            data={data[items.dataName]}
           />
         </div>
       );
