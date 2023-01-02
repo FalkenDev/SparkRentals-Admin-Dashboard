@@ -106,8 +106,11 @@ const ScooterSelect = () => {
         </h2>
       </div>
 
-      <div className="flex flex-row justify-between mt-4 h-full overflow-scroll">
-        <div className="p-4 mr-4 w-2/3 rounded-xl shadow-md bg-white">
+      <div
+        className="flex flex-row justify-between mt-4 h-full overflow-scroll
+      max-xl:flex-col"
+      >
+        <div className="p-4 xl:mr-4 w-2/3 rounded-xl shadow-md bg-white max-xl:w-full">
           <h1 className="text-2xl font-semibold pb-2">Scooter Position</h1>
           {selected ? (
             <div className="h-125 overflow-hidden">
@@ -128,92 +131,96 @@ const ScooterSelect = () => {
           </div>
         </div>
 
-        <div className="h-full p-7 ml-4 rounded-xl w-1/3 bg-white shadow-md flex flex-col justify-between">
+        <div className="h-full p-7 xl:ml-4 rounded-xl w-1/3 bg-white shadow-md flex flex-col justify-between max-xl:mt-4 max-xl:w-full ">
           <div>
             <h1 className="text-center font-semibold text-2xl">Settings</h1>
-            <div>
-              <p className="font-semibold text-xl">Set mode</p>
-              <ScooterRadioBtn
-                status={status}
-                setStatus={setStatus}
-                setIsSaved={setIsSaved}
-              />
-            </div>
-            <div>
-              <p className="font-semibold text-xl py-2">Set position</p>
-              {useMap ? (
-                <div className="overflow-hidden h-60 w-full">
-                  <div className="w-full text-center m-1">
-                    <button
-                      className="bg-red-500 rounded-full text-white p-1"
-                      onClick={() => setUseMap(false)}
-                    >
-                      <AiOutlineClose />
-                    </button>
-                  </div>
-                  <Map
-                    center={[lat, lon]}
-                    zoom={zoom}
-                    singleMarker={singleMarker}
-                    setSingleMarker={setSingleMarker}
-                    setLatLng={setLatLng}
-                    singleMode={true}
-                  />
-                </div>
-              ) : (
-                <div className="w-full text-center m-3">
-                  <button
-                    className="px-2 py-1 bg-slate-500 text-sm text-white rounded-xl"
-                    onClick={() => setUseMap(true)}
-                  >
-                    <span className="flex flex-row">
-                      Show Map <BiMap />
-                    </span>
-                  </button>
-                </div>
-              )}
-
-              <div className="flex flex-row justify-between py-3">
-                <input
-                  type="number"
-                  placeholder="Set Latitude"
-                  onChange={(e) => {
-                    setIsSaved(false);
-                    setLat(e.target.value);
-                  }}
-                  value={lat}
-                  className="border-b border-gray-800 mr-2"
-                />
-                <input
-                  type="number"
-                  placeholder="Set longitude"
-                  onChange={(e) => {
-                    setIsSaved(false);
-                    setLon(e.target.value);
-                  }}
-                  value={lon}
-                  className="border-b border-gray-800 ml-2"
+            <div className="max-xl:flex flex-row justify-between">
+              <div>
+                <p className="font-semibold text-xl">Set mode</p>
+                <ScooterRadioBtn
+                  status={status}
+                  setStatus={setStatus}
+                  setIsSaved={setIsSaved}
                 />
               </div>
-              {isSaved ? (
-                <div></div>
-              ) : (
-                <div>
-                  <p className="text-red-600 text-center">
-                    You have unsaved changes
-                  </p>
+              <div>
+                <p className="font-semibold text-xl py-2">Set position</p>
+                {useMap ? (
+                  <div className=" w-full">
+                    <div className="w-full text-center m-1">
+                      <button
+                        className="bg-red-500 rounded-full text-white p-1"
+                        onClick={() => setUseMap(false)}
+                      >
+                        <AiOutlineClose />
+                      </button>
+                    </div>
+                    <div className="overflow-hidden h-60 rounded-md shadow-sm">
+                      <Map
+                        center={[lat, lon]}
+                        zoom={zoom}
+                        singleMarker={singleMarker}
+                        setSingleMarker={setSingleMarker}
+                        setLatLng={setLatLng}
+                        singleMode={true}
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="w-full text-center m-3">
+                    <button
+                      className="px-2 py-1 bg-slate-500 text-sm text-white rounded-xl"
+                      onClick={() => setUseMap(true)}
+                    >
+                      <span className="flex flex-row">
+                        Show Map <BiMap />
+                      </span>
+                    </button>
+                  </div>
+                )}
+
+                <div className="flex flex-row justify-between py-3">
+                  <input
+                    type="number"
+                    placeholder="Set Latitude"
+                    onChange={(e) => {
+                      setIsSaved(false);
+                      setLat(e.target.value);
+                    }}
+                    value={lat}
+                    className="border-b border-gray-800 mr-2"
+                  />
+                  <input
+                    type="number"
+                    placeholder="Set longitude"
+                    onChange={(e) => {
+                      setIsSaved(false);
+                      setLon(e.target.value);
+                    }}
+                    value={lon}
+                    className="border-b border-gray-800 ml-2"
+                  />
                 </div>
-              )}
-              <div className="text-center my-5">
-                <button
-                  onClick={() => {
-                    handleEdit();
-                  }}
-                  className="p-3 bg-blue-900 hover:bg-violet-700
+                {isSaved ? (
+                  <div></div>
+                ) : (
+                  <div>
+                    <p className="text-red-600 text-center">
+                      You have unsaved changes
+                    </p>
+                  </div>
+                )}
+                <div className="text-center my-5">
+                  <button
+                    onClick={() => {
+                      handleEdit();
+                    }}
+                    className="p-3 bg-blue-900 hover:bg-violet-700
                text-white rounded-xl font-semibold transition-colors"
-                >
-                  Save Changes
-                </button>
+                  >
+                    Save Changes
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -244,7 +251,7 @@ const ScooterSelect = () => {
                 onClick={() => {
                   setConfirmDelete(true);
                 }}
-                className="p-3 bg-red-400 hover:bg-red-700
+                className="p-3 bg-red-500 hover:bg-red-700
                          text-white rounded-xl font-semibold transition-colors"
               >
                 Delete Scooter
