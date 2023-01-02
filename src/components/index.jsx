@@ -21,3 +21,4 @@ export { default as EditForm } from "./Customers/EditForm";
 export { default as PrepaidList } from "./Prepaid/PrepaidList";
 export { default as PrepaidUses } from "./Prepaid/PrepaidUses";
 export { default as PrepaidForm } from "./Prepaid/PrepaidForm";
+export { default as AdminPanel } from "./AdminPanel";
