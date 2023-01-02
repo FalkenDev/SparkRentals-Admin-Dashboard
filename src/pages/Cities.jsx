@@ -30,6 +30,7 @@ const Cities = () => {
   const handleRegister = async () => {
     await cities.addCity(newCity);
     await fetchData();
+    handleForm();
   };
 
   const handleForm = () => {

@@ -10,6 +10,7 @@ const Prepaid = () => {
   const [prepaidData, setPrepaidData] = useState();
   const [filterPhrase, setFilterPhrase] = useState("");
   const [displayForm, setDisplayForm] = useState(false);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -20,6 +21,12 @@ const Prepaid = () => {
     const data = res.prepaids;
     setPrepaidData(data);
   }
+
+  const handleAddCard = async (newCard) => {
+    console.log(newCard);
+    await prepaid.addPrepaid(newCard);
+    await fetchData();
+  };
 
   const handleForm = () => {
     //event.preventDefault();
@@ -45,7 +52,7 @@ const Prepaid = () => {
           className="fixed top-1/2 left-1/2 z-10
           transform -translate-x-1/2 -translate-y-1/2"
         >
-          <PrepaidForm handleForm={handleForm} />
+          <PrepaidForm handleForm={handleForm} handleAddCard={handleAddCard} />
         </div>
       ) : (
         <div></div>

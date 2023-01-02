@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { prepaidEdit } from "../../data/data";
-const PrepaidForm = ({ handleForm }) => {
+const PrepaidForm = ({ handleForm, handleAddCard }) => {
+  const [newPrepaid, setNewPrepaid] = useState({
+    code: "",
+    amount: 0,
+    totalUses: 0,
+    users: [],
+  });
+
   const prepaidFormData = () => {
+    const handleEdit = (value, id) => {
+      setNewPrepaid({ ...newPrepaid, [id]: value });
+    };
     return prepaidEdit.map((item, index) => {
       return (
         <div key={index}>
           <label>{item.label}</label>
           <input
-            // onChange={(e) => {
-            //   handleEdit(e.target.value, item.data);
-            // }}
+            value={newPrepaid[item.data]}
+            onChange={(e) => {
+              handleEdit(e.target.value, item.data);
+            }}
             type={item.type}
             className="bg-gray-50 border border-gray-300 text-gray-900
                         text-sm rounded-lg block p-2.5 w-72"
@@ -30,8 +41,7 @@ const PrepaidForm = ({ handleForm }) => {
       <div className="text-center pt-9 pb-3">
         <button
           onClick={(e) => {
-            // e.preventDefault();
-            // handleAccountEdit();
+            handleAddCard(newPrepaid);
           }}
           className="py-2 px-4 transition-colors bg-sidebarHover
               hover:bg-sidebarBlue text-white rounded-full"

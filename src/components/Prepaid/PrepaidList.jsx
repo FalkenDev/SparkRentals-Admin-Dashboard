@@ -37,11 +37,11 @@ const PrepaidList = ({ prepaidData, filterPhrase }) => {
             <div className="flex flex-col px-2">
               <h2>Total uses</h2>
               <p className="border-b bg-gray-200 border-gray-800 mr-2 mb-3 w-52">
-                {card.uses}
+                {card.totalUses}
               </p>
               <h2>Uses left</h2>
               <p className="border-b bg-gray-200 border-gray-800 mr-2 w-52">
-                {card.uses}
+                {card.usesLeft}
               </p>
             </div>
           </div>
@@ -132,8 +132,8 @@ const PrepaidList = ({ prepaidData, filterPhrase }) => {
             <tr key={index} className="border-b text-base border-gray-400">
               <td className="py-3 px-6">{index}</td>
               <td className="py-3 px-6">{item.code}</td>
-              <td className="py-3 px-6">{item.uses}</td>
-              <td className="py-3 px-6">{item.uses}</td>
+              <td className="py-3 px-6">{item.totalUses}</td>
+              <td className="py-3 px-6">{item.usesLeft}</td>
               <td className="py-3 px-6">{item.amount}</td>
               <td className="py-3 px-6 w-2">
                 <button

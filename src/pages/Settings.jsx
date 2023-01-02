@@ -1,5 +1,6 @@
 import React from "react";
 import { auth } from "../models/auth";
+import { AdminPanel } from "../components";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Settings = () => {
@@ -12,7 +13,10 @@ const Settings = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-row justify-between w-full">
+      <div>
+        <AdminPanel />
+      </div>
       <div className="m-5">
         <button
           onClick={handleLogout}

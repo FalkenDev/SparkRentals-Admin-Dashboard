@@ -49,7 +49,7 @@ const CustomerList = ({
             </div>
             <div className="flex flex-col px-2">
               <h2>Email</h2>
-              <p className="border-b bg-gray-200 border-gray-800 mr-2 mb-3 w-52">
+              <p className="border-b bg-gray-200 border-gray-800 mr-2 mb-3 w-72">
                 {user.email}
               </p>
               <h2>Phone Number</h2>
@@ -189,7 +189,7 @@ const CustomerList = ({
 
   return (
     <>
-      <table className="w-full text-lg text-left content-between">
+      <table className="w-full text-lg text-left content-between min-w-54 overflow-x-scroll">
         <thead className=" bg-sidebarBlue text-gray-200">
           <tr>
             <th className="font-normal px-6">ID</th>

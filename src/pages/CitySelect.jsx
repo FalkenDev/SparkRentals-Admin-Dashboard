@@ -35,6 +35,7 @@ const CitySelect = () => {
   useEffect(() => {
     async function fetchData() {
       const res = await cities.getCityById(id);
+      console.log(res);
       setSelected(res.city);
       setTaxes(res.city.taxRates);
       setZonesCount(utils.zoneCount(res.city.zones));
@@ -132,7 +133,7 @@ const CitySelect = () => {
   };
 
   const handleCityDelete = async () => {
-    if (deletePhrase === selected.name) {
+    if (deletePhrase.includes(selected.name.trim())) {
       await cities.deleteCity(id);
       setDeletePhrase("");
       navigate("/cities");
@@ -151,8 +152,8 @@ const CitySelect = () => {
         <h1 className="text-3xl mr-2">{selected.name}</h1>
       </div>
 
-      <div className="flex flex-row">
-        <div className="p-4 mr-4 w-2/3 rounded-xl shadow-md bg-white">
+      <div className="flex flex-row max-xl:flex-col">
+        <div className="p-4 mr-4 w-2/3 rounded-xl shadow-md bg-white max-xl:w-full max-xl:mr-0">
           {cityCoords ? (
             <div className="h-125 overflow-hidden">
               <Map
@@ -180,355 +181,364 @@ const CitySelect = () => {
         </div>
 
         <div
-          className="p-7 ml-4 rounded-xl w-1/3 bg-white
-         shadow-md flex flex-col justify-between h-full"
+          className="p-7 ml-4 rounded-xl w-1/3 bg-white 
+         shadow-md flex flex-col justify-between h-full 
+         max-xl:mt-4 max-xl:ml-0 max-xl:w-full  "
         >
-          <h1 className="text-center font-semibold text-2xl">Settings</h1>
+          <h1 className="text-center font-semibold text-2xl ">Settings</h1>
           <div>
             <h1 className="text-xl font-semibold">Rates</h1>
           </div>
-          <div className="flex flex-row justify-between py-3">
+          <div className="flex flex-col max-xl:flex-row max-xl:justify-between">
             <div>
-              <label className="flex flex-row">
-                <span>Fixed Rate</span>
-                <Tippy
-                  placement="top"
-                  arrow={true}
-                  className="w-44"
-                  content={
-                    <span>
-                      <h1 className="text-xl">Fixed Rate</h1>
-                      <p>
-                        Fixed rates are is the initial fee for starting a ride.
-                      </p>
-                    </span>
-                  }
-                >
-                  <span className="text-lg text-slate-800">
-                    <TbZoomQuestion />
-                  </span>
-                </Tippy>
-              </label>
-
-              <input
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-                name="fixedRate"
-                type="number"
-                placeholder="Fixed rate"
-                value={taxes.fixedRate}
-                className="border-b border-gray-800 mr-2"
-              />
-            </div>
-            <div>
-              <label className="flex flex-row">
-                <span>Rate per minute</span>
-                <Tippy
-                  placement="top"
-                  arrow={true}
-                  className="w-44"
-                  content={
-                    <span>
-                      <h1 className="text-xl">Rate per minute</h1>
-                      <p>
-                        Rate per minutes is what will be charged each minute the
-                        ride is active
-                      </p>
-                    </span>
-                  }
-                >
-                  <span className="text-lg text-slate-800">
-                    <TbZoomQuestion />
-                  </span>
-                </Tippy>
-              </label>
-              <input
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-                type="number"
-                name="timeRate"
-                placeholder="Rate per minute"
-                value={taxes.timeRate}
-                className="border-b border-gray-800 mr-2"
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-row justify-between py-3">
-            <div>
-              <label className="flex flex-row">
-                <span>Parking Rate</span>
-                <Tippy
-                  placement="top"
-                  arrow={true}
-                  className="w-44"
-                  content={
-                    <span>
-                      <h1 className="text-xl">Parking Rate</h1>
-                      <p>
-                        Parking rate is the the fee for stopping your ride
-                        within a default parking zone
-                      </p>
-                    </span>
-                  }
-                >
-                  <span className="text-lg text-slate-800">
-                    <TbZoomQuestion />
-                  </span>
-                </Tippy>
-              </label>
-              <input
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-                type="number"
-                name="parkingZoneRate"
-                placeholder="Parking Rate"
-                value={taxes.parkingZoneRate}
-                className="border-b border-gray-800 mr-2"
-              />
-            </div>
-            <div>
-              <label className="flex flex-row">
-                <span>Discount Rate</span>
-                <Tippy
-                  placement="top"
-                  arrow={true}
-                  className="w-44"
-                  content={
-                    <span>
-                      <h1 className="text-xl">Discount Rate</h1>
-                      <p>
-                        Discount rate is a discount granted to the user for
-                        stopping their ride within a "bonus zone"
-                      </p>
-                    </span>
-                  }
-                >
-                  <span className="text-lg text-slate-800">
-                    <TbZoomQuestion />
-                  </span>
-                </Tippy>
-              </label>
-              <input
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-                type="number"
-                name="bonusParkingZoneRate"
-                placeholder="Discount Parking Rate"
-                value={taxes.bonusParkingZoneRate}
-                className="border-b border-gray-800 mr-2"
-              />
-            </div>
-          </div>
-          <div className="flex flex-row justify-between py-3">
-            <div>
-              <label className="flex flex-row">
-                <span>Invalid Parking Fee</span>
-                <Tippy
-                  placement="top"
-                  arrow={true}
-                  className="w-44"
-                  content={
-                    <span>
-                      <h1 className="text-xl">Invalid Parking Fee</h1>
-                      <p>
-                        Invalid parking fee is a fee the user has to pay if they
-                        decide to stop their ride outiside of a parking zone
-                      </p>
-                    </span>
-                  }
-                >
-                  <span className="text-lg text-slate-800">
-                    <TbZoomQuestion />
-                  </span>
-                </Tippy>
-              </label>
-              <input
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-                type="number"
-                name="noParkingZoneRate"
-                placeholder="Invalid parking fee"
-                value={taxes.noParkingZoneRate}
-                className="border-b border-gray-800 mr-2"
-              />
-            </div>
-            <div>
-              <div>
-                <label className="flex flex-row">
-                  <span>Invalid To Valid Parking Fee</span>
-                  <Tippy
-                    placement="top"
-                    arrow={true}
-                    className="w-44"
-                    content={
-                      <span>
-                        <h1 className="text-xl">
-                          Invalid To Valid Parking Fee
-                        </h1>
-                        <p>
-                          Invalid to valid parking fee is a discount granted to
-                          the user if they start a ride with a scooter parked
-                          outside a parking zone and afterwards park it within a
-                          valid parking zone
-                        </p>
+              <div className="flex flex-row justify-between py-3">
+                <div>
+                  <label className="flex flex-row">
+                    <span>Fixed Rate</span>
+                    <Tippy
+                      placement="top"
+                      arrow={true}
+                      className="w-44"
+                      content={
+                        <span>
+                          <h1 className="text-xl">Fixed Rate</h1>
+                          <p>
+                            Fixed rates are is the initial fee for starting a
+                            ride.
+                          </p>
+                        </span>
+                      }
+                    >
+                      <span className="text-lg text-slate-800">
+                        <TbZoomQuestion />
                       </span>
-                    }
-                  >
-                    <span className="text-lg text-slate-800">
-                      <TbZoomQuestion />
-                    </span>
-                  </Tippy>
-                </label>
-                <input
-                  onChange={(e) => {
-                    handleChange(e);
-                  }}
-                  type="number"
-                  name="noParkingToValidParking"
-                  placeholder="Invalid to valid parking"
-                  value={taxes.noParkingToValidParking}
-                  className="border-b border-gray-800 mr-2"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-row justify-start py-3">
-            <div>
-              <div className="flex flex-col">
-                <label className="flex flex-row">
-                  <span>Charging Zone</span>
-                  <Tippy
-                    placement="top"
-                    arrow={true}
-                    className="w-44"
-                    content={
-                      <span>
-                        <h1 className="text-xl">Charging Zone</h1>
-                        <p>
-                          Charging Zone is a discount granted to the user if the
-                          stop their ride within a charging zone
-                        </p>
+                    </Tippy>
+                  </label>
+
+                  <input
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                    name="fixedRate"
+                    type="number"
+                    placeholder="Fixed rate"
+                    value={taxes.fixedRate}
+                    className="border-b border-gray-800 mr-2"
+                  />
+                </div>
+                <div>
+                  <label className="flex flex-row">
+                    <span>Rate per minute</span>
+                    <Tippy
+                      placement="top"
+                      arrow={true}
+                      className="w-44"
+                      content={
+                        <span>
+                          <h1 className="text-xl">Rate per minute</h1>
+                          <p>
+                            Rate per minutes is what will be charged each minute
+                            the ride is active
+                          </p>
+                        </span>
+                      }
+                    >
+                      <span className="text-lg text-slate-800">
+                        <TbZoomQuestion />
                       </span>
-                    }
-                  >
-                    <span className="text-lg text-slate-800">
-                      <TbZoomQuestion />
-                    </span>
-                  </Tippy>
-                </label>
-                <input
-                  onChange={(e) => {
-                    handleChange(e);
-                  }}
-                  type="number"
-                  name="chargingZoneRate"
-                  placeholder="Invalid to valid parking"
-                  value={taxes.chargingZoneRate}
-                  className="border-b border-gray-800 mr-2"
-                />
-              </div>
-            </div>
-            <div></div>
-          </div>
-          <div className="mb-12 text-center">
-            <button
-              onClick={() => {
-                handleSaveEdit();
-              }}
-              className="py-2 px-7 transition-colors mt-6 w-48
-             bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
-            >
-              Save
-            </button>
-          </div>
-          <div>
-            <h1 className="text-xl font-semibold text-center">Tools</h1>
-            <div className="flex flex-row justify-center mb-20">
-              {cityCoords ? (
-                <Link
-                  to={"/cities/select/zones"}
-                  state={{ id: selected._id, coords: cityCoords }}
-                  className="py-2 transition-colors mt-6 mr-3 w-48 text-center
-             bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
-                >
-                  Manage Zones
-                </Link>
-              ) : (
-                <button
-                  className="py-2 transition-colors mt-6 mr-3 w-48 text-center
-              bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
-                >
-                  Manage Zones
-                </button>
-              )}
-              <button
-                className="py-2 transition-colors mt-6 ml-3 w-48
-             bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
-              >
-                Register Scooter
-              </button>
-            </div>
-            <div className="mt-6 w-full">
-              {deleteProcess ? (
-                <div className="flex flex-col w-full">
-                  <label className="text-xl text-center py-3">
-                    {deleteStatus}
+                    </Tippy>
                   </label>
                   <input
-                    onChange={(e) => setDeletePhrase(e.target.value)}
-                    value={deletePhrase}
-                    className="bg-slate-100 p-4 reounded rounded-xl
-                     text-garay-400 border border-slate-400"
-                    placeholder={`Type: ${selected.name}`}
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                    type="number"
+                    name="timeRate"
+                    placeholder="Rate per minute"
+                    value={taxes.timeRate}
+                    className="border-b border-gray-800 mr-2"
                   />
-                  <div className="w-full text-center">
-                    <button
-                      onClick={() => {
-                        handleCityDelete();
-                      }}
-                      className="py-2 transition-colors mt-6 ml-3 w-36
-             bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
+                </div>
+              </div>
+
+              <div className="flex flex-row justify-between py-3">
+                <div>
+                  <label className="flex flex-row">
+                    <span>Parking Rate</span>
+                    <Tippy
+                      placement="top"
+                      arrow={true}
+                      className="w-44"
+                      content={
+                        <span>
+                          <h1 className="text-xl">Parking Rate</h1>
+                          <p>
+                            Parking rate is the the fee for stopping your ride
+                            within a default parking zone
+                          </p>
+                        </span>
+                      }
                     >
-                      Confirm
-                    </button>
-                    <button
-                      onClick={() => {
-                        setDeleteProcess(false);
-                        setDeletePhrase("");
-                      }}
-                      className="py-2 transition-colors mt-6 ml-3 w-36
-             bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
+                      <span className="text-lg text-slate-800">
+                        <TbZoomQuestion />
+                      </span>
+                    </Tippy>
+                  </label>
+                  <input
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                    type="number"
+                    name="parkingZoneRate"
+                    placeholder="Parking Rate"
+                    value={taxes.parkingZoneRate}
+                    className="border-b border-gray-800 mr-2"
+                  />
+                </div>
+                <div>
+                  <label className="flex flex-row">
+                    <span>Discount Rate</span>
+                    <Tippy
+                      placement="top"
+                      arrow={true}
+                      className="w-44"
+                      content={
+                        <span>
+                          <h1 className="text-xl">Discount Rate</h1>
+                          <p>
+                            Discount rate is a discount granted to the user for
+                            stopping their ride within a "bonus zone"
+                          </p>
+                        </span>
+                      }
                     >
-                      Cancel
-                    </button>
+                      <span className="text-lg text-slate-800">
+                        <TbZoomQuestion />
+                      </span>
+                    </Tippy>
+                  </label>
+                  <input
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                    type="number"
+                    name="bonusParkingZoneRate"
+                    placeholder="Discount Parking Rate"
+                    value={taxes.bonusParkingZoneRate}
+                    className="border-b border-gray-800 mr-2"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-row justify-between py-3">
+                <div>
+                  <label className="flex flex-row">
+                    <span>Invalid Parking Fee</span>
+                    <Tippy
+                      placement="top"
+                      arrow={true}
+                      className="w-44"
+                      content={
+                        <span>
+                          <h1 className="text-xl">Invalid Parking Fee</h1>
+                          <p>
+                            Invalid parking fee is a fee the user has to pay if
+                            they decide to stop their ride outiside of a parking
+                            zone
+                          </p>
+                        </span>
+                      }
+                    >
+                      <span className="text-lg text-slate-800">
+                        <TbZoomQuestion />
+                      </span>
+                    </Tippy>
+                  </label>
+                  <input
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                    type="number"
+                    name="noParkingZoneRate"
+                    placeholder="Invalid parking fee"
+                    value={taxes.noParkingZoneRate}
+                    className="border-b border-gray-800 mr-2"
+                  />
+                </div>
+                <div>
+                  <div>
+                    <label className="flex flex-row">
+                      <span>Invalid To Valid Parking Fee</span>
+                      <Tippy
+                        placement="top"
+                        arrow={true}
+                        className="w-44"
+                        content={
+                          <span>
+                            <h1 className="text-xl">
+                              Invalid To Valid Parking Fee
+                            </h1>
+                            <p>
+                              Invalid to valid parking fee is a discount granted
+                              to the user if they start a ride with a scooter
+                              parked outside a parking zone and afterwards park
+                              it within a valid parking zone
+                            </p>
+                          </span>
+                        }
+                      >
+                        <span className="text-lg text-slate-800">
+                          <TbZoomQuestion />
+                        </span>
+                      </Tippy>
+                    </label>
+                    <input
+                      onChange={(e) => {
+                        handleChange(e);
+                      }}
+                      type="number"
+                      name="noParkingToValidParking"
+                      placeholder="Invalid to valid parking"
+                      value={taxes.noParkingToValidParking}
+                      className="border-b border-gray-800 mr-2"
+                    />
                   </div>
                 </div>
-              ) : (
-                <div
-                  onClick={() => {
-                    setDeleteProcess(true);
-                  }}
-                  className="flex flex-row justify-center"
-                >
-                  <button
-                    className="py-2 transition-colors mt-6 ml-3 w-48
-                   bg-red-500 hover:bg-red-600 text-white rounded-xl"
-                  >
-                    Delete City
-                  </button>
+              </div>
+              <div className="flex flex-row justify-start py-3">
+                <div>
+                  <div className="flex flex-col">
+                    <label className="flex flex-row">
+                      <span>Charging Zone</span>
+                      <Tippy
+                        placement="top"
+                        arrow={true}
+                        className="w-44"
+                        content={
+                          <span>
+                            <h1 className="text-xl">Charging Zone</h1>
+                            <p>
+                              Charging Zone is a discount granted to the user if
+                              the stop their ride within a charging zone
+                            </p>
+                          </span>
+                        }
+                      >
+                        <span className="text-lg text-slate-800">
+                          <TbZoomQuestion />
+                        </span>
+                      </Tippy>
+                    </label>
+                    <input
+                      onChange={(e) => {
+                        handleChange(e);
+                      }}
+                      type="number"
+                      name="chargingZoneRate"
+                      placeholder="Invalid to valid parking"
+                      value={taxes.chargingZoneRate}
+                      className="border-b border-gray-800 mr-2"
+                    />
+                  </div>
                 </div>
-              )}
+              </div>
+              <div className="mb-12 text-center">
+                <button
+                  onClick={() => {
+                    handleSaveEdit();
+                  }}
+                  className="py-2 px-7 transition-colors mt-6 w-48
+             bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <h1 className="text-xl font-semibold text-center">Tools</h1>
+              <div className="flex flex-row max-xl:flex-col justify-center xl:first-line:mb-20">
+                {cityCoords ? (
+                  <Link
+                    to={"/cities/select/zones"}
+                    state={{ id: selected._id, coords: cityCoords }}
+                    className="py-2 transition-colors mt-6 xl:mr-3 w-48 text-center
+             bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
+                  >
+                    Manage Zones
+                  </Link>
+                ) : (
+                  <button
+                    className="py-2 transition-colors mt-6  xl:mr-3 w-48 text-center
+              bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
+                  >
+                    Manage Zones
+                  </button>
+                )}
+                <button
+                  onClick={() => {
+                    navigate("/scooters");
+                  }}
+                  className="py-2 transition-colors mt-6 xl:mr-3 w-48
+             bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
+                >
+                  Register Scooter
+                </button>
+              </div>
+              <div className="xl:mt-6 w-full">
+                {deleteProcess ? (
+                  <div className="flex flex-col w-full">
+                    <label className="text-xl text-center py-3">
+                      {deleteStatus}
+                    </label>
+                    <input
+                      onChange={(e) => setDeletePhrase(e.target.value)}
+                      value={deletePhrase}
+                      className="bg-slate-100 p-4 reounded rounded-xl
+                     text-garay-400 border border-slate-400"
+                      placeholder={`Type: ${selected.name}`}
+                    />
+                    <div className="w-full text-center">
+                      <button
+                        onClick={() => {
+                          handleCityDelete();
+                        }}
+                        className="py-2 transition-colors mt-6 ml-3 w-36
+             bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
+                      >
+                        Confirm
+                      </button>
+                      <button
+                        onClick={() => {
+                          setDeleteProcess(false);
+                          setDeletePhrase("");
+                        }}
+                        className="py-2 transition-colors mt-6 ml-3 w-36
+             bg-sidebarHover hover:bg-sidebarBlue text-white rounded-xl"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div
+                    onClick={() => {
+                      setDeleteProcess(true);
+                    }}
+                    className="flex flex-row justify-center"
+                  >
+                    <button
+                      className="py-2 transition-colors mt-6 xl:ml-3 w-48
+                   bg-red-500 hover:bg-red-600 text-white rounded-xl"
+                    >
+                      Delete City
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
-
       <div
         className="h-full p-7 my-4 rounded-xl w-full bg-white
          shadow-md flex flex-col justify-between"

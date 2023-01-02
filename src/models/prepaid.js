@@ -12,6 +12,25 @@ const prepaid = {
     );
     return response.json();
   },
+  addPrepaid: async function addPrepaid(card) {
+    const tokenObj = storage.readToken();
+    const data = {
+      //code: card.code,
+      amount: card.amount,
+      total_uses: card.totalUses,
+      //users: [],
+      api_key: process.env.REACT_APP_REST_API_KEY,
+    };
+    console.log(data);
+    await fetch(`${process.env.REACT_APP_API_URL}/prepaids`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "content-type": "application/json",
+        "x-access-token": tokenObj.token,
+      },
+    });
+  },
 };
 
 export default prepaid;

@@ -4,6 +4,7 @@ import { GrClose } from "react-icons/gr";
 import { scooterform } from "../../data/data";
 import { Map } from "../../components";
 import getCoordinates from "../../models/nominatim";
+import { scooterData } from "../../data/mock/mockdata";
 const RegisterScooterForm = ({ handleForm, cityNames, handleRegister }) => {
   const [locationCoords, setLocationCoords] = useState([0, 0]);
   const [singleMarker, setSingleMarker] = useState({
@@ -166,7 +167,13 @@ const RegisterScooterForm = ({ handleForm, cityNames, handleRegister }) => {
           <div className="text-center w-full pt-3">
             <button
               onClick={() => {
-                handleRegister(newScooter);
+                handleRegister({
+                  owner: newScooter.owner,
+                  longitude: singleMarker.lon,
+                  latitude: singleMarker.lat,
+                  battery: newScooter.battery,
+                  status: newScooter.status,
+                });
                 handleForm();
               }}
               className="

@@ -78,7 +78,7 @@ export const prepaidEdit = [
   },
   {
     label: "Uses",
-    data: "uses",
+    data: "totalUses",
     type: "number",
   },
   {
@@ -243,9 +243,36 @@ export const cityform = [
   },
   {
     title: "Move to valid parking discount",
-    name: "NoParkingToValidParking",
+    name: "noParkingToValidParking",
     type: "number",
     placeholder: "Enter Discount",
+  },
+];
+
+export const adminform = [
+  {
+    title: "First Name",
+    name: "firstName",
+    type: "text",
+    placeholder: "Enter First Name",
+  },
+  {
+    title: "Last Name",
+    name: "lastName",
+    type: "text",
+    placeholder: "Enter Last Name",
+  },
+  {
+    title: "Email",
+    name: "email",
+    type: "text",
+    placeholder: "Enter Email",
+  },
+  {
+    title: "Password",
+    name: "password",
+    type: "text",
+    placeholder: "Enter Password",
   },
 ];
 
