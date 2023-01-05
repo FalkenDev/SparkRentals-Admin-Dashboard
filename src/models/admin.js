@@ -32,7 +32,7 @@ const admin = {
   },
   deleteAdmin: async function deleteAdmin(id) {
     const data = {
-      id: id,
+      admin_id: id,
       api_key: process.env.REACT_APP_REST_API_KEY,
     };
     const tokenObj = storage.readToken();
