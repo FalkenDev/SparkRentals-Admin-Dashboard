@@ -3,10 +3,15 @@ import {
   AiOutlineUser,
   AiFillCreditCard,
 } from "react-icons/ai";
-import { BsFillPinMapFill } from "react-icons/bs";
+import {
+  BsFillPinMapFill,
+  BsFillLightningChargeFill,
+  BsTools,
+} from "react-icons/bs";
 import { FaCity, FaUserFriends } from "react-icons/fa";
-import { FiSettings } from "react-icons/fi";
+import { FiSettings, FiUsers } from "react-icons/fi";
 import { TbScooter } from "react-icons/tb";
+import { TbParkingOff, TbParking } from "react-icons/tb";
 import { ReactComponent as Scooter } from "../assets/icons/Scooter.svg";
 import { ReactComponent as Users } from "../assets/icons/Users.svg";
 import { ReactComponent as Areas } from "../assets/icons/Areas.svg";
@@ -285,40 +290,40 @@ export const dashboard = [
     sub: [
       {
         title: "Total Scooters",
-        icon: "",
+        icon: <Scooter />,
         dataName: "totalScooters",
       },
       {
         title: "Total Live Scooters",
-        icon: "",
+        icon: <Scooter />,
         dataName: "liveScooters",
       },
       {
         title: "Total Scooters Charging",
-        icon: "",
+        icon: <BsFillLightningChargeFill />,
         dataName: "chargingScooters",
       },
       {
-        title: "Total Scooters Maintence",
-        icon: "",
+        title: "Total Scooters Maintenance",
+        icon: <BsTools />,
         dataName: "maintenceScooters",
       },
     ],
   },
   {
     title: "Users",
-    icon: <AiOutlineUser />,
+    icon: <FiUsers />,
     color: "#ff731d",
     dataName: "totalUsers",
     sub: [
       {
         title: "Total Users",
-        icon: "",
+        icon: <AiOutlineUser />,
         dataName: "totalUsers",
       },
       {
         title: "Active Users",
-        icon: "",
+        icon: <AiOutlineUser />,
         dataName: "activeUsers",
       },
     ],
@@ -331,22 +336,22 @@ export const dashboard = [
     sub: [
       {
         title: "Total Cities",
-        icon: "",
+        icon: <FaCity />,
         dataName: "totalAreas",
       },
       {
         title: "Active Parking Zones",
-        icon: "",
+        icon: <TbParking />,
         dataName: "totalParkingZones",
       },
       {
         title: "Total Bonus Parking Zones",
-        icon: "",
+        icon: <TbParking />,
         dataName: "totalBonus",
       },
       {
         title: "Total No Parking Zones",
-        icon: "",
+        icon: <TbParkingOff />,
         dataName: "totalNoParking",
       },
     ],
