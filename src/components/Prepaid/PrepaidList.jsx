@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { AiOutlineRight, AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 
-const PrepaidList = ({ prepaidData, filterPhrase }) => {
+const PrepaidList = ({
+  prepaidData,
+  filterPhrase,
+  handleRemoveCard,
+  handleEditForm,
+  handleLogForm,
+}) => {
   const [isOpen, setIsOpen] = useState({});
   const [isDelete, setIsDelete] = useState({});
 
@@ -49,10 +55,10 @@ const PrepaidList = ({ prepaidData, filterPhrase }) => {
 
         <div className="flex flex-col p-4">
           <button
-            // onClick={() => {
-            //   handleForm();
-            //   setLogData(card.history);
-            // }}
+            onClick={() => {
+              handleLogForm();
+              setLogData(card.users);
+            }}
             className="
                 my-1 py-1 px-3 transition-colors bg-sidebarHover w-36
                hover:bg-sidebarBlue text-white rounded-full"
@@ -60,10 +66,9 @@ const PrepaidList = ({ prepaidData, filterPhrase }) => {
             Logs
           </button>
           <button
-            // onClick={() => {
-            //   setSelectedcard(card);
-            //   handleEditForm();
-            // }}
+            onClick={() => {
+              handleEditForm(card);
+            }}
             className="
                 my-1 py-1 px-3 transition-colors bg-sidebarHover w-36
                hover:bg-sidebarBlue text-white rounded-full"
@@ -77,7 +82,7 @@ const PrepaidList = ({ prepaidData, filterPhrase }) => {
                 <button
                   onClick={() => {
                     handleDeleteButton(card._id);
-                    // handleRemoveAccount(card._id);
+                    handleRemoveCard(card._id);
                   }}
                   className="
                 my-1 p-1 text-2xl transition-colors bg-sidebarHover

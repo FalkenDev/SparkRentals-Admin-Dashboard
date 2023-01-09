@@ -23,6 +23,7 @@ const PrepaidForm = ({ handleForm, handleAddCard }) => {
               handleEdit(e.target.value, item.data);
             }}
             type={item.type}
+            min="1"
             className="bg-gray-50 border border-gray-300 text-gray-900
                         text-sm rounded-lg block p-2.5 w-72"
           />
@@ -42,6 +43,7 @@ const PrepaidForm = ({ handleForm, handleAddCard }) => {
         <button
           onClick={(e) => {
             handleAddCard(newPrepaid);
+            handleForm();
           }}
           className="py-2 px-4 transition-colors bg-sidebarHover
               hover:bg-sidebarBlue text-white rounded-full"
