@@ -25,7 +25,7 @@ function App() {
       setIsLoggedIn(auth.loggedIn());
     }
     checkloggedIn();
-    setInterval(checkloggedIn(), 1000 * 60);
+    setInterval(checkloggedIn(), 10000);
   }, []);
 
   if (!isLoggedIn) {
