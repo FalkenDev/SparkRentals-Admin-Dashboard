@@ -75,7 +75,7 @@ const Zones = () => {
         >
           <button
             onClick={(e) => {
-              e.preventDefault;
+              e.preventDefault();
               handleClickOnZone(item._id);
             }}
           >

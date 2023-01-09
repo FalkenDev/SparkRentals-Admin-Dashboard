@@ -1,7 +1,7 @@
 import React from "react";
 import { dashboard } from "../../data/data";
 import { StatContainer } from "../";
-const DataLists = () => {
+const DataLists = ({ data }) => {
   const datalists = () => {
     return dashboard.map((list) => {
       return (
@@ -17,7 +17,7 @@ const DataLists = () => {
                     icon={item.icon}
                     title={item.title}
                     color={list.color}
-                    data={item.dataName}
+                    data={data[item.dataName]}
                   />
                 </div>
               );

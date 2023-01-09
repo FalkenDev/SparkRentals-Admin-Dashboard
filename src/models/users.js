@@ -1,6 +1,6 @@
 import storage from "./storage";
 const users = {
-  getUsers: async function getScooters() {
+  getUsers: async function getUsers() {
     const tokenObj = storage.readToken();
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}/users?api_key=${process.env.REACT_APP_REST_API_KEY}`,
@@ -12,6 +12,7 @@ const users = {
     );
     return response.json();
   },
+
   editUsers: async function editUsers(user) {
     const data = {
       user_id: user._id,

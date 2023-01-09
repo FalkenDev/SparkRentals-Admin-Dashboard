@@ -46,7 +46,7 @@ const cities = {
       parkingZoneRate: city.parkingZoneRate,
       noParkingZoneRate: city.noParkingZoneRate,
       chargingZoneRate: city.chargingZoneRate,
-      NoParkingToValidParking: city.noParkingToValidParking,
+      noParkingToValidParking: city.noParkingToValidParking,
       api_key: process.env.REACT_APP_REST_API_KEY,
     };
     const tokenObj = storage.readToken();

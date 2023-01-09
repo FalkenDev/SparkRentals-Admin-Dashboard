@@ -19,7 +19,7 @@ const ScooterSelectList = ({ scooters, isSelected, setIsSelected }) => {
           <td className="py-3 px-8 w-24">
             <input
               onChange={(e) => {
-                e.preventDefault;
+                e.preventDefault();
                 handleSelect(e, item._id);
               }}
               type="checkbox"
