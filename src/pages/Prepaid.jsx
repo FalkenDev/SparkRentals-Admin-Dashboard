@@ -4,12 +4,17 @@ import {
   PrepaidUses,
   Filterbar,
   PrepaidForm,
+  PrepaidEdit,
 } from "../components";
 import prepaid from "../models/prepaid";
 const Prepaid = () => {
   const [prepaidData, setPrepaidData] = useState();
   const [filterPhrase, setFilterPhrase] = useState("");
   const [displayForm, setDisplayForm] = useState(false);
+  const [editForm, setEditForm] = useState(false);
+  const [logForm, setLogForm] = useState(false);
+  const [selectedCard, setSelectedCard] = useState();
+  const [logData, setLogData] = useState();
 
   useEffect(() => {
     fetchData();
@@ -23,7 +28,6 @@ const Prepaid = () => {
   }
 
   const handleAddCard = async (newCard) => {
-    console.log(newCard);
     await prepaid.addPrepaid(newCard);
     await fetchData();
   };
@@ -37,9 +41,37 @@ const Prepaid = () => {
     }
   };
 
+  const handleEditForm = (card) => {
+    setSelectedCard(card);
+    if (editForm) {
+      setEditForm(false);
+    } else {
+      setEditForm(true);
+    }
+  };
+
+  const handleLogForm = (card) => {
+    setSelectedCard(card);
+    if (logForm) {
+      setLogForm(false);
+    } else {
+      setLogForm(true);
+    }
+  };
+
+  const handleEditCard = async (card) => {
+    await prepaid.editPrepaid(card);
+    await fetchData();
+  };
+
+  const handleRemoveCard = async (id) => {
+    await prepaid.removePrepaid(id);
+    await fetchData();
+  };
+
   const overlay = () => {
     let state = { click: "auto", backdrop: "blur(0px)" };
-    if (displayForm) {
+    if (displayForm || editForm) {
       state = { click: "none", backdrop: "blur(4px)" };
     }
     return state;
@@ -47,6 +79,26 @@ const Prepaid = () => {
 
   return (
     <>
+      {editForm ? (
+        <div
+          className="fixed top-1/2 left-1/2 z-10
+        transform -translate-x-1/2 -translate-y-1/2"
+        >
+          <PrepaidEdit
+            handleEditForm={handleEditForm}
+            selected={selectedCard}
+            handleEditCard={handleEditCard}
+          />
+        </div>
+      ) : null}
+      {logForm ? (
+        <div
+          className="fixed top-1/2 left-1/2 z-10
+        transform -translate-x-1/2 -translate-y-1/2"
+        >
+          <PrepaidUses handleForm={handleLogForm} logData={logData} />
+        </div>
+      ) : null}
       {displayForm ? (
         <div
           className="fixed top-1/2 left-1/2 z-10
@@ -54,9 +106,7 @@ const Prepaid = () => {
         >
           <PrepaidForm handleForm={handleForm} handleAddCard={handleAddCard} />
         </div>
-      ) : (
-        <div></div>
-      )}
+      ) : null}
       <div
         style={{
           pointerEvents: overlay().click,
@@ -82,12 +132,19 @@ const Prepaid = () => {
                 py-2 px-3 transition-colors bg-sidebarHover
                  hover:bg-sidebarBlue text-white rounded-full"
             >
-              Register Prepaid
+              Create Prepaid
             </button>
           </div>
         </div>
         <div className="mt-5">
-          <PrepaidList prepaidData={prepaidData} filterPhrase={filterPhrase} />
+          <PrepaidList
+            setLogData={setLogData}
+            prepaidData={prepaidData}
+            filterPhrase={filterPhrase}
+            handleRemoveCard={handleRemoveCard}
+            handleEditForm={handleEditForm}
+            handleLogForm={handleLogForm}
+          />
         </div>
       </div>
     </>
