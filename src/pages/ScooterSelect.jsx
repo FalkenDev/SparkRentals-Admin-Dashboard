@@ -107,7 +107,7 @@ const ScooterSelect = () => {
       </div>
 
       <div
-        className="flex flex-row justify-between mt-4 h-full overflow-scroll
+        className="flex flex-row justify-evenly mt-4 h-full overflow-scroll
       max-xl:flex-col"
       >
         <div className="p-4 xl:mr-4 w-2/3 rounded-xl shadow-md bg-white max-xl:w-full">
@@ -179,27 +179,33 @@ const ScooterSelect = () => {
                   </div>
                 )}
 
-                <div className="flex flex-row justify-between py-3">
-                  <input
-                    type="number"
-                    placeholder="Set Latitude"
-                    onChange={(e) => {
-                      setIsSaved(false);
-                      setLat(e.target.value);
-                    }}
-                    value={lat}
-                    className="border-b border-gray-800 mr-2"
-                  />
-                  <input
-                    type="number"
-                    placeholder="Set longitude"
-                    onChange={(e) => {
-                      setIsSaved(false);
-                      setLon(e.target.value);
-                    }}
-                    value={lon}
-                    className="border-b border-gray-800 ml-2"
-                  />
+                <div className="flex flex-row justify-evenly py-3">
+                  <div className="flex flex-col">
+                    <label>Latitude:</label>
+                    <input
+                      type="number"
+                      placeholder="Set Latitude"
+                      onChange={(e) => {
+                        setIsSaved(false);
+                        setLat(e.target.value);
+                      }}
+                      value={lat}
+                      className="border-b border-gray-800 mr-2"
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <label>Longitude:</label>
+                    <input
+                      type="number"
+                      placeholder="Set longitude"
+                      onChange={(e) => {
+                        setIsSaved(false);
+                        setLon(e.target.value);
+                      }}
+                      value={lon}
+                      className="border-b border-gray-800 ml-2"
+                    />
+                  </div>
                 </div>
                 {isSaved ? (
                   <div></div>

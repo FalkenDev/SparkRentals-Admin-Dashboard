@@ -27,7 +27,7 @@ const ScooterSelectList = ({ scooters, isSelected, setIsSelected }) => {
               name="select"
             />
           </td>
-          <td className="py-3 px-6">{index}</td>
+          <td className="py-3 px-6">{item.name}</td>
           <td className="py-3 px-6">{item.owner}</td>
           <td className="py-3 px-6">{item.status}</td>
           <td className="py-3 px-6">{item.battery}%</td>
@@ -48,7 +48,7 @@ const ScooterSelectList = ({ scooters, isSelected, setIsSelected }) => {
         <thead className=" bg-sidebarBlue text-gray-200 text-left">
           <tr>
             <th className="font-normal px-6">Select</th>
-            <th className="font-normal px-6">ID</th>
+            <th className="font-normal px-6">Name</th>
             <th className="font-normal px-6">City</th>
             <th className="font-normal px-6"> Status</th>
             <th className="font-normal px-6">Battery</th>

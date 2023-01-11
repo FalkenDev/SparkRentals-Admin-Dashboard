@@ -20,7 +20,6 @@ const prepaid = {
       total_uses: card.totalUses,
       api_key: process.env.REACT_APP_REST_API_KEY,
     };
-    console.log(data);
     await fetch(`${process.env.REACT_APP_API_URL}/prepaids`, {
       method: "POST",
       body: JSON.stringify(data),
@@ -40,7 +39,6 @@ const prepaid = {
       totalUses: card.totalUses,
       api_key: process.env.REACT_APP_REST_API_KEY,
     };
-    console.log(data);
     await fetch(`${process.env.REACT_APP_API_URL}/prepaids`, {
       method: "PUT",
       body: JSON.stringify(data),
@@ -57,7 +55,6 @@ const prepaid = {
       prepaid_id: id,
       api_key: process.env.REACT_APP_REST_API_KEY,
     };
-    console.log(data);
     await fetch(`${process.env.REACT_APP_API_URL}/prepaids`, {
       method: "DELETE",
       body: JSON.stringify(data),

@@ -30,7 +30,7 @@ const DataLists = ({ data }) => {
   return (
     <div
       className="w-full flex flex-row
-     justify-between px-14"
+     justify-evenly px-14"
     >
       {datalists()}
     </div>

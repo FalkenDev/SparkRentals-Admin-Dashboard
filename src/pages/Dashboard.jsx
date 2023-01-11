@@ -50,7 +50,6 @@ const Dashboard = () => {
     const userData = usersOverview.users;
     const citiesOverview = await cities.getCities();
     const cityData = citiesOverview.cities;
-    console.log(cityData);
     const liveScooters = counter(scooterData, "In use", "status");
     const chargeScooters = counter(scooterData, "Unavailable", "status");
     const maintenanceScooter = counter(scooterData, "Maintenance", "status");

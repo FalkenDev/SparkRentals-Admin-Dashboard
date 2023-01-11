@@ -16,7 +16,6 @@ const LoginForm = () => {
     event.preventDefault();
 
     const result = await auth.login(email, password);
-    console.log(result);
     if (result.type === "success") {
       setIsLoggedIn(true);
       navigate("/dashboard");
