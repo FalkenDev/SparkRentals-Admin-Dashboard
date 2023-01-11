@@ -14,14 +14,14 @@ const ScooterRadioBtn = ({ status, setStatus, setIsSaved }) => {
 
   return (
     <form
-      className="flex flex-row justify-evenly my-4 flex-wrap"
+      className="flex flex-row justify-center my-4 flex-wrap"
       id="scootermode"
       onChange={(e) => {
         setIsSaved(false);
         setStatus(e.target.value);
       }}
     >
-      <div className="py-3">
+      <div className="p-3">
         <input
           id="Available"
           type="radio"
@@ -37,7 +37,7 @@ const ScooterRadioBtn = ({ status, setStatus, setIsSaved }) => {
           Available
         </label>
       </div>
-      <div className="py-3">
+      <div className="p-3">
         <input
           id="Maintenance"
           type="radio"
@@ -53,7 +53,7 @@ const ScooterRadioBtn = ({ status, setStatus, setIsSaved }) => {
           Maintenace
         </label>
       </div>
-      <div className="py-3">
+      <div className="p-3">
         <input
           id="Off"
           type="radio"
@@ -69,7 +69,7 @@ const ScooterRadioBtn = ({ status, setStatus, setIsSaved }) => {
           Deactivate
         </label>
       </div>
-      <div className="py-3">
+      <div className="p-3">
         <input
           id="Unavailable"
           type="radio"

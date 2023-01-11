@@ -31,11 +31,10 @@ const CitySelect = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { id } = location.state;
-  //const navigate = useNavigate();
+  const [isSaved, setIsSaved] = useState(true);
   useEffect(() => {
     async function fetchData() {
       const res = await cities.getCityById(id);
-      console.log(res);
       setSelected(res.city);
       setTaxes(res.city.taxRates);
       setZonesCount(utils.zoneCount(res.city.zones));
@@ -217,6 +216,7 @@ const CitySelect = () => {
 
                   <input
                     onChange={(e) => {
+                      setIsSaved(false);
                       handleChange(e);
                     }}
                     name="fixedRate"
@@ -250,6 +250,7 @@ const CitySelect = () => {
                   </label>
                   <input
                     onChange={(e) => {
+                      setIsSaved(false);
                       handleChange(e);
                     }}
                     type="number"
@@ -286,6 +287,7 @@ const CitySelect = () => {
                   </label>
                   <input
                     onChange={(e) => {
+                      setIsSaved(false);
                       handleChange(e);
                     }}
                     type="number"
@@ -319,6 +321,7 @@ const CitySelect = () => {
                   </label>
                   <input
                     onChange={(e) => {
+                      setIsSaved(false);
                       handleChange(e);
                     }}
                     type="number"
@@ -355,6 +358,7 @@ const CitySelect = () => {
                   </label>
                   <input
                     onChange={(e) => {
+                      setIsSaved(false);
                       handleChange(e);
                     }}
                     type="number"
@@ -393,6 +397,7 @@ const CitySelect = () => {
                     </label>
                     <input
                       onChange={(e) => {
+                        setIsSaved(false);
                         handleChange(e);
                       }}
                       type="number"
@@ -430,6 +435,7 @@ const CitySelect = () => {
                     </label>
                     <input
                       onChange={(e) => {
+                        setIsSaved(false);
                         handleChange(e);
                       }}
                       type="number"
@@ -441,9 +447,14 @@ const CitySelect = () => {
                   </div>
                 </div>
               </div>
+
               <div className="mb-12 text-center">
+                {!isSaved ? (
+                  <p className="text-red-700 py-4">Unsaved Changes!</p>
+                ) : null}
                 <button
                   onClick={() => {
+                    setIsSaved(true);
                     handleSaveEdit();
                   }}
                   className="py-2 px-7 transition-colors mt-6 w-48

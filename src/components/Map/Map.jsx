@@ -49,24 +49,24 @@ const Map = ({
     switch (type) {
       case "parkingZone":
         return {
-          fillColor: "blue",
-          fillOpacity: 0.1,
+          fillColor: "#96FF71",
+          fillOpacity: 0.2,
         };
       case "noParkingZone":
         return {
-          fillColor: "red",
+          fillColor: "#FF6060",
           fillOpacity: 0.4,
           weight: 1,
         };
       case "bonusParkingZone":
         return {
-          fillColor: "green",
+          fillColor: "#C64EFF",
           fillOpacity: 0.4,
           weight: 1,
         };
       case "chargingZone":
         return {
-          fillColor: "blue",
+          fillColor: "#638FFF",
           fillOpacity: 0.6,
           weight: 1,
         };

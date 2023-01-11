@@ -16,8 +16,9 @@ const LogForm = ({ handleForm, logData }) => {
             </p>
 
             <p>
-              Start pos {item.startPosition[0]},{item.startPosition[1]} - End
-              pos {item.endPosition[0]},{item.endPosition[1]}
+              Start pos {item.startPosition.latitude},
+              {item.startPosition.longitude} - End pos{" "}
+              {item.endPosition.latitude},{item.endPosition.longitude}
             </p>
           </div>
         </div>

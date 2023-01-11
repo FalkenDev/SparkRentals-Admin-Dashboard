@@ -17,7 +17,7 @@ const Databox = ({ data }) => {
     });
   };
   return (
-    <div className="flex flex-row justify-between p-8 shadow-inner bg-blue-800 w-full rounded-xl">
+    <div className="flex flex-row justify-evenly p-8 shadow-inner bg-blue-800 w-full rounded-xl">
       {databoxes()}
     </div>
   );

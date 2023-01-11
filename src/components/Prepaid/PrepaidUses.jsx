@@ -21,7 +21,11 @@ const PrepaidUses = ({ handleForm, logData }) => {
         <h1 className="text-xl text-center pb-2">Log History</h1>
       </div>
       <div className=" bg-gray-200 w-full h-130 rounded-xl overflow-scroll">
-        {/* {logList()} */}
+        {logData ? (
+          <div>{logList()}</div>
+        ) : (
+          <p className="py-2 text-center">Empty</p>
+        )}
       </div>
     </div>
   );

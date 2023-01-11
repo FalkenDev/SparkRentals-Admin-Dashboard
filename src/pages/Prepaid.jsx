@@ -22,7 +22,6 @@ const Prepaid = () => {
 
   async function fetchData() {
     const res = await prepaid.getPrePaid();
-    console.log(res);
     const data = res.prepaids;
     setPrepaidData(data);
   }
@@ -71,7 +70,7 @@ const Prepaid = () => {
 
   const overlay = () => {
     let state = { click: "auto", backdrop: "blur(0px)" };
-    if (displayForm || editForm) {
+    if (displayForm || editForm || logForm) {
       state = { click: "none", backdrop: "blur(4px)" };
     }
     return state;
