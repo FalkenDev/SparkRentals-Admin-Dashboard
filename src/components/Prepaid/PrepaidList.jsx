@@ -7,6 +7,8 @@ const PrepaidList = ({
   handleRemoveCard,
   handleEditForm,
   handleLogForm,
+  setSelectedCard,
+  setLogData,
 }) => {
   const [isOpen, setIsOpen] = useState({});
   const [isDelete, setIsDelete] = useState({});
@@ -65,16 +67,17 @@ const PrepaidList = ({
           >
             Logs
           </button>
-          <button
+          {/* <button
             onClick={() => {
-              handleEditForm(card);
+              setSelectedCard(card);
+              handleEditForm();
             }}
             className="
                 my-1 py-1 px-3 transition-colors bg-sidebarHover w-36
                hover:bg-sidebarBlue text-white rounded-full"
           >
             Edit
-          </button>
+          </button> */}
           {isDelete[card._id] ? (
             <div>
               <p>Confirm deletion?</p>

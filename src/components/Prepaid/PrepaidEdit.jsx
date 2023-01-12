@@ -36,7 +36,12 @@ const PrepaidEdit = ({ handleEditForm, handleEditCard, selected }) => {
 
   return (
     <div className="py-2 px-3 bg-white rounded-xl shadow-md">
-      <button className="py-1" onClick={() => handleEditForm()}>
+      <button
+        className="py-1"
+        onClick={() => {
+          handleEditForm();
+        }}
+      >
         <GrClose />
       </button>
       <h1 className="text-xl text-center pb-3">Edit Prepaid</h1>

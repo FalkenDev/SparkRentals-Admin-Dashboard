@@ -109,7 +109,7 @@ const Map = ({
                 <span className="text-md">
                   Owner: {item.owner}
                   <br />
-                  Battery: {item.battery}%
+                  Battery: {item.battery.toFixed(0)}%
                   <br />
                   Lat: {item.coordinates.latitude}
                   <br />

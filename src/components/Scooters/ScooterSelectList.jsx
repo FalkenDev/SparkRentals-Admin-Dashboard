@@ -30,7 +30,7 @@ const ScooterSelectList = ({ scooters, isSelected, setIsSelected }) => {
           <td className="py-3 px-6">{item.name}</td>
           <td className="py-3 px-6">{item.owner}</td>
           <td className="py-3 px-6">{item.status}</td>
-          <td className="py-3 px-6">{item.battery}%</td>
+          <td className="py-3 px-6">{item.battery.toFixed(0)}%</td>
           <td className="py-3 px-6 w-2">
             <Link to={"/scooters/select"} state={{ id: item._id }}>
               <span>
