@@ -40,8 +40,7 @@ const Prepaid = () => {
     }
   };
 
-  const handleEditForm = (card) => {
-    setSelectedCard(card);
+  const handleEditForm = () => {
     if (editForm) {
       setEditForm(false);
     } else {
@@ -141,6 +140,7 @@ const Prepaid = () => {
             prepaidData={prepaidData}
             filterPhrase={filterPhrase}
             handleRemoveCard={handleRemoveCard}
+            setSelectedCard={setSelectedCard}
             handleEditForm={handleEditForm}
             handleLogForm={handleLogForm}
           />
